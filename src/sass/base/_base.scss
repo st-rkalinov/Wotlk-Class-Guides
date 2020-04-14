@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'LifeCraftRegular';
+  font-style: normal;
+  font-weight: normal;
+  src: local('LifeCraftRegular'), url('~assets/fonts/LifeCraft_Font.woff') format('woff');
+}
+
 *,
 *::after,
 *::before {
