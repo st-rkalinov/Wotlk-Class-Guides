@@ -1,0 +1,14 @@
+@keyframes text-pop-up {
+  0% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    -webkit-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
+  }
+  100% {
+    -webkit-transform: translateY(-1rem);
+            transform: translateY(-1rem);
+    -webkit-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
+  }
+}

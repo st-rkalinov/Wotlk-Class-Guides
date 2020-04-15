@@ -1,0 +1,7 @@
+.heading-1 {
+  font-size: 4rem;
+
+  &--hp {
+    @include lich-king-font;
+  }
+}
