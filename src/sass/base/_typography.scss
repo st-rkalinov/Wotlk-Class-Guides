@@ -4,4 +4,9 @@
   &--hp {
     @include lich-king-font;
   }
+
+  span {
+    display: block;
+    padding-top: 5rem;
+  }
 }

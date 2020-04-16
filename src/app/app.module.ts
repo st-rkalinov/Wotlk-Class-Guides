@@ -7,6 +7,8 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { NavigationComponent } from './navigation/navigation.component';
+import { CharacterIconComponent } from './character-class/character-icon/character-icon.component';
+import {CharactersClassService} from './character-class/characters-class.service';
 
 @NgModule({
   declarations: [
@@ -14,13 +16,14 @@ import { NavigationComponent } from './navigation/navigation.component';
     WelcomeComponent,
     LoginComponent,
     SignupComponent,
-    NavigationComponent
+    NavigationComponent,
+    CharacterIconComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [CharactersClassService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
