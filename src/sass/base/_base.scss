@@ -11,12 +11,31 @@
   src: url("../assets/fonts/b_wrath.woff") format("woff");
 }
 
+@font-face {
+  font-family: 'Friz Quadrata Std Bold';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Friz Quadrata Std Bold'), url('../assets/fonts/friz-quadrata-std-bold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Friz Quadrata Std Medium';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Friz Quadrata Std Medium'), url('../assets/fonts/friz-quadrata-std-medium.woff') format('woff');
+}
+
 *,
 *::after,
 *::before {
   margin: 0;
   padding: 0;
   box-sizing: inherit;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
 }
 
 html {

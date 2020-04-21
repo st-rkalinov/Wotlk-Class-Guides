@@ -9,6 +9,8 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { CharacterIconComponent } from './character-class/character-icon/character-icon.component';
 import {CharactersClassService} from './character-class/characters-class.service';
+import {ReactiveFormsModule} from '@angular/forms';
+import { LogRegComponent } from './auth/log-reg/log-reg.component';
 
 @NgModule({
   declarations: [
@@ -18,11 +20,13 @@ import {CharactersClassService} from './character-class/characters-class.service
     SignupComponent,
     NavigationComponent,
     CharacterIconComponent,
+    LogRegComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        ReactiveFormsModule
+    ],
   providers: [CharactersClassService],
   bootstrap: [AppComponent]
 })

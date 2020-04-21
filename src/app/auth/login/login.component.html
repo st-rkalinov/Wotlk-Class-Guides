@@ -1,1 +1,26 @@
-<p>in the login component</p>
+<div class="wow-form-wrapper">
+  <form
+    class="wow-form"
+    [formGroup]="loginForm"
+    (ngSubmit)="onSubmit()">
+    <div class="wow-form__form-group">
+      <label for="login" class="wow-form__control-label">Account Email</label>
+      <div class="wow-form__form-control-wrapper">
+        <input type="email" formControlName="email" class="wow-form__form-control" id="login">
+      </div>
+      <p *ngIf="email.invalid && isSubmitted">Invalid Email</p>
+    </div>
+    <div class="wow-form__form-group">
+      <label for="password" class="wow-form__control-label">Password</label>
+      <div class="wow-form__form-control-wrapper">
+        <input type="password" formControlName="password" class="wow-form__form-control" id="password">
+      </div>
+    </div>
+    <div class="wow-form__form-group">
+      <div class="wow-form__form-btn-wrapper">
+        <button type="submit" class="wow-form__form-btn">Login</button>
+      </div>
+    </div>
+  </form>
+</div>
+

@@ -1,0 +1,12 @@
+.log-reg {
+  background-image: url("../../../assets/img/wotlk-startscreen.jpg");
+  background-size: cover;
+  height: 100vh;
+
+  &__content {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

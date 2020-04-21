@@ -1,9 +1,50 @@
 @import "variables";
 
 @mixin lich-king-font {
-    font-family: $font-tertiary;
-    font-weight: 400;
-    color: #f6f6f6;
-    letter-spacing: 0.5rem;
-    text-shadow: 0 0 15px $color-bg-primary, 0 0 10px $color-bg-primary, 0 0 10px $color-bg-primary;
+  font-family: $font-tertiary;
+  font-weight: 400;
+  color: #f6f6f6;
+  letter-spacing: 0.5rem;
+  text-shadow: 0 0 15px $color-bg-primary, 0 0 10px $color-bg-primary, 0 0 10px $color-bg-primary;
+}
+
+@mixin lk-login-screen-font-style {
+  text-align: center;
+  text-shadow: -2px 0px 0 #000300, 2px 0px 0 #000300, 0px 2px 0 #000300, 0px -2px 0 #000300;
+  color: #F2CE38;
+}
+
+@mixin lk-login-screen-input-style {
+  border-radius: 0.3rem;
+  border: none;
+  background-color: rgba(8, 38, 49, 0.6);
+  padding: 0.6rem;
+  margin: 0 auto;
+  color: white;
+  font-weight: 700;
+  caret-color: white;
+}
+
+@mixin lk-login-screen-btn-style {
+    @include lk-login-screen-font-style;
+    padding: 0.4rem 0;
+    border-radius: 0.8rem;
+    background:linear-gradient(to bottom, #1a4e87, #265485, #1a4e87);
+    border: none;
+    font-size: $font-size-secondary;
+    box-shadow: inset 0 0 10px 1px black;
+    cursor: pointer;
+
+    &:hover {
+      background:linear-gradient(to bottom, #2a81b7, #1cabef, #2a81b7);
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &:active {
+      outline: none;
+      box-shadow: inset 0 3px 10px 1px black;
+    }
 }
