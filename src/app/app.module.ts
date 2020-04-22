@@ -11,6 +11,8 @@ import { CharacterIconComponent } from './character-class/character-icon/charact
 import {CharactersClassService} from './character-class/characters-class.service';
 import {ReactiveFormsModule} from '@angular/forms';
 import { LogRegComponent } from './auth/log-reg/log-reg.component';
+import { WowModalComponent } from './ui/wow-modal/wow-modal.component';
+import {AuthService} from './auth/auth.service';
 
 @NgModule({
   declarations: [
@@ -21,13 +23,14 @@ import { LogRegComponent } from './auth/log-reg/log-reg.component';
     NavigationComponent,
     CharacterIconComponent,
     LogRegComponent,
+    WowModalComponent,
   ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         ReactiveFormsModule
     ],
-  providers: [CharactersClassService],
+  providers: [CharactersClassService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

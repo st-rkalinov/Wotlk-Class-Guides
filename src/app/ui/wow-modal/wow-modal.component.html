@@ -1,0 +1,10 @@
+<section class="wow-modal" [ngClass]="this.isVisible ? 'wow-modal--visible' : 'wow-modal--hidden'">
+  <div class="wow-modal__content">
+    <div class="wow-modal__body">
+      <p>{{ message }}</p>
+    </div>
+    <div class="wow-modal__footer">
+      <button type="button" class="wow-modal__btn" (click)="closeModal()">Okay</button>
+    </div>
+  </div>
+</section>

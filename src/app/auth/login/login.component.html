@@ -6,9 +6,8 @@
     <div class="wow-form__form-group">
       <label for="login" class="wow-form__control-label">Account Email</label>
       <div class="wow-form__form-control-wrapper">
-        <input type="email" formControlName="email" class="wow-form__form-control" id="login">
+        <input type="email" formControlName="email" class="wow-form__form-control" id="login" autocomplete="off">
       </div>
-      <p *ngIf="email.invalid && isSubmitted">Invalid Email</p>
     </div>
     <div class="wow-form__form-group">
       <label for="password" class="wow-form__control-label">Password</label>
@@ -23,4 +22,5 @@
     </div>
   </form>
 </div>
+<app-wow-modal></app-wow-modal>
 
