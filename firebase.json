@@ -1,0 +1,19 @@
+{
+  "hosting": [
+    {
+      "target": "wotlk-class-guides",
+      "public": "dist/wotlk-class-guides",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    }
+  ]
+}

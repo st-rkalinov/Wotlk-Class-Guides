@@ -126,8 +126,13 @@
               "devServerTarget": "wotlk-class-guides:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
-    }},
+    }
+  },
   "defaultProject": "wotlk-class-guides"
 }

@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "wow-class-guides": {
+      "hosting": {
+        "wotlk-class-guides": [
+          "wow-class-guides"
+        ]
+      }
+    }
+  }
+}

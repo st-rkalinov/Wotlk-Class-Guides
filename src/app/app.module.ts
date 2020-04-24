@@ -13,6 +13,9 @@ import {ReactiveFormsModule} from '@angular/forms';
 import { LogRegComponent } from './auth/log-reg/log-reg.component';
 import { WowModalComponent } from './ui/wow-modal/wow-modal.component';
 import {AuthService} from './auth/auth.service';
+import {AngularFireModule} from '@angular/fire';
+import {environment} from '../environments/environment';
+import {AngularFirestoreModule} from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [
@@ -26,9 +29,11 @@ import {AuthService} from './auth/auth.service';
     WowModalComponent,
   ],
     imports: [
-        BrowserModule,
-        AppRoutingModule,
-        ReactiveFormsModule
+      BrowserModule,
+      AppRoutingModule,
+      ReactiveFormsModule,
+      AngularFireModule.initializeApp(environment.firebase),
+      AngularFirestoreModule
     ],
   providers: [CharactersClassService, AuthService],
   bootstrap: [AppComponent]

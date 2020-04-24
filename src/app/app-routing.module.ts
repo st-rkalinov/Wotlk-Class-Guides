@@ -9,7 +9,7 @@ import {LogRegComponent} from './auth/log-reg/log-reg.component';
 const routes: Routes = [
   {path: '', component: WelcomeComponent},
   {path: 'login', component: LogRegComponent},
-  {path: 'signup', component: LogRegComponent}
+  {path: 'signup', component: LogRegComponent},
 ];
 
 @NgModule({
