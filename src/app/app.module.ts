@@ -16,6 +16,7 @@ import {AuthService} from './auth/auth.service';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
+import { WowBtnComponent } from './ui/wow-btn/wow-btn.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
     CharacterIconComponent,
     LogRegComponent,
     WowModalComponent,
+    WowBtnComponent,
   ],
     imports: [
       BrowserModule,

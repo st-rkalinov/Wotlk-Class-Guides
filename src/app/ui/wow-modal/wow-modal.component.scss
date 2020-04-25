@@ -19,38 +19,39 @@
     display: none;
   }
 
-    &__content {
-      position: relative;
-      background-color: #fefefe;
-      margin: 0 auto;
-      padding: 0;
-      border: 3px solid #888;
-      width: 40%;
-      background-color: rgba(8, 38, 49, 0.6);
+  &__content {
+    position: relative;
+    background-color: #fefefe;
+    margin: 0 auto;
+    padding: 0;
+    border: 3px solid #888;
+    width: 40%;
+    background-color: rgba(8, 38, 49, 0.6);
+  }
+
+  &__header {
+    padding: 2px 16px;
+
+    color: white;
+  }
+
+  &__body {
+    > * {
+      @include lk-login-screen-font-style;
     }
 
-    &__header {
-      padding: 2px 16px;
+    padding: 1.5rem;
+    font-size: $font-size-primary;
+    font-weight: 700;
+    text-align: center;
+  }
 
-      color: white;
-    }
-
-    &__body {
-      > * {
-        @include lk-login-screen-font-style;
-      }
-      padding: 1.5rem;
-      font-size: $font-size-primary;
-      font-weight: 700;
-    }
-
-    &__footer {
-      padding: 1.5rem;
-      color: white;
-    }
+  &__footer {
+    padding: 1.5rem;
+    color: white;
+  }
 
   &__btn {
-    @include lk-login-screen-btn-style;
     display: block;
     width: 40%;
     margin: 0 auto;

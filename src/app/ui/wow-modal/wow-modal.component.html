@@ -4,7 +4,7 @@
       <p>{{ message }}</p>
     </div>
     <div class="wow-modal__footer">
-      <button type="button" class="wow-modal__btn" (click)="closeModal()">Okay</button>
+      <app-wow-btn [btnType]="'button'" [btnText]="'Okay'" (click)="closeModal()" class="wow-modal__btn"></app-wow-btn>
     </div>
   </div>
 </section>

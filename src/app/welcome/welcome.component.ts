@@ -19,5 +19,4 @@ export class WelcomeComponent implements OnInit {
       console.log(result);
     });
   }
-
 }
