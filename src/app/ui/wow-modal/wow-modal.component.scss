@@ -24,7 +24,9 @@
     background-color: #fefefe;
     margin: 0 auto;
     padding: 0;
-    border: 3px solid #888;
+    border: 7px solid;
+    border-image: url('/assets/img/border-form-controls.png') 3 stretch;
+    border-radius: 7px;
     width: 40%;
     background-color: rgba(8, 38, 49, 0.6);
   }

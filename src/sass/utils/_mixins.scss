@@ -14,12 +14,14 @@
 }
 
 @mixin lk-login-screen-input-style {
-  border-radius: 0.3rem;
-  border: none;
+  border-radius: 10px;
+  border: 5px solid;
+  border-image: url('/assets/img/border-form-controls.png') 3 stretch;
   background-color: rgba(8, 38, 49, 0.6);
   padding: 0.6rem;
   margin: 0 auto;
   color: white;
   font-weight: 700;
   caret-color: white;
+  box-shadow: 0 0 10px 0 black;
 }
