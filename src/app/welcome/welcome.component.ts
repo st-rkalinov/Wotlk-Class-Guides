@@ -9,14 +9,17 @@ import {AngularFirestore} from '@angular/fire/firestore';
 })
 export class WelcomeComponent implements OnInit {
   charactersData = [];
+  gems = [];
 
   constructor(private charactersClassService: CharactersClassService, private db: AngularFirestore) {
     this.charactersData = this.charactersClassService.getCharactersData();
   }
 
   ngOnInit(): void {
-    this.db.collection('guides').valueChanges().subscribe(result => {
+    const blueItemsCollection = this.db.collection('gems', ref => ref.where('category', '==', 'red'));
+    blueItemsCollection.valueChanges().subscribe(result => {
       console.log(result);
+      this.gems = [...result];
     });
   }
 }

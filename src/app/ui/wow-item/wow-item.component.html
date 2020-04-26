@@ -1,6 +1,7 @@
-<a [href]="itemLink" class="wow-item">
-  <span class="wow-item__icon" [ngStyle]="{ 'background-image': 'url(' + itemIconLink + ')'}">
+<div class="wow-item">
+  <span class="wow-item__icon" [ngStyle]="{ 'background-image': 'url(' + itemIconLink + ')'}" style="float: left">
     <span class="wow-item__icon-border"></span>
   </span>
-  <span class="wow-item__name">{{ itemName }}</span>
-</a>
+  <a [href]="itemLink" class="wow-item__link">{{ itemName }}</a>
+</div>
+

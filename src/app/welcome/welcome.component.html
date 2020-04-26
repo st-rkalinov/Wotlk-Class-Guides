@@ -9,6 +9,8 @@
       <div class="hp__class-icons">
         <app-character-icon *ngFor="let character of charactersData" [characterData]="character"></app-character-icon>
       </div>
+
+      <app-wow-item *ngFor="let item of gems" [itemLink]="item.link" [itemIconLink]="item.icon_link" [itemName]="item.name"></app-wow-item>
     </div>
   </section>
 </section>
