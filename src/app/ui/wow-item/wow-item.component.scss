@@ -1,0 +1,36 @@
+@import "utils/variables";
+.wow-item {
+  color: #a335ee;
+  font-size: 1.2rem;
+  text-decoration: none;
+  font-family: $font-primary;
+  font-weight: 700;
+  padding: 1rem;
+
+  &__icon {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    width: 18px;
+    height: 18px;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-right: 6px;
+
+
+    &-border {
+      position: absolute;
+      top: -4px;
+      left: -4px;
+      width: 26px;
+      height: 26px;
+      background-image: url("/assets/img/border.png");
+    }
+  }
+
+  &__name {
+    display: inline-block;
+    vertical-align: middle;
+  }
+}

@@ -17,6 +17,7 @@ import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import { WowBtnComponent } from './ui/wow-btn/wow-btn.component';
+import { WowItemComponent } from './ui/wow-item/wow-item.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { WowBtnComponent } from './ui/wow-btn/wow-btn.component';
     LogRegComponent,
     WowModalComponent,
     WowBtnComponent,
+    WowItemComponent,
   ],
     imports: [
       BrowserModule,

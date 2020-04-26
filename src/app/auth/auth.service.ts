@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {FormGroup} from '@angular/forms';
 import {Subject} from 'rxjs';
+import {Router} from '@angular/router';
 
 @Injectable()
 export class AuthService {
@@ -8,7 +9,7 @@ export class AuthService {
   public errorMessage = '';
   public hasErrors: boolean;
 
-  constructor() {
+  constructor(private router: Router) {
     this.hasErrors = false;
   }
 
@@ -26,6 +27,7 @@ export class AuthService {
     } else {
       this.hasErrors = false;
       this.errorMessage = '';
+      this.router.navigate(['/']);
     }
 
     this.error.next({ message: this.errorMessage, hasErrors: this.hasErrors });
