@@ -27,7 +27,7 @@ export class AuthService {
     } else {
       this.hasErrors = false;
       this.errorMessage = '';
-      this.router.navigate(['/']);
+      this.router.navigate(['/guides']);
     }
 
     this.error.next({ message: this.errorMessage, hasErrors: this.hasErrors });

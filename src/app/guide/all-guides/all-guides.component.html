@@ -1,0 +1,11 @@
+<section class="classes-data-wrapper">
+  <div class="class-data" *ngFor="let classData of classesData">
+    <p class="class-data__name">{{ classData.name }}</p>
+    <ul class="class-data__specs">
+      <li *ngFor="let classSpec of classData.specs | keyvalue">
+        <span><img src="{{ classSpec.value }}" alt=""></span>
+        {{ classSpec.key }}
+      </li>
+    </ul>
+  </div>
+</section>
