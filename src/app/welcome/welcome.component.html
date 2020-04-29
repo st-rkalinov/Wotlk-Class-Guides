@@ -7,7 +7,7 @@
         <a routerLink="/signup" class="hp__link">Sign Up</a>
       </div>
       <div class="hp__class-icons">
-        <app-character-icon *ngFor="let character of charactersData" [characterData]="character"></app-character-icon>
+        <app-character-icon *ngFor="let character of classesData" [characterData]="character"></app-character-icon>
       </div>
 
       <app-wow-item *ngFor="let item of gems" [itemLink]="item.link" [itemIconLink]="item.icon_link" [itemName]="item.name"></app-wow-item>
