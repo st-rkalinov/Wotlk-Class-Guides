@@ -20,8 +20,5 @@ export class CharactersClassService {
       this.classesData = data;
       this.classesDataChanged.next([...this.classesData]);
     });
-
-    //console.log(this.classesData);
-    //this.classesData = [...data];
   }
 }

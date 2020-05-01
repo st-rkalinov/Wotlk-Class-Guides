@@ -7,7 +7,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { NavigationComponent } from './navigation/navigation.component';
-import { CharacterIconComponent } from './character-class/character-icon/character-icon.component';
+import { CharacterIconComponent } from './ui/character-icon/character-icon.component';
 import {CharactersClassService} from './character-class/characters-class.service';
 import {ReactiveFormsModule} from '@angular/forms';
 import { LogRegComponent } from './auth/log-reg/log-reg.component';
@@ -18,7 +18,10 @@ import {environment} from '../environments/environment';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import { WowBtnComponent } from './ui/wow-btn/wow-btn.component';
 import { WowItemComponent } from './ui/wow-item/wow-item.component';
+import { GuidesListComponent } from './guide/guides-list/guides-list.component';
+import { ClassesMenuComponent } from './ui/classes-menu/classes-menu.component';
 import { AllGuidesComponent } from './guide/all-guides/all-guides.component';
+import { SpecificGuidesComponent } from './guide/specific-guides/specific-guides.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,10 @@ import { AllGuidesComponent } from './guide/all-guides/all-guides.component';
     WowModalComponent,
     WowBtnComponent,
     WowItemComponent,
+    GuidesListComponent,
+    ClassesMenuComponent,
     AllGuidesComponent,
+    SpecificGuidesComponent,
   ],
     imports: [
       BrowserModule,
