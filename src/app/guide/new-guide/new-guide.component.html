@@ -1,0 +1,52 @@
+<div>
+  <form
+    class="wow-form"
+    [formGroup]="newGuideForm"
+    (ngSubmit)="onSubmit()">
+    <div class="wow-form__form-group">
+      <label for="class" class="wow-form__control-label">Class</label>
+      <select formControlName="class" class="wow-form__form-control" id="class" (change)="onClassSelect()">
+        <option [defaultSelected]=true [value]="defaultOptionValue">{{ defaultOptionValue }}</option>
+        <option *ngFor="let characterClass of classesData"
+                [value]="characterClass.name">{{ characterClass.name }}</option>
+      </select>
+    </div>
+    <div class="wow-form__form-group">
+      <label for="spec" class="wow-form__control-label">Spec</label>
+      <select formControlName="spec" class="wow-form__form-control" id="spec">
+        <option [defaultSelected]=true [value]="defaultOptionValue">{{ defaultOptionValue }}</option>
+        <option *ngFor="let characterSpec of availableSpecs | keyvalue"
+                [value]="characterSpec.key">{{ characterSpec.key }}</option>
+      </select>
+    </div>
+    <div formGroupName="gems">
+      <h5>Red</h5>
+      <div *ngFor="let gem of gemsData.red">
+        <div>
+          <app-wow-item [itemLink]="gem.link" [itemIconLink]="gem.icon_link" [itemName]="gem.name"></app-wow-item>
+          <div>
+            <input type="checkbox" [value]="gem.name" [attr.data-category]="'red'" (change)="onCheckboxChange($event)">
+            {{ gem.name}}
+          </div>
+        </div>
+      </div>
+      <h5>Blue</h5>
+      <div *ngFor="let gem of gemsData.blue">
+        <div>
+          <app-wow-item [itemLink]="gem.link" [itemIconLink]="gem.icon_link" [itemName]="gem.name" ></app-wow-item>
+          <div>
+            <input type="checkbox" [value]="gem.name" [attr.data-category]="'blue'" (change)="onCheckboxChange($event)">
+            {{ gem.name}}
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <textarea id="" cols="30" rows="10" formControlName="comment"></textarea>
+      </div>
+    </div>
+    <div class="wow-form__form-group">
+      <app-wow-btn [btnText]="'Create'"></app-wow-btn>
+    </div>
+  </form>
+</div>

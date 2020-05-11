@@ -22,6 +22,7 @@ import { GuidesListComponent } from './guide/guides-list/guides-list.component';
 import { ClassesMenuComponent } from './ui/classes-menu/classes-menu.component';
 import { AllGuidesComponent } from './guide/all-guides/all-guides.component';
 import { SpecificGuidesComponent } from './guide/specific-guides/specific-guides.component';
+import { NewGuideComponent } from './guide/new-guide/new-guide.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { SpecificGuidesComponent } from './guide/specific-guides/specific-guides
     ClassesMenuComponent,
     AllGuidesComponent,
     SpecificGuidesComponent,
+    NewGuideComponent,
   ],
     imports: [
       BrowserModule,

@@ -21,4 +21,8 @@ export class CharactersClassService {
       this.classesDataChanged.next([...this.classesData]);
     });
   }
+
+  extractClassSpecs(classData: CharacterClassModel) {
+    return classData.specs;
+  }
 }
