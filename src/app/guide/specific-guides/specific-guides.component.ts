@@ -10,11 +10,14 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class SpecificGuidesComponent implements OnInit, OnDestroy {
   guidesData: object[];
-  guidesDataSubs: Subscription = new Subscription();
+  guidesDataSub: Subscription = new Subscription();
 
-  constructor(private guideService: GuideService, private route: ActivatedRoute) { }
+  constructor(private guideService: GuideService, private route: ActivatedRoute) {
+    console.log('In specific guides component constructor');
+    this.guidesDataSub = this.guideService.guidesChanged.subscribe(data => {
+      this.guidesData = data;
+    });
 
-  ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       if (params.get('className') && !params.get('specName')) {
         this.guideService.fetchSpecificClassGuides(params.get('className'));
@@ -24,13 +27,14 @@ export class SpecificGuidesComponent implements OnInit, OnDestroy {
         this.guideService.fetchAllGuides();
       }
     });
+  }
 
-    this.guidesDataSubs = this.guideService.guidesChanged.subscribe(data => {
-      this.guidesData = data;
-    });
+  ngOnInit(): void {
   }
 
   ngOnDestroy(): void {
-    this.guidesDataSubs.unsubscribe();
+    if (this.guidesDataSub) {
+      this.guidesDataSub.unsubscribe();
+    }
   }
 }

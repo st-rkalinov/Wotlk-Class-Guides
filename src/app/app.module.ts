@@ -23,6 +23,7 @@ import { ClassesMenuComponent } from './ui/classes-menu/classes-menu.component';
 import { AllGuidesComponent } from './guide/all-guides/all-guides.component';
 import { SpecificGuidesComponent } from './guide/specific-guides/specific-guides.component';
 import { NewGuideComponent } from './guide/new-guide/new-guide.component';
+import {AngularFireAuthModule} from '@angular/fire/auth';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { NewGuideComponent } from './guide/new-guide/new-guide.component';
       AppRoutingModule,
       ReactiveFormsModule,
       AngularFireModule.initializeApp(environment.firebase),
-      AngularFirestoreModule
+      AngularFirestoreModule,
+      AngularFireAuthModule
     ],
   providers: [CharactersClassService, AuthService],
   bootstrap: [AppComponent]

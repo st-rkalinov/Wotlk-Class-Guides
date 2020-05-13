@@ -5,6 +5,7 @@ import {LogRegComponent} from './auth/log-reg/log-reg.component';
 import {AllGuidesComponent} from './guide/all-guides/all-guides.component';
 import {SpecificGuidesComponent} from './guide/specific-guides/specific-guides.component';
 import {NewGuideComponent} from './guide/new-guide/new-guide.component';
+import {AuthGuard} from './auth/auth.guard';
 
 
 const routes: Routes = [
@@ -18,12 +19,13 @@ const routes: Routes = [
       { path: ':className/:specName', component: SpecificGuidesComponent }
     ]
   },
-  {path: 'profile/new-guide', component: NewGuideComponent}
+  {path: 'profile/new-guide', component: NewGuideComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [AuthGuard]
 })
 export class AppRoutingModule {
 }

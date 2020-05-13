@@ -13,7 +13,7 @@ export class WowModalComponent implements OnInit, OnDestroy {
   public message: string;
 
   constructor(private authService: AuthService) {
-    this.messageSubs = this.authService.errorObservable().subscribe(result => {
+    this.messageSubs = this.authService.error.asObservable().subscribe(result => {
       if (result) {
         this.message = result.message;
         this.isVisible = result.hasErrors;
@@ -22,7 +22,7 @@ export class WowModalComponent implements OnInit, OnDestroy {
         this.isVisible = false;
       }
     });
-    
+
     this.isVisible = false;
   }
 

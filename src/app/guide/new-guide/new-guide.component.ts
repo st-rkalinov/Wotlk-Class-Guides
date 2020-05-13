@@ -109,7 +109,11 @@ export class NewGuideComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.classesDataSubs.unsubscribe();
-    this.gemsDataSubs.unsubscribe();
+    if (this.classesDataSubs) {
+      this.classesDataSubs.unsubscribe();
+    }
+    if (this.gemsDataSubs) {
+      this.gemsDataSubs.unsubscribe();
+    }
   }
 }
