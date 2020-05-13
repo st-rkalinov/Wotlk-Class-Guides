@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {DbGemModel} from '../models/gem.model';
 import {AbstractControl} from '@angular/forms';
-import {AngularFirestore} from '@angular/fire/firestore';
+import {AngularFirestore, QuerySnapshot} from '@angular/fire/firestore';
 import {Subject} from 'rxjs';
-import {map} from 'rxjs/operators';
+import {map, take} from 'rxjs/operators';
 import {GemsByCategory, DbGuideGemsModel, DbGemsModel} from '../models/gems.model';
 
 @Injectable({
@@ -44,13 +44,14 @@ export class NewGuideService {
   fetchAvailableGems() {
     this.db.collection('gems')
       .snapshotChanges()
-      .pipe(map(docArray => {
-        return docArray.map((doc: any) => {
-          return {
-            category: doc.payload.doc.id,
-            ...doc.payload.doc.data(),
-          };
-        });
+        .pipe(take(1),
+        map(docArray => {
+          return docArray.map((doc: any) => {
+            return {
+              category: doc.payload.doc.id,
+              ...doc.payload.doc.data(),
+            };
+          });
       })).subscribe((data: Array<DbGemsModel>) => {
         this.gems = data;
         this.gemsChanged.next(this.splitGemsByCategory(this.gems));
