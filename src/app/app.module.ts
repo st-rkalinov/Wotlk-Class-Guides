@@ -9,7 +9,7 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { CharacterIconComponent } from './ui/character-icon/character-icon.component';
 import {CharactersClassService} from './character-class/characters-class.service';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { LogRegComponent } from './auth/log-reg/log-reg.component';
 import { WowModalComponent } from './ui/wow-modal/wow-modal.component';
 import {AuthService} from './auth/auth.service';
@@ -47,6 +47,7 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
       BrowserModule,
       AppRoutingModule,
       ReactiveFormsModule,
+      FormsModule,
       AngularFireModule.initializeApp(environment.firebase),
       AngularFirestoreModule,
       AngularFireAuthModule

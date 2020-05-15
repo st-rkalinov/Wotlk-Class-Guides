@@ -41,7 +41,6 @@ export class GuideService {
   }
 
   fetchAllGuides() {
-    console.log('In fetch all guides method');
     this.guidesSubs.push(
       this.db.collection('guides')
         .valueChanges()
