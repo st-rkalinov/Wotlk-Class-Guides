@@ -1,12 +1,17 @@
 .heading-1 {
+  font-size: 7rem;
+  color: white;
+  font-weight: 400;
+}
+
+.heading-2 {
+  font-size: 5rem;
+  color: white;
+  font-weight: 400;
+}
+
+.heading-3 {
   font-size: 4rem;
-
-  &--hp {
-    @include lich-king-font;
-  }
-
-  span {
-    display: block;
-    padding-top: 5rem;
-  }
+  color: white;
+  font-weight: 400;
 }

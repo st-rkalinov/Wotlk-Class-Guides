@@ -1,0 +1,21 @@
+.website-logo {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  cursor: pointer;
+
+  &__img {
+    width: 7rem;
+    height: 9rem;
+    margin-right: 2rem;
+  }
+
+  &__text {
+    font-size: 2rem;
+    font-weight: 700;
+    background:  linear-gradient(90deg, rgba(252,22,3,1) 0%, rgba(204,23,16,1) 53%, rgba(83,166,228,1) 55%, rgba(26,142,255,1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 1px;
+  }
+}

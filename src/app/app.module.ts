@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
-import { NavigationComponent } from './navigation/navigation.component';
+import { NavigationComponent } from './core/navigation/navigation.component';
 import { CharacterIconComponent } from './ui/character-icon/character-icon.component';
 import {CharactersClassService} from './character-class/characters-class.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -24,6 +24,8 @@ import { AllGuidesComponent } from './guide/all-guides/all-guides.component';
 import { SpecificGuidesComponent } from './guide/specific-guides/specific-guides.component';
 import { NewGuideComponent } from './guide/new-guide/new-guide.component';
 import {AngularFireAuthModule} from '@angular/fire/auth';
+import { WebsiteLogoComponent } from './ui/website-logo/website-logo.component';
+import { HeaderComponent } from './core/header/header.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,8 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
     AllGuidesComponent,
     SpecificGuidesComponent,
     NewGuideComponent,
+    WebsiteLogoComponent,
+    HeaderComponent,
   ],
     imports: [
       BrowserModule,
