@@ -1,5 +1,13 @@
 @import "variables";
 
+@mixin orange-font-styling {
+  letter-spacing: 3px;
+  -webkit-text-stroke: 1px rgba(228,130,3,1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(3px 4px 1px #000000);
+}
+
 @mixin lich-king-font {
   font-weight: 400;
   color: #f6f6f6;
@@ -8,6 +16,7 @@
 }
 
 @mixin lk-login-screen-font-style {
+  font-family: $font-quaternary;
   text-shadow: -2px 0px 0 #000300, 2px 0px 0 #000300, 0px 2px 0 #000300, 0px -2px 0 #000300;
   color: #F2CE38;
 }

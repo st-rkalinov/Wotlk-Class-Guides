@@ -1,53 +1,85 @@
 @import "utils/mixins";
+@import "utils/variables";
 
-.lk {
-  height: 100vh;
-  background-image: linear-gradient(rgba(38, 38, 38, 0.5), rgba(38, 38, 38, 0.5)), url("../../assets/img/lichking-bg.jpg");
-  background-size: cover;
+.welcome-page {
+  background-color: rgba(0,0,0,1);
+  box-shadow: 0px -54px 19px -12px rgba(0,0,0,1);
 }
 
-.hp {
-  height: 100vh;
+.about-project {
+  padding: 5rem 0;
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
   align-items: center;
 
+  &__info {
+    letter-spacing: 3px;
+    padding-right: 30rem;
+    align-self: stretch;
+    flex: 1;
+    position: relative;
 
-  &__content {
-    text-align: center;
-    height: 100%;
+    &:before {
+      content: '';
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      bottom: -4rem;
+      filter: brightness(.1);
+      background-image: url('/assets/img/welcome-page-info-bg.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-    padding: 5rem;
-    width: 80%;
+    justify-content: center;
+  }
+
+  &__heading {
+    @include orange-font-styling;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 15%;
+      height: 100%;
+      bottom: -1.5rem;
+      left: 0;
+      border-bottom: 2px solid #c26103;
+    }
 
   }
 
-  &__links {
-    display: flex;
-    width: 100%;
-    justify-content: space-around;
-    flex-wrap: wrap;
+  &__text {
+    @include orange-font-styling;
+    font-size: $font-size-primary;
+    padding: 5rem 0 3rem 0;
+    text-align: justify;
   }
 
-  &__link {
-    @include lich-king-font;
-    padding: 2rem;
+  &__image-wrapper {
+    width: 50%;
+    position: relative;
+    filter: brightness(.6);
 
-    font-size: 3rem;
-    text-decoration: none;
-
-    &:hover {
-      animation: text-pop-up 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      box-shadow: inset 79px 64px 67px black;
+      -moz-box-shadow: inset 79px 64px 67px black;
+      -webkit-box-shadow: inset 79px 64px 56px black, inset -79px -64px 40px black;
     }
   }
 
-  &__class-icons {
-    display: flex;
+  &__image {
     width: 100%;
-    justify-content: space-between;
-    flex-wrap: wrap;
   }
 }

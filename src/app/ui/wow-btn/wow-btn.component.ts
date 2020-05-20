@@ -8,10 +8,13 @@ import {Component, Input, OnInit} from '@angular/core';
 export class WowBtnComponent implements OnInit {
   @Input() btnType: string;
   @Input() btnText: string;
+  @Input() btnStyleType: string;
+  @Input() additionalStyles: object = null;
 
   constructor() {
     this.btnType = 'submit';
     this.btnText = 'Login';
+    this.btnStyleType = null;
   }
 
   ngOnInit(): void {

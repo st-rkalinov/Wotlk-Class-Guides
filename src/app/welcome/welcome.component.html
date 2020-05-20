@@ -1,18 +1,21 @@
-<!--
-<section class="lk">
-  <section class="hp">
-    <div class="hp__content">
-      <h1 class="heading-1 heading-1&#45;&#45;hp">The Best Class Guides <span>Join Now !</span></h1>
-      <div class="hp__links">
-        <a routerLink="/login" class="hp__link">Login</a>
-        <a routerLink="/signup" class="hp__link">Sign Up</a>
-      </div>
-      <div class="hp__class-icons">
-        <app-character-icon *ngFor="let character of classesData" [characterData]="character"></app-character-icon>
+<div class="welcome-page">
+  <div class="shell">
+    <section class="about-project">
+      <div class="about-project__info">
+        <h2 class="heading-2 about-project__heading">About the project</h2>
+        <p class="about-project__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+          A alias aliquid corporis fuga fugiat ipsa libero magni reprehenderit ullam voluptas?
+          Architecto consectetur culpa, dolores error excepturi laboriosam minus molestias temporibus.
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusantium adipisci consequatur deleniti dolore eum, ex
+          excepturi expedita fugiat fugit labore nam nisi nulla qui ratione rerum sed soluta ullam.
+        </p>
+
+        <app-wow-btn [btnText]="'GITHUB'" [btnType]="'text'" [btnStyleType]="'red'" [additionalStyles]="buttonStyles"></app-wow-btn>
       </div>
 
-      <app-wow-item *ngFor="let item of gems" [itemLink]="item.link" [itemIconLink]="item.icon_link" [itemName]="item.name"></app-wow-item>
-    </div>
-  </section>
-</section>
--->
+      <div class="about-project__image-wrapper">
+        <img src="../../assets/img/welcome-page-about-image.jpg" alt="" class="about-project__image">
+      </div>
+    </section>
+  </div>
+</div>

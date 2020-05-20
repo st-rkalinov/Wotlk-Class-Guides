@@ -16,7 +16,7 @@
     position: absolute;
     top: 0;
     z-index: 1;
-    background-image: url("/assets/img/DaHWJ-5W4AAQ2t6.jpg");
+    background-image: url("/assets/img/header-bg.jpg");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -48,6 +48,7 @@
 
   &__link {
     text-decoration: none;
+    letter-spacing: 3px;
     -webkit-text-stroke: 1px rgba(228,130,3,1);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;

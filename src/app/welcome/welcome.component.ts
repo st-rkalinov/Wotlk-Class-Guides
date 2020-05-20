@@ -1,6 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {CharactersClassService} from '../character-class/characters-class.service';
-import {AngularFirestore} from '@angular/fire/firestore';
 import {Subscription} from 'rxjs';
 import {CharacterClassModel} from '../character-class/character-class.model';
 
@@ -12,20 +11,15 @@ import {CharacterClassModel} from '../character-class/character-class.model';
 export class WelcomeComponent implements OnInit, OnDestroy {
   classesData: CharacterClassModel[];
   classesDataSubscription = new Subscription();
-  gems = [];
+  buttonStyles = { width: '35%', padding: '1rem 0', letterSpacing: '3px'};
 
-  constructor(private charactersClassService: CharactersClassService, private db: AngularFirestore) {
+  constructor(private charactersClassService: CharactersClassService) {
   }
 
   ngOnInit(): void {
     this.charactersClassService.fetchClassesData();
     this.classesDataSubscription = this.charactersClassService.classesDataChanged.subscribe(data => {
       this.classesData = data;
-    });
-
-    const blueItemsCollection = this.db.collection('gems', ref => ref.where('category', '==', 'red'));
-    blueItemsCollection.valueChanges().subscribe(result => {
-      this.gems = [...result];
     });
   }
 

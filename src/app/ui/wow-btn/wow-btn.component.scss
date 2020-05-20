@@ -38,6 +38,15 @@
   }
 
   width: 100%;
+
+  &--red {
+    background: linear-gradient(to bottom, #540606, #6e0200, #4a0301);
+
+    &:hover {
+      background: linear-gradient(to bottom, #540606, #a60200, #4a0301);
+      color: white;
+    }
+  }
 }
 
 

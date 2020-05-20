@@ -10,7 +10,6 @@
     display: flex;
     justify-content: space-between;
     height: auto;
-    padding: 0 10rem;
     width: 100%;
     z-index: 100;
     align-items: center;
@@ -35,11 +34,7 @@
   &__link {
     font-weight: 400;
     text-decoration: none;
-    -webkit-text-stroke: 1px rgba(228,130,3,1);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    filter: drop-shadow(3px 4px 1px #000000);
-    letter-spacing: 3px;
+    @include orange-font-styling;
 
     &:hover {
       text-shadow: 0 -1px 21px #FFF;
