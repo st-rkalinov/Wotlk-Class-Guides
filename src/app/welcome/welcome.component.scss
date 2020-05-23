@@ -83,3 +83,39 @@
     width: 100%;
   }
 }
+
+.classes-info {
+  position: relative;
+  padding: 5rem 0;
+  background: black;
+  min-height: 100rem;
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    background-image: url("/assets/img/mage-bg.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    filter: brightness(.05);
+    box-shadow: inset 79px 64px 67px black;
+    -moz-box-shadow: inset 79px 64px 67px black;
+    -webkit-box-shadow: inset 79px 64px 56px black, inset -79px -64px 40px black;
+    z-index: 0;
+  }
+
+  &__text {
+    @include orange-font-styling;
+    text-align: center;
+  }
+
+  &__content {
+    position: relative;
+    padding-top: 5rem;
+  }
+}
+

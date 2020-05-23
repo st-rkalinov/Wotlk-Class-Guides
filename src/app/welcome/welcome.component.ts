@@ -11,7 +11,12 @@ import {CharacterClassModel} from '../character-class/character-class.model';
 export class WelcomeComponent implements OnInit, OnDestroy {
   classesData: CharacterClassModel[];
   classesDataSubscription = new Subscription();
-  buttonStyles = { width: '35%', padding: '1rem 0', letterSpacing: '3px'};
+
+  aboutSectionButtonStyles = { width: '35%', padding: '1rem 0', letterSpacing: '3px'};
+  guidesSectionClassButtonStyles = { width: '35%', padding: '0.5rem 0', letterSpacing: '3px'};
+  guidesSectionSpecButtonStyles = { width: '100%', padding: '0.5rem 0', letterSpacing: '3px'};
+
+  selectedClass: {index: number, classData?: CharacterClassModel} = {index: 0, classData: null};
 
   constructor(private charactersClassService: CharactersClassService) {
   }
@@ -20,6 +25,8 @@ export class WelcomeComponent implements OnInit, OnDestroy {
     this.charactersClassService.fetchClassesData();
     this.classesDataSubscription = this.charactersClassService.classesDataChanged.subscribe(data => {
       this.classesData = data;
+      this.selectedClass.index = 0;
+      this.selectedClass.classData = this.classesData[0];
     });
   }
 

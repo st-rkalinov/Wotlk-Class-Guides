@@ -1,0 +1,15 @@
+<div class="specs" *ngIf="classData">
+  <div class="specs__classicon-block">
+    <img [src]="'../assets/img/' + classData.name.toLowerCase() + '-logo.png'" alt=""
+         class="specs__classicon">
+  </div>
+
+  <div class="specs__header">
+    <app-wow-btn [btnStyleType]="'red'" [btnText]="classData.name + ' Guides'" [btnType]="'text'"
+                 [additionalStyles]="classButtonStyles"></app-wow-btn>
+  </div>
+
+  <div class="specs__cards">
+    <app-spec-card *ngFor="let spec of classData.specs" [spec]="spec"></app-spec-card>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+@import "utils/mixins";
+@import "utils/variables";
+
+:host {
+    display: flex;
+}
+
+.spec-card {
+  border: 5px solid;
+  border-image: url('/assets/img/border-form-controls.png') 3 stretch;
+  padding: 3rem;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+
+  &__header {
+    text-align: center;
+  }
+
+  &__image {
+    width: 5rem;
+    height: 5rem;
+    opacity: 0.5;
+  }
+
+  &__heading {
+    @include orange-font-styling;
+  }
+
+  &__content {
+    font-size: $font-size-primary;
+    color: white;
+    padding: 4rem 0;
+    text-align: justify;
+    flex: 1;
+  }
+}

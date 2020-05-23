@@ -3,6 +3,7 @@
     <section class="about-project">
       <div class="about-project__info">
         <h2 class="heading-2 about-project__heading">About the project</h2>
+
         <p class="about-project__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
           A alias aliquid corporis fuga fugiat ipsa libero magni reprehenderit ullam voluptas?
           Architecto consectetur culpa, dolores error excepturi laboriosam minus molestias temporibus.
@@ -10,11 +11,22 @@
           excepturi expedita fugiat fugit labore nam nisi nulla qui ratione rerum sed soluta ullam.
         </p>
 
-        <app-wow-btn [btnText]="'GITHUB'" [btnType]="'text'" [btnStyleType]="'red'" [additionalStyles]="buttonStyles"></app-wow-btn>
+        <app-wow-btn [btnText]="'GITHUB'" [btnType]="'text'" [btnStyleType]="'red'" [additionalStyles]="aboutSectionButtonStyles"></app-wow-btn>
       </div>
 
       <div class="about-project__image-wrapper">
         <img src="../../assets/img/welcome-page-about-image.jpg" alt="" class="about-project__image">
+      </div>
+    </section>
+
+    <section class="classes-info">
+      <div class="classes-info__text">
+        <h2 class="heading-2 classes-info__heading">Guides for Every Class</h2>
+      </div>
+
+      <div class="classes-info__content">
+        <app-classes-menu [classesData]="classesData" (classIconClicked)="selectedClass = $event"></app-classes-menu>
+        <app-classes-specs [classData]="selectedClass.classData"></app-classes-specs>
       </div>
     </section>
   </div>

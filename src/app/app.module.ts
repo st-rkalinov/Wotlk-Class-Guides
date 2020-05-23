@@ -19,34 +19,40 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
 import { WowBtnComponent } from './ui/wow-btn/wow-btn.component';
 import { WowItemComponent } from './ui/wow-item/wow-item.component';
 import { GuidesListComponent } from './guide/guides-list/guides-list.component';
-import { ClassesMenuComponent } from './ui/classes-menu/classes-menu.component';
+//import { ClassesMenuComponent } from './ui/classes-menu/classes-menu.component';
 import { AllGuidesComponent } from './guide/all-guides/all-guides.component';
 import { SpecificGuidesComponent } from './guide/specific-guides/specific-guides.component';
 import { NewGuideComponent } from './guide/new-guide/new-guide.component';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import { WebsiteLogoComponent } from './ui/website-logo/website-logo.component';
 import { HeaderComponent } from './core/header/header.component';
+import {ClassesMenuComponent} from './classes-menu/classes-menu.component';
+import { ClassesSpecsComponent } from './classes-specs/classes-specs.component';
+import { SpecCardComponent } from './spec-card/spec-card.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    WelcomeComponent,
-    LoginComponent,
-    SignupComponent,
-    NavigationComponent,
-    CharacterIconComponent,
-    LogRegComponent,
-    WowModalComponent,
-    WowBtnComponent,
-    WowItemComponent,
-    GuidesListComponent,
-    ClassesMenuComponent,
-    AllGuidesComponent,
-    SpecificGuidesComponent,
-    NewGuideComponent,
-    WebsiteLogoComponent,
-    HeaderComponent,
-  ],
+    declarations: [
+        AppComponent,
+        WelcomeComponent,
+        LoginComponent,
+        SignupComponent,
+        NavigationComponent,
+        CharacterIconComponent,
+        LogRegComponent,
+        WowModalComponent,
+        WowBtnComponent,
+        WowItemComponent,
+        GuidesListComponent,
+        ClassesMenuComponent,
+        AllGuidesComponent,
+        SpecificGuidesComponent,
+        NewGuideComponent,
+        WebsiteLogoComponent,
+        HeaderComponent,
+        ClassesMenuComponent,
+        ClassesSpecsComponent,
+        SpecCardComponent,
+    ],
     imports: [
       BrowserModule,
       AppRoutingModule,
