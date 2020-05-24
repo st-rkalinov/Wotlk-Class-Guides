@@ -11,6 +11,7 @@ export class WowModalComponent implements OnInit, OnDestroy {
   public isVisible: boolean;
   public messageSubs: Subscription;
   public message: string;
+  buttonStyles = { display: 'block', width: '40%', margin: '0 auto'};
 
   constructor(private authService: AuthService) {
     this.messageSubs = this.authService.error.asObservable().subscribe(result => {

@@ -29,6 +29,7 @@ import { HeaderComponent } from './core/header/header.component';
 import {ClassesMenuComponent} from './classes-menu/classes-menu.component';
 import { ClassesSpecsComponent } from './classes-specs/classes-specs.component';
 import { SpecCardComponent } from './spec-card/spec-card.component';
+import { BgVideoComponent } from './bg-video/bg-video.component';
 
 @NgModule({
     declarations: [
@@ -52,6 +53,7 @@ import { SpecCardComponent } from './spec-card/spec-card.component';
         ClassesMenuComponent,
         ClassesSpecsComponent,
         SpecCardComponent,
+        BgVideoComponent,
     ],
     imports: [
       BrowserModule,
