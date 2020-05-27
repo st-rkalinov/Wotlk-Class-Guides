@@ -2,6 +2,14 @@
   height: 100vh;
   position: relative;
   box-shadow: inset 0 40px 97px 111px black;
+  z-index: 1;
+
+  &__bg-video {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    box-shadow: inset 0 40px 97px 111px black;
+  }
 
   &::before {
     content: '';
@@ -9,6 +17,7 @@
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, .6);
+    z-index: 2;
   }
 
   &__content {
@@ -17,5 +26,6 @@
     justify-content: center;
     align-items: center;
     position: relative;
+    z-index: 3;
   }
 }

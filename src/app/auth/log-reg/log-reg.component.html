@@ -1,5 +1,7 @@
 <div class="log-reg">
-  <app-bg-video [videoSrc]="'https://giant.gfycat.com/ExemplaryJealousGyrfalcon.webm'"></app-bg-video>
+  <div class="log-reg__bg-video">
+    <app-bg-video [videoSrc]="'https://giant.gfycat.com/ExemplaryJealousGyrfalcon.webm'"></app-bg-video>
+  </div>
 
   <div class="log-reg__content">
     <app-login *ngIf="isLoginRoute" [ngStyle]="{'width': '100%', 'height': '100%'}"></app-login>

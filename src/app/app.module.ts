@@ -19,7 +19,6 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
 import { WowBtnComponent } from './ui/wow-btn/wow-btn.component';
 import { WowItemComponent } from './ui/wow-item/wow-item.component';
 import { GuidesListComponent } from './guide/guides-list/guides-list.component';
-//import { ClassesMenuComponent } from './ui/classes-menu/classes-menu.component';
 import { AllGuidesComponent } from './guide/all-guides/all-guides.component';
 import { SpecificGuidesComponent } from './guide/specific-guides/specific-guides.component';
 import { NewGuideComponent } from './guide/new-guide/new-guide.component';
