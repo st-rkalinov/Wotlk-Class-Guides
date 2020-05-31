@@ -3,65 +3,31 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { WelcomeComponent } from './welcome/welcome.component';
-import { LoginComponent } from './auth/login/login.component';
-import { SignupComponent } from './auth/signup/signup.component';
-import { NavigationComponent } from './core/navigation/navigation.component';
-import { CharacterIconComponent } from './ui/character-icon/character-icon.component';
-import {CharactersClassService} from './character-class/characters-class.service';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { LogRegComponent } from './auth/log-reg/log-reg.component';
-import { WowModalComponent } from './ui/wow-modal/wow-modal.component';
+import {CharactersClassService} from './services/characters-class.service';
+import {FormsModule} from '@angular/forms';
 import {AuthService} from './auth/auth.service';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
-import { WowBtnComponent } from './ui/wow-btn/wow-btn.component';
-import { WowItemComponent } from './ui/wow-item/wow-item.component';
-import { GuidesListComponent } from './guide/guides-list/guides-list.component';
-import { AllGuidesComponent } from './guide/all-guides/all-guides.component';
-import { SpecificGuidesComponent } from './guide/specific-guides/specific-guides.component';
-import { NewGuideComponent } from './guide/new-guide/new-guide.component';
 import {AngularFireAuthModule} from '@angular/fire/auth';
-import { WebsiteLogoComponent } from './ui/website-logo/website-logo.component';
-import { HeaderComponent } from './core/header/header.component';
-import {ClassesMenuComponent} from './classes-menu/classes-menu.component';
-import { ClassesSpecsComponent } from './classes-specs/classes-specs.component';
-import { SpecCardComponent } from './spec-card/spec-card.component';
-import { BgVideoComponent } from './bg-video/bg-video.component';
+import {AuthModule} from './auth/auth.module';
+import {WelcomeModule} from './welcome/welcome.module';
+import {CoreModule} from './core/core.module';
 
 @NgModule({
     declarations: [
         AppComponent,
-        WelcomeComponent,
-        LoginComponent,
-        SignupComponent,
-        NavigationComponent,
-        CharacterIconComponent,
-        LogRegComponent,
-        WowModalComponent,
-        WowBtnComponent,
-        WowItemComponent,
-        GuidesListComponent,
-        ClassesMenuComponent,
-        AllGuidesComponent,
-        SpecificGuidesComponent,
-        NewGuideComponent,
-        WebsiteLogoComponent,
-        HeaderComponent,
-        ClassesMenuComponent,
-        ClassesSpecsComponent,
-        SpecCardComponent,
-        BgVideoComponent,
     ],
     imports: [
       BrowserModule,
       AppRoutingModule,
-      ReactiveFormsModule,
       FormsModule,
       AngularFireModule.initializeApp(environment.firebase),
       AngularFirestoreModule,
-      AngularFireAuthModule
+      AngularFireAuthModule,
+      AuthModule,
+      WelcomeModule,
+      CoreModule
     ],
   providers: [CharactersClassService, AuthService],
   bootstrap: [AppComponent]

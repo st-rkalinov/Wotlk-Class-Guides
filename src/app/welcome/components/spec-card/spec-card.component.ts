@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {DbCharacterClassSpecModel} from '../character-class/character-class-spec.model';
+import {DbCharacterClassSpecModel} from '../../../models/character-class-spec.model';
 
 @Component({
   selector: 'app-spec-card',

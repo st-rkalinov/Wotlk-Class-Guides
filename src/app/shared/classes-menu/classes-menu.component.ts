@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {CharacterClassModel} from '../character-class/character-class.model';
+import {CharacterClassModel} from '../../models/character-class.model';
+import {MenuSelectedClassModel} from '../../models/menu-selected-class.model';
 
 @Component({
   selector: 'app-classes-menu',
@@ -9,7 +10,7 @@ import {CharacterClassModel} from '../character-class/character-class.model';
 export class ClassesMenuComponent implements OnInit {
   @Input() classesData;
   @Output() classIconClicked = new EventEmitter();
-  selectedClass: {index: number, classData?: CharacterClassModel} = {index: 0, classData: null};
+  @Input() selectedClass: MenuSelectedClassModel = {index: -1, classData: null};
 
   constructor() { }
 

@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {CharactersClassService} from '../character-class/characters-class.service';
+import {CharactersClassService} from '../services/characters-class.service';
 import {Subscription} from 'rxjs';
-import {CharacterClassModel} from '../character-class/character-class.model';
+import {CharacterClassModel} from '../models/character-class.model';
 
 @Component({
   selector: 'app-welcome',

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SpecificGuidesComponent } from './specific-guides.component';
+import { SpecMenuComponent } from './spec-menu.component';
 
-describe('ClassGuidesComponent', () => {
-  let component: SpecificGuidesComponent;
-  let fixture: ComponentFixture<SpecificGuidesComponent>;
+describe('SpecMenuComponent', () => {
+  let component: SpecMenuComponent;
+  let fixture: ComponentFixture<SpecMenuComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SpecificGuidesComponent ]
+      declarations: [ SpecMenuComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SpecificGuidesComponent);
+    fixture = TestBed.createComponent(SpecMenuComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

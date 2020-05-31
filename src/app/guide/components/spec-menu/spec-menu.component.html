@@ -1,0 +1,10 @@
+<div class="specs-menu">
+  <div *ngFor="let spec of specsData; let i = index" class="specs-menu__spec-block"
+  (click)="onSpecBlockClick(spec, i)"
+  [ngClass]="{'specs-menu__spec-block--active': i === selectedSpec.index}">
+    <div class="specs-menu__spec-icon-block">
+      <img [src]="spec.icon_link" alt="" class="specs-menu__spec-img">
+    </div>
+    <p class="specs-menu__spec-name">{{ spec.name }}</p>
+  </div>
+</div>

@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {CharactersClassService} from '../../character-class/characters-class.service';
-import {CharacterClassModel} from '../../character-class/character-class.model';
+import {CharactersClassService} from '../../services/characters-class.service';
+import {CharacterClassModel} from '../../models/character-class.model';
 import {Observable, Subject, Subscription} from 'rxjs';
 import {GuideService} from '../guide.service';
 import {GuideModel, Guide} from '../guide.model';

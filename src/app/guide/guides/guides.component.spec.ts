@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AllGuidesComponent } from './all-guides.component';
+import { GuidesComponent } from './guides.component';
 
 describe('AllGuidesComponent', () => {
-  let component: AllGuidesComponent;
-  let fixture: ComponentFixture<AllGuidesComponent>;
+  let component: GuidesComponent;
+  let fixture: ComponentFixture<GuidesComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AllGuidesComponent ]
+      declarations: [ GuidesComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AllGuidesComponent);
+    fixture = TestBed.createComponent(GuidesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

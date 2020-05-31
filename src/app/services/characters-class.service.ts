@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {map} from 'rxjs/operators';
 import {Subject, Subscription} from 'rxjs';
-import {CharacterClassModel} from './character-class.model';
+import {CharacterClassModel} from '../models/character-class.model';
 
 @Injectable()
 export class CharactersClassService {
@@ -23,10 +23,6 @@ export class CharactersClassService {
         this.classesDataChanged.next([...this.classesData]);
       })
     );
-  }
-
-  extractClassSpecs(classData: CharacterClassModel) {
-    return classData.specs;
   }
 
   cancelSubscriptions() {

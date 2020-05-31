@@ -4,7 +4,7 @@ import {Subject} from 'rxjs';
 import {Router} from '@angular/router';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {GuideService} from '../guide/guide.service';
-import {CharactersClassService} from '../character-class/characters-class.service';
+import {CharactersClassService} from '../services/characters-class.service';
 
 @Injectable()
 export class AuthService {
