@@ -6,6 +6,7 @@ import {SharedModule} from '../shared/shared.module';
 import {GuideRoutingModule} from './guide-routing.module';
 import {WowItemComponent} from './components/wow-item/wow-item.component';
 import {SpecMenuComponent} from './components/spec-menu/spec-menu.component';
+import {MaterialModule} from '../material.module';
 
 @NgModule({
   declarations: [
@@ -15,9 +16,10 @@ import {SpecMenuComponent} from './components/spec-menu/spec-menu.component';
     WowItemComponent,
     SpecMenuComponent
   ],
-  imports: [
-    SharedModule,
-    GuideRoutingModule
-  ]
+    imports: [
+        SharedModule,
+        GuideRoutingModule,
+        MaterialModule
+    ]
 })
 export class GuideModule { }

@@ -1,3 +1,25 @@
-<div *ngIf="guidesData" style="background-color: red">
-  <p *ngFor="let guide of guidesData">{{ guide['class']  + ' ' + guide['spec']}}</p>
+<div style="color: white" class="guides-list">
+  <div  class="guides-list__table-wrapper">
+    <mat-form-field floatLabel='never' color="primary" class="guides-list__search">
+      <mat-label>Search</mat-label>
+      <input matInput (keyup)="filter($event)" type="text" placeholder="Filter guides...">
+    </mat-form-field>
+    <mat-table [dataSource]="dataSource" class="guides-list__table" matSort>
+      <!-- Name Column -->
+      <ng-container matColumnDef="class">
+        <mat-header-cell *matHeaderCellDef> Class </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.class.toUpperCase() }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="spec">
+        <mat-header-cell *matHeaderCellDef mat-sort-header=""> Spec </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.spec.toUpperCase() }} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;" class="guides-list__table-row"></mat-row>
+    </mat-table>
+
+    <mat-paginator [pageSizeOptions]="[15, 20, 25]" showFirstLastButtons class="guides-list__paginator"></mat-paginator>
+  </div>
 </div>

@@ -13,6 +13,9 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AuthModule} from './auth/auth.module';
 import {WelcomeModule} from './welcome/welcome.module';
 import {CoreModule} from './core/core.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MaterialModule} from './material.module';
+import {DarkThemeModule} from './dark-theme.module';
 
 @NgModule({
     declarations: [
@@ -27,7 +30,10 @@ import {CoreModule} from './core/core.module';
       AngularFireAuthModule,
       AuthModule,
       WelcomeModule,
-      CoreModule
+      CoreModule,
+      BrowserAnimationsModule,
+      MaterialModule,
+      DarkThemeModule
     ],
   providers: [CharactersClassService, AuthService],
   bootstrap: [AppComponent]
