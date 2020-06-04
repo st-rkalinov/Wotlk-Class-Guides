@@ -17,6 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MaterialModule} from './material.module';
 import {DarkThemeModule} from './dark-theme.module';
 import {AngularFireAuthGuard, AngularFireAuthGuardModule} from '@angular/fire/auth-guard';
+import {UserService} from './services/user.service';
 
 @NgModule({
     declarations: [
@@ -37,7 +38,7 @@ import {AngularFireAuthGuard, AngularFireAuthGuardModule} from '@angular/fire/au
       DarkThemeModule,
       AngularFireAuthGuardModule
     ],
-  providers: [CharactersClassService, AuthService, AngularFireAuthGuard],
+  providers: [CharactersClassService, AuthService, AngularFireAuthGuard, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

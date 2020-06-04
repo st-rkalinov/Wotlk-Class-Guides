@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {GuideService} from '../guide/guide.service';
 import {CharactersClassService} from '../services/characters-class.service';
+import {UserService} from '../services/user.service';
 
 @Injectable()
 export class AuthService {
@@ -13,29 +14,21 @@ export class AuthService {
   public hasErrors = false;
   public authChange = new Subject<boolean>();
 
-  constructor(private router: Router, private afAuth: AngularFireAuth, private guideService: GuideService, private classService: CharactersClassService) {
+  constructor(private router: Router, private afAuth: AngularFireAuth,
+              private guideService: GuideService,
+              private classService: CharactersClassService,
+              private userService: UserService) {
   }
 
   initAuthListener() {
     this.afAuth.authState.subscribe(user => {
       if (user) {
-        this.authenticateUser();
+        this.userService.saveUserAdditionalData(user);
+        this.authChange.next(true);
       } else {
-        this.unauthenticUser();
+        this.authChange.next(false);
       }
     });
-  }
-
-  authenticateUser() {
-    if (!localStorage.getItem('authenticated')) {
-      localStorage.setItem('authenticated', 'true');
-    }
-    this.authChange.next(true);
-  }
-
-  unauthenticUser() {
-    localStorage.removeItem('authenticated');
-    this.authChange.next(false);
   }
 
   login(form: FormGroup) {
@@ -83,7 +76,8 @@ export class AuthService {
 
   logout() {
     this.afAuth.signOut().then(() => {
-      this.unauthenticUser();
+      this.authChange.next(false);
+      this.userService.deleteUserAdditionalData();
       this.guideService.cancelSubscriptions();
       this.classService.cancelSubscriptions();
       this.router.navigate(['/login']);
