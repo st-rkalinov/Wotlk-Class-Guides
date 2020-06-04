@@ -16,10 +16,10 @@ import {MaterialModule} from '../material.module';
     WowItemComponent,
     SpecMenuComponent
   ],
-    imports: [
-        SharedModule,
-        GuideRoutingModule,
-        MaterialModule
-    ]
+  imports: [
+    SharedModule,
+    GuideRoutingModule,
+    MaterialModule
+  ]
 })
 export class GuideModule { }

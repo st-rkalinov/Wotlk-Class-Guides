@@ -11,9 +11,31 @@ export class AuthService {
   public error = new Subject<any>();
   public errorMessage = '';
   public hasErrors = false;
-  private isAuthenticated = false;
+  public authChange = new Subject<boolean>();
 
   constructor(private router: Router, private afAuth: AngularFireAuth, private guideService: GuideService, private classService: CharactersClassService) {
+  }
+
+  initAuthListener() {
+    this.afAuth.authState.subscribe(user => {
+      if (user) {
+        this.authenticateUser();
+      } else {
+        this.unauthenticUser();
+      }
+    });
+  }
+
+  authenticateUser() {
+    if (!localStorage.getItem('authenticated')) {
+      localStorage.setItem('authenticated', 'true');
+    }
+    this.authChange.next(true);
+  }
+
+  unauthenticUser() {
+    localStorage.removeItem('authenticated');
+    this.authChange.next(false);
   }
 
   login(form: FormGroup) {
@@ -22,18 +44,12 @@ export class AuthService {
         .then(result => {
           this.hasErrors = false;
           this.errorMessage = '';
-          this.isAuthenticated = true;
           this.router.navigate(['/guides']);
         })
         .catch(error => {
           this.hasErrors = true;
           this.errorMessage = error.message;
           this.error.next({message: this.errorMessage, hasErrors: this.hasErrors});
-
-          this.guideService.cancelSubscriptions();
-          this.classService.cancelSubscriptions();
-          this.isAuthenticated = false;
-          this.router.navigate(['/login']);
         });
     }
   }
@@ -50,41 +66,28 @@ export class AuthService {
 
           this.afAuth.signInWithEmailAndPassword(email, password)
             .then(loginResult => {
-               this.isAuthenticated = true;
-               this.router.navigate(['/guides']);
+              this.router.navigate(['/guides']);
             })
             .catch(error => {
               this.hasErrors = true;
               this.errorMessage = error.message;
-              this.error.next({message: this.errorMessage, hasErrors: this.hasErrors});
-
-              this.guideService.cancelSubscriptions();
-              this.classService.cancelSubscriptions();
-              this.isAuthenticated = false;
-              this.router.navigate(['/login']);
             });
         })
         .catch(error => {
           this.hasErrors = true;
           this.errorMessage = error.message;
           this.error.next({message: this.errorMessage, hasErrors: this.hasErrors});
-
-          this.guideService.cancelSubscriptions();
-          this.classService.cancelSubscriptions();
-          this.isAuthenticated = false;
         });
     }
   }
 
   logout() {
-    this.afAuth.signOut()
-      .then(result => {
-        this.isAuthenticated = false;
-        this.router.navigate(['/login']);
-      })
-      .catch(error => {
-        this.isAuthenticated = false;
-      });
+    this.afAuth.signOut().then(() => {
+      this.unauthenticUser();
+      this.guideService.cancelSubscriptions();
+      this.classService.cancelSubscriptions();
+      this.router.navigate(['/login']);
+    });
   }
 
   checkFormFields(form: FormGroup, componentName: string) {
@@ -132,7 +135,4 @@ export class AuthService {
     return password === confirmPassword ? null : { notSame: true };
   }
 
-  isAuth() {
-    return this.isAuthenticated;
-  }
 }

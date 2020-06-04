@@ -10,6 +10,7 @@ export class AppComponent implements OnInit {
   title = 'wotlk-class-guides';
 
   constructor(private authService: AuthService) {
+    this.authService.initAuthListener();
   }
 
   ngOnInit(): void {

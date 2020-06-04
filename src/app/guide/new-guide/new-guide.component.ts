@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {CharactersClassService} from '../../services/characters-class.service';
 import {CharacterClassModel} from '../../models/character-class.model';
-import {Observable, Subject, Subscription} from 'rxjs';
+import {Subscription} from 'rxjs';
 import {GuideService} from '../guide.service';
 import {GuideModel, Guide} from '../guide.model';
 import {DbGemModel} from '../../models/gem.model';
