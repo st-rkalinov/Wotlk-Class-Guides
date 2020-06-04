@@ -1,19 +1,33 @@
 <header class="header">
   <div class="header__bg"></div>
   <div class="header__content">
-    <div *ngIf="!isAuthenticated" class="header__text-wrapper">
-      <h2 class="heading-2 header__text-item">
-        <a [routerLink]="'/login'" class="header__link">Login</a>
-      </h2>
-      <h2 class="heading-2 header__text-item">
-        <a [routerLink]="'/signup'" class="header__link">Sign Up</a>
-      </h2>
+    <div *ngIf="!isAuthenticated" class="header__content-wrapper">
+
+        <a [routerLink]="'/login'" class="heading-2 header__link">Login</a>
+
+
+        <a [routerLink]="'/signup'" class="heading-2 header__link">Sign Up</a>
+
     </div>
-    <div *ngIf="isAuthenticated && userAdditionalData" class="header__text-wrapper">
-      <h2 class="heading-2 header__text-item">
-        <p>{{ userAdditionalData.nickname }}</p>
-        <a class="header__link" (click)="onLogout()">Logout</a>
-      </h2>
+    <div *ngIf="isAuthenticated && userAdditionalData" class="header__content-wrapper">
+      <h2 class="heading-2 header__text-item" [matMenuTriggerFor]="menu">{{ userAdditionalData.nickname }} <mat-icon>keyboard_arrow_down</mat-icon></h2>
+
+      <mat-menu #menu="matMenu" [xPosition]="'after'">
+        <div class="header__usernav">
+          <button mat-menu-item class="header__nav-item">
+            <mat-icon>person</mat-icon>
+            <span>Profile</span>
+          </button>
+          <button mat-menu-item class="header__nav-item">
+            <mat-icon>text_snippet</mat-icon>
+            <span>Your guides</span>
+          </button>
+          <button mat-menu-item (click)="onLogout()" class="header__nav-item">
+            <mat-icon>close</mat-icon>
+            <span>Logout</span>
+          </button>
+        </div>
+      </mat-menu>
     </div>
 
     <app-navigation></app-navigation>

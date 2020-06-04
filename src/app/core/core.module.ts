@@ -4,6 +4,7 @@ import {HeaderComponent} from './header/header.component';
 import {NavigationComponent} from './navigation/navigation.component';
 import {WebsiteLogoComponent} from './website-logo/website-logo.component';
 import {RouterModule} from '@angular/router';
+import {MaterialModule} from '../material.module';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import {RouterModule} from '@angular/router';
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    MaterialModule
   ],
   exports: [
     HeaderComponent,

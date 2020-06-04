@@ -1,3 +1,5 @@
+@import "utils/variables";
+
 .header {
   height: 40vh;
   position: relative;
@@ -33,7 +35,7 @@
     box-shadow: inset 0px -54px 19px -12px rgba(0,0,0,1);
   }
 
-  &__text-wrapper {
+  &__content-wrapper {
     align-self: center;
     flex: 1;
     width: 100%;
@@ -42,21 +44,33 @@
     align-items: center;
   }
 
-  &__text-item {
-    padding: 0 10rem;
+  &__text-item, &__link {
+      padding: 0 10rem;
+      letter-spacing: 3px;
+      -webkit-text-stroke: 1px rgba(228,130,3,1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(3px 4px 1px #000000);
+      cursor: pointer;
+      text-decoration: none;
+
+      &:hover {
+        text-shadow: 0 -1px 4px #FFF, 0 -2px 10px #ff0, 0 -10px 20px #ff8000, 0 -18px 40px #F00;
+      }
   }
 
-  &__link {
-    cursor: pointer;
-    text-decoration: none;
-    letter-spacing: 3px;
-    -webkit-text-stroke: 1px rgba(228,130,3,1);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    filter: drop-shadow(3px 4px 1px #000000);
-
-    &:hover {
-      text-shadow: 0 -1px 4px #FFF, 0 -2px 10px #ff0, 0 -10px 20px #ff8000, 0 -18px 40px #F00;
-    }
+  &__usernav {
+    background: black;
+    margin: -8px 0;
+    padding: 8px 0;
   }
+
+  &__nav-item {
+    font-family: $font-primary;
+  }
+}
+
+::ng-deep .mat-menu-panel {
+  max-width: none!important;
+  min-width: 400px!important;
 }
