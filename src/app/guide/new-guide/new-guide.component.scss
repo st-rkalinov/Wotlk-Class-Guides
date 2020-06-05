@@ -1,0 +1,58 @@
+@import "utils/variables";
+
+.new-guide {
+  padding-top: 10rem;
+}
+
+.guide-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &__field {
+    font-size: $font-size-primary;
+    width: 25%;
+  }
+
+  &__select-option {
+    line-height: .9em !important;
+    height: 2em !important;
+  }
+
+  &__textarea {
+    color: white !important;
+  }
+
+  &__submit {
+    width: 25%;
+    padding: 3rem;
+  }
+
+  &__group {
+    width: 80%;
+    position: relative;
+    padding: 5rem;
+    border: 2px solid gray;
+    border-radius: 2.5rem;
+  }
+
+  &__group-title {
+    position: absolute;
+    top: -35px;
+    background-color: black;
+    padding: 0 4rem;
+  }
+
+  &__group-content {
+    padding-top: 3rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    &--column {
+      flex-direction: column;
+    }
+  }
+}

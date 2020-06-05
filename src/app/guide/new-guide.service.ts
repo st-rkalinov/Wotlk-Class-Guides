@@ -1,28 +1,32 @@
 import {Injectable} from '@angular/core';
 import {DbGemModel} from '../models/gem.model';
 import {AbstractControl} from '@angular/forms';
-import {AngularFirestore, QuerySnapshot} from '@angular/fire/firestore';
+import {AngularFirestore} from '@angular/fire/firestore';
 import {Subject} from 'rxjs';
 import {map, take} from 'rxjs/operators';
-import {GemsByCategory, DbGuideGemsModel, DbGemsModel} from '../models/gems.model';
+import {DbGuideGemsModel, DbGemsModel} from '../models/gems.model';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NewGuideService {
   gems: Array<DbGemsModel>;
-  gemsChanged = new Subject<DbGuideGemsModel>();
+  gemsChanged = new Subject<any>();
 
-  constructor(private db: AngularFirestore) {
+  constructor(private db: AngularFirestore, private route: Router) {
   }
 
-  splitGemsByCategory(gemsData: Array<DbGemsModel>): DbGuideGemsModel {
-    const gems = new GemsByCategory();
+  splitGemsByCategory(selectedGems: Array<DbGemModel>): DbGuideGemsModel {
+    const gems = {
+      red: [],
+      blue: [],
+      yellow: [],
+    };
 
-    if (gemsData) {
-      gemsData.forEach(value => {
-        const categoryGems: Array<DbGemModel> = value.gems;
-        gems.addGems(value.category, categoryGems);
+    if (selectedGems) {
+      selectedGems.forEach(value => {
+        gems[value.category].push(value);
       });
     }
 
@@ -30,7 +34,12 @@ export class NewGuideService {
   }
 
   addNewGuideToDatabase(guideData: object) {
-    this.db.collection('guides').add(guideData);
+    this.db.collection('guides').add(guideData)
+      .then(result => {
+        this.route.navigate(['guides']);
+      })
+      .catch(error => {
+      });
   }
 
   classAndSpecCustomValidator(value: string) {
@@ -54,7 +63,7 @@ export class NewGuideService {
           });
       })).subscribe((data: Array<DbGemsModel>) => {
         this.gems = data;
-        this.gemsChanged.next(this.splitGemsByCategory(this.gems));
+        this.gemsChanged.next(this.gems);
     });
   }
 }

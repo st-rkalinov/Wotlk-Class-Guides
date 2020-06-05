@@ -10,6 +10,7 @@ export class WowBtnComponent implements OnInit {
   @Input() btnText: string;
   @Input() btnStyleType: string;
   @Input() additionalStyles: object = null;
+  @Input() disabled = false;
 
   constructor() {
     this.btnType = 'submit';

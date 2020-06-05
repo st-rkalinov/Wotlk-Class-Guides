@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {CharactersClassService} from '../services/characters-class.service';
 import {Subscription} from 'rxjs';
 import {CharacterClassModel} from '../models/character-class.model';
+import {MenuSelectedClassModel} from '../models/menu-selected-class.model';
 
 @Component({
   selector: 'app-welcome',
@@ -13,7 +14,7 @@ export class WelcomeComponent implements OnInit, OnDestroy {
   classesDataSubscription = new Subscription();
   aboutSectionButtonStyles = { width: '35%', padding: '1rem 0', letterSpacing: '3px'};
 
-  selectedClass: {index: number, classData?: CharacterClassModel} = {index: 0, classData: null};
+  selectedClass: MenuSelectedClassModel = {index: 0, classData: null};
 
   constructor(private charactersClassService: CharactersClassService) {
   }

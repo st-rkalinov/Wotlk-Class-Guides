@@ -1,26 +1,28 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CharactersClassService} from '../../services/characters-class.service';
 import {CharacterClassModel} from '../../models/character-class.model';
 import {Subscription} from 'rxjs';
 import {GuideService} from '../guide.service';
 import {GuideModel, Guide} from '../guide.model';
-import {DbGemModel} from '../../models/gem.model';
 import {NewGuideService} from '../new-guide.service';
-import {DbGuideGemsModel, GemsByCategory, GuideGems} from '../../models/gems.model';
+import {DbGemsModel} from '../../models/gems.model';
 
 @Component({
   selector: 'app-new-guide',
   templateUrl: './new-guide.component.html',
-  styleUrls: ['./new-guide.component.scss']
+  styleUrls: ['./new-guide.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class NewGuideComponent implements OnInit, OnDestroy {
   newGuideForm: FormGroup;
+  submitButtonStyles = { width: '100%', padding: '0.5rem 0', letterSpacing: '3px'};
+  showErrors = false;
 
   classesData: CharacterClassModel[];
   classesDataSubs = new Subscription();
 
-  gemsData: DbGuideGemsModel;
+  gemsData: DbGemsModel[];
   gemsDataSubs = new Subscription();
 
   selectedClass = null;
@@ -28,6 +30,9 @@ export class NewGuideComponent implements OnInit, OnDestroy {
   defaultOptionValue = 'None';
 
   constructor(private fb: FormBuilder, private charactersClassService: CharactersClassService, private guideService: GuideService, private newGuideService: NewGuideService) {
+  }
+
+  ngOnInit(): void {
     this.charactersClassService.fetchClassesData();
     this.newGuideService.fetchAvailableGems();
 
@@ -46,16 +51,10 @@ export class NewGuideComponent implements OnInit, OnDestroy {
         [Validators.required, this.newGuideService.classAndSpecCustomValidator(this.defaultOptionValue)]
       ],
       gems: this.fb.group({
-        red: this.fb.array([]),
-        blue: this.fb.array([]),
-        yellow: this.fb.array([]),
-        comment: ''
-      }),
+        data: [this.gemsData],
+        gemsComment: ['']
+      })
     });
-  }
-
-  ngOnInit(): void {
-    this.gemsData = new GuideGems();
   }
 
   onClassSelect() {
@@ -72,40 +71,22 @@ export class NewGuideComponent implements OnInit, OnDestroy {
     this.newGuideForm.get('spec').enable();
   }
 
-  onCheckboxChange(e) {
-    const gemsDataGroup  = this.newGuideForm.get('gems') as FormGroup;
-    const gemCategory = e.target.getAttribute('data-category');
-
-    if (e.target.checked) {
-      (this.gemsData[gemCategory] as Array<DbGemModel>).forEach(value => {
-        if (value.name === e.target.value) {
-          (gemsDataGroup.controls[gemCategory] as FormArray).push(new FormControl(value));
-        }
-      });
-    } else {
-      let i = 0;
-
-      (gemsDataGroup.controls[gemCategory] as FormArray).controls.forEach((item: FormControl) => {
-        if (item.value['name'] === e.target.value) {
-          (gemsDataGroup.controls[gemCategory] as FormArray).removeAt(i);
-          return;
-        }
-        i++;
-      });
-    }
-  }
-
-
   onSubmit() {
+    if (this.newGuideForm.invalid) {
+      this.showErrors = true;
+      return;
+    }
+
+    this.showErrors = false;
     const guideDataForSubmit: GuideModel = new Guide();
+    const gemsByCategory = this.newGuideService.splitGemsByCategory(this.newGuideForm.get('gems.data').value);
 
     guideDataForSubmit.class = this.newGuideForm.get('class').value.toLowerCase();
     guideDataForSubmit.spec = this.newGuideForm.get('spec').value.toLowerCase();
-    guideDataForSubmit.gems = this.newGuideForm.get('gems').value;
+    guideDataForSubmit.gems = gemsByCategory;
+    guideDataForSubmit.gems.comment = this.newGuideForm.get('gems.gemsComment').value;
 
-    if (this.newGuideForm.valid) {
-      this.newGuideService.addNewGuideToDatabase(Guide.parseForDB(guideDataForSubmit));
-    }
+    this.newGuideService.addNewGuideToDatabase(Guide.parseForDB(guideDataForSubmit));
   }
 
   ngOnDestroy(): void {

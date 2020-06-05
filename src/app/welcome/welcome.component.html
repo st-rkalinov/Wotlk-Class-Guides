@@ -25,7 +25,7 @@
       </div>
 
       <div class="classes-info__content">
-        <app-classes-menu [classesData]="classesData" (classIconClicked)="selectedClass = $event"></app-classes-menu>
+        <app-classes-menu [classesData]="classesData" [selectedClass]="selectedClass" (classIconClicked)="selectedClass = $event"></app-classes-menu>
         <app-classes-specs [classData]="selectedClass.classData"></app-classes-specs>
       </div>
     </section>

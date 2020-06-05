@@ -1,52 +1,56 @@
-<div>
-  <form
-    class="wow-form"
-    [formGroup]="newGuideForm"
-    (ngSubmit)="onSubmit()">
-    <div class="wow-form__form-group">
-      <label for="class" class="wow-form__control-label">Class</label>
-      <select formControlName="class" class="wow-form__form-control" id="class" (change)="onClassSelect()">
-        <option [defaultSelected]=true [value]="defaultOptionValue">{{ defaultOptionValue }}</option>
-        <option *ngFor="let characterClass of classesData"
-                [value]="characterClass.name">{{ characterClass.name }}</option>
-      </select>
-    </div>
-    <div class="wow-form__form-group">
-      <label for="spec" class="wow-form__control-label">Spec</label>
-      <select formControlName="spec" class="wow-form__form-control" id="spec">
-        <option [defaultSelected]=true [value]="defaultOptionValue">{{ defaultOptionValue }}</option>
-        <option *ngFor="let characterSpec of availableSpecs | keyvalue"
-                [value]="characterSpec.key">{{ characterSpec.key }}</option>
-      </select>
-    </div>
-    <div formGroupName="gems">
-      <h5>Red</h5>
-      <div *ngFor="let gem of gemsData.red">
-        <div>
-          <app-wow-item [itemLink]="gem.link" [itemIconLink]="gem.icon_link" [itemName]="gem.name"></app-wow-item>
-          <div>
-            <input type="checkbox" [value]="gem.name" [attr.data-category]="'red'" (change)="onCheckboxChange($event)">
-            {{ gem.name}}
+<div class="new-guide">
+  <div class="shell">
+    <div *ngIf="gemsData">
+      <form [formGroup]="newGuideForm" class="guide-form" (ngSubmit)="onSubmit()">
+        <div class="guide-form__group">
+          <h2 class="heading-2 guide-form__group-title">Class / Spec</h2>
+          <div class="guide-form__group-content">
+            <mat-form-field color="primary" appearance="outline" class="guide-form__field">
+              <mat-label class="guide-form__label">Class</mat-label>
+              <mat-select formControlName="class" panelClass="guide-form__select" class="guide-form__select" (selectionChange)="onClassSelect()" [disableOptionCentering]="true" required>
+                  <mat-option *ngFor="let characterClass of classesData" [value]="characterClass.name" class="guide-form__select-option">
+                    {{ characterClass.name}}
+                  </mat-option>
+              </mat-select>
+              <mat-error *ngIf="this.newGuideForm.get('class').invalid || showErrors">Field is required</mat-error>
+            </mat-form-field>
+            <mat-form-field  appearance="outline" color="primary" class="guide-form__field">
+              <mat-label class="guide-form__label">Spec</mat-label>
+              <mat-select formControlName="spec" panelClass="guide-form__select" class="guide-form__select" [disableOptionCentering]="true" required>
+                  <mat-option *ngFor="let characterSpec of availableSpecs" [value]="characterSpec.name" class="guide-form__select-option">
+                    {{ characterSpec.name}}
+                  </mat-option>
+              </mat-select>
+              <mat-error *ngIf="this.newGuideForm.get('spec').invalid || showErrors">Field is required</mat-error>
+            </mat-form-field>
           </div>
         </div>
-      </div>
-      <h5>Blue</h5>
-      <div *ngFor="let gem of gemsData.blue">
-        <div>
-          <app-wow-item [itemLink]="gem.link" [itemIconLink]="gem.icon_link" [itemName]="gem.name" ></app-wow-item>
-          <div>
-            <input type="checkbox" [value]="gem.name" [attr.data-category]="'blue'" (change)="onCheckboxChange($event)">
-            {{ gem.name}}
-          </div>
-        </div>
-      </div>
 
-      <div>
-        <textarea id="" cols="30" rows="10" formControlName="comment"></textarea>
-      </div>
+        <div class="guide-form__group">
+          <h2 class="heading-2 guide-form__group-title">Gems</h2>
+          <div class="guide-form__group-content guide-form__group-content--column">
+            <mat-form-field appearance="outline" formGroupName="gems" class="guide-form__field">
+              <mat-label class="guide-form__label">Gems</mat-label>
+              <mat-select formControlName="data" panelClass="guide-form__select" multiple class="guide-form__select" [disableOptionCentering]="true">
+                <mat-optgroup *ngFor="let gemGroup of gemsData" [label]="gemGroup.category.toUpperCase()">
+                  <mat-option *ngFor="let gem of gemGroup.gems" [value]="gem" class="guide-form__select-option">
+                    <app-wow-item [itemLink]="gem.link" [itemIconLink]="gem.icon_link" [itemName]="gem.name"></app-wow-item>
+                  </mat-option>
+                </mat-optgroup>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline" color="primary" formGroupName="gems" class="guide-form__field">
+              <mat-label class="guide-form__label">Gems Comment</mat-label>
+              <textarea matInput formControlName="gemsComment" class="guide-form__textarea" rows="15"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="guide-form__submit">
+          <app-wow-btn [btnStyleType]="'red'" [btnText]="'Create'" [btnType]="'submit'"
+                 [additionalStyles]="submitButtonStyles"></app-wow-btn>
+        </div>
+      </form>
     </div>
-    <div class="wow-form__form-group">
-      <app-wow-btn [btnText]="'Create'"></app-wow-btn>
-    </div>
-  </form>
+  </div>
 </div>
