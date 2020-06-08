@@ -5,6 +5,8 @@ import {SignupComponent} from './signup/signup.component';
 import {BgVideoComponent} from './components/bg-video/bg-video.component';
 import {SharedModule} from '../shared/shared.module';
 import {AuthRoutingModule} from './auth-routing.module';
+import { StoreModule } from '@ngrx/store';
+import * as fromAuthState from './store';
 
 
 @NgModule({
@@ -16,7 +18,8 @@ import {AuthRoutingModule} from './auth-routing.module';
   ],
   imports: [
     SharedModule,
-    AuthRoutingModule
+    AuthRoutingModule,
+    StoreModule.forFeature(fromAuthState.authStateFeatureKey, fromAuthState.reducers, { metaReducers: fromAuthState.metaReducers })
   ],
   exports: []
 })

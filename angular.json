@@ -138,5 +138,8 @@
       }
     }
   },
-  "defaultProject": "wotlk-class-guides"
+  "defaultProject": "wotlk-class-guides",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }
