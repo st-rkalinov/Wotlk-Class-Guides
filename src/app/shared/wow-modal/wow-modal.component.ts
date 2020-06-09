@@ -1,6 +1,9 @@
 import {Component, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {AuthService} from '../../auth/auth.service';
 import {Observable, Subscription} from 'rxjs';
+import {Store} from '@ngrx/store';
+import {selectError} from '../../auth/store';
+import {resetError} from '../../auth/store/auth.actions';
 
 @Component({
   selector: 'app-wow-modal',
@@ -8,33 +11,20 @@ import {Observable, Subscription} from 'rxjs';
   styleUrls: ['./wow-modal.component.scss']
 })
 export class WowModalComponent implements OnInit, OnDestroy {
-  public isVisible: boolean;
-  public messageSubs: Subscription;
-  public message: string;
   buttonStyles = { display: 'block', width: '40%', margin: '0 auto'};
+  public message$: Observable<string>;
 
-  constructor(private authService: AuthService) {
-    this.messageSubs = this.authService.error.asObservable().subscribe(result => {
-      if (result) {
-        this.message = result.message;
-        this.isVisible = result.hasErrors;
-      } else {
-        this.message = '';
-        this.isVisible = false;
-      }
-    });
-
-    this.isVisible = false;
+  constructor(private authService: AuthService, private store: Store) {
   }
 
   ngOnInit(): void {
+    this.message$ = this.store.select(selectError);
   }
 
   closeModal(): void {
-    this.isVisible = false;
+    this.store.dispatch(resetError({error: undefined}));
   }
 
   ngOnDestroy(): void {
-    this.messageSubs.unsubscribe();
   }
 }

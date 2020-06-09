@@ -7,6 +7,8 @@ import {SharedModule} from '../shared/shared.module';
 import {AuthRoutingModule} from './auth-routing.module';
 import { StoreModule } from '@ngrx/store';
 import * as fromAuthState from './store';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects } from './store/auth.effects';
 
 
 @NgModule({
@@ -19,7 +21,8 @@ import * as fromAuthState from './store';
   imports: [
     SharedModule,
     AuthRoutingModule,
-    StoreModule.forFeature(fromAuthState.authStateFeatureKey, fromAuthState.reducers, { metaReducers: fromAuthState.metaReducers })
+    StoreModule.forFeature(fromAuthState.authStateFeatureKey, fromAuthState.reducers, { metaReducers: fromAuthState.metaReducers }),
+    EffectsModule.forFeature([AuthEffects])
   ],
   exports: []
 })

@@ -1,7 +1,7 @@
-<section class="wow-modal" [ngClass]="this.isVisible ? 'wow-modal--visible' : 'wow-modal--hidden'">
+<section class="wow-modal" [ngClass]="(message$ | async) ? 'wow-modal--visible' : 'wow-modal--hidden'">
   <div class="wow-modal__content">
     <div class="wow-modal__body">
-      <p>{{ message }}</p>
+      <p>{{ message$ | async }}</p>
     </div>
     <div class="wow-modal__footer">
       <app-wow-btn [btnType]="'button'" [btnText]="'Okay'" (click)="closeModal()" [additionalStyles]="buttonStyles"></app-wow-btn>

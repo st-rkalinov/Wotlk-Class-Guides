@@ -1,6 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../auth.service';
+import {AuthState} from '../store';
+import {Store} from '@ngrx/store';
+import * as fromAuthActions from '../store/auth.actions';
+import {LoginFormFieldModel} from '../../models/login-formField.model';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +14,7 @@ import {AuthService} from '../auth.service';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private store: Store<AuthState>) {
   }
 
   ngOnInit(): void {
@@ -25,6 +29,18 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.authService.login(this.loginForm);
+    const emailData: LoginFormFieldModel = {
+      value: this.loginForm.get('email').value,
+      errors: this.loginForm.get('email').errors,
+      name: 'email'
+    };
+    const passwordData: LoginFormFieldModel = {
+      value: this.loginForm.get('password').value,
+      errors: this.loginForm.get('password').errors,
+      name: 'password'
+    };
+
+    this.store.dispatch(fromAuthActions.login({email: emailData, password: passwordData}));
   }
 }
+

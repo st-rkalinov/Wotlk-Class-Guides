@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {UserAdditionalDataModel} from '../models/user-additionalData.model';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {User} from 'firebase';
-import {Subject} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 
 @Injectable()
 export class UserService {
@@ -20,12 +20,12 @@ export class UserService {
     this.userAdditionalData = null;
   }
 
-  fetchUserAdditionalData(uid: string) {
-    this.db.collection('users', ref => ref.where('uid', '==', uid))
-      .valueChanges()
-      .subscribe((value: UserAdditionalDataModel[]) => {
+  fetchUserAdditionalData(uid: string): Observable<any> {
+    return this.db.collection('users', ref => ref.where('uid', '==', uid))
+      .valueChanges();
+     /* .subscribe((value: UserAdditionalDataModel[]) => {
         this.userAdditionalData = value[0];
         this.userAdditionalDataChange.next(value[0]);
-      });
+      });*/
   }
 }

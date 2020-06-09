@@ -1,9 +1,12 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
 import {AuthService} from '../../auth/auth.service';
-import {Subscription} from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 import {UserService} from '../../services/user.service';
 import {UserAdditionalDataModel} from '../../models/user-additionalData.model';
 import {Router} from '@angular/router';
+import {Store} from '@ngrx/store';
+import {selectIsLoggedIn} from '../../auth/store';
+
 
 @Component({
   selector: 'app-header',
@@ -11,18 +14,15 @@ import {Router} from '@angular/router';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  isAuthenticated: boolean;
   userAdditionalData: UserAdditionalDataModel;
   userAdditionalDataSub: Subscription;
-  authChangeSub: Subscription;
+  isAuthenticated$: Observable<boolean>;
 
-
-  constructor(private authService: AuthService, private userService: UserService, private route: Router) { }
+  constructor(private authService: AuthService, private userService: UserService, private route: Router, private store: Store) { }
 
   ngOnInit(): void {
-    this.authChangeSub = this.authService.authChange.subscribe(isAuth => {
-      this.isAuthenticated = isAuth;
-    });
+    this.isAuthenticated$ = this.store.select(selectIsLoggedIn);
+
     this.userAdditionalDataSub = this.userService.userAdditionalDataChange.subscribe(data => {
       this.userAdditionalData = data;
     });
@@ -37,9 +37,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if(this.authChangeSub) {
-      this.authChangeSub.unsubscribe();
-    }
     if(this.userAdditionalDataSub) {
       this.userAdditionalDataSub.unsubscribe();
     }

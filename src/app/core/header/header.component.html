@@ -1,18 +1,18 @@
 <header class="header">
   <div class="header__bg"></div>
   <div class="header__content">
-    <div *ngIf="!isAuthenticated" class="header__content-wrapper">
+    <div *ngIf="!(isAuthenticated$ | async)" class="header__content-wrapper">
         <a [routerLink]="'/login'" class="heading-2 header__link">Login</a>
         <a [routerLink]="'/signup'" class="heading-2 header__link">Sign Up</a>
     </div>
-    <div *ngIf="isAuthenticated && userAdditionalData" class="header__content-wrapper">
-      <h2 class="heading-2 header__text-item" [matMenuTriggerFor]="menu">{{ userAdditionalData.nickname }} <mat-icon>keyboard_arrow_down</mat-icon></h2>
+    <div *ngIf="(isAuthenticated$ | async)" class="header__content-wrapper">
+      <h2 class="heading-2 header__text-item" [matMenuTriggerFor]="menu">Profile <mat-icon>keyboard_arrow_down</mat-icon></h2>
 
       <mat-menu #menu="matMenu" [xPosition]="'after'">
         <div class="header__usernav">
           <button mat-menu-item class="header__nav-item">
             <mat-icon>person</mat-icon>
-            <span>Profile</span>
+            <span>Profile Data</span>
           </button>
           <button mat-menu-item class="header__nav-item" (click)="goToNewGuideRoute()">
             <mat-icon>add</mat-icon>
@@ -32,4 +32,5 @@
 
     <app-navigation></app-navigation>
   </div>
+  <p class="heading-2" (click)="onLogout()">LOGOUT</p>
 </header>
