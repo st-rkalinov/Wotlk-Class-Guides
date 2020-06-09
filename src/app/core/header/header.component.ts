@@ -6,6 +6,7 @@ import {UserAdditionalDataModel} from '../../models/user-additionalData.model';
 import {Router} from '@angular/router';
 import {Store} from '@ngrx/store';
 import {selectIsLoggedIn} from '../../auth/store';
+import * as fromAuthActions from '../../auth/store/auth.actions';
 
 
 @Component({
@@ -29,7 +30,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   onLogout() {
-    this.authService.logout();
+    this.store.dispatch(fromAuthActions.logout());
   }
 
   goToNewGuideRoute() {

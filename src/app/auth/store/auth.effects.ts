@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {catchError, exhaustMap, map, mergeMap, switchMap, tap} from 'rxjs/operators';
 import {of} from 'rxjs';
@@ -15,14 +15,25 @@ export class AuthEffects {
       ofType(fromAuthActions.login),
       exhaustMap(action =>
         this.authService.login(action.email, action.password).pipe(
-          map(user =>
-            fromAuthActions.loginSuccess({isLoggedIn: true})
-          ),
+          map(user => fromAuthActions.loginSuccess({isLoggedIn: true})),
           tap(() => this.router.navigate(['/guides'])),
-          catchError(error => of(fromAuthActions.loginFailure({error: error.message })))
+          catchError(error => of(fromAuthActions.loginFailure({error: error.message})))
         ))
-  ));
+    ));
 
-  constructor(private actions$: Actions, private authService: AuthService, private router: Router) {}
+  logout$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(fromAuthActions.logout),
+      exhaustMap(action => this.authService.logout().pipe(
+          map(result => fromAuthActions.logoutSuccess({isLoggedIn: false, userData: undefined})),
+          tap(() => this.router.navigate(['/login'])),
+          catchError(error => of(fromAuthActions.logoutFailure({error: error.message})))
+        )
+      )
+    )
+  );
+
+  constructor(private actions$: Actions, private authService: AuthService, private router: Router) {
+  }
 
 }

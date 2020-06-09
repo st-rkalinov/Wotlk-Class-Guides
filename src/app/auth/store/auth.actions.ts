@@ -28,16 +28,16 @@ export const getUserFailure = createAction(
 );
 
 export const logout = createAction(
-  '[Auth Service] Logout'
+  '[Header Component] Logout'
 );
 
 export const logoutSuccess = createAction(
-  '[Auth Service] Logout Success',
+  '[Auth Effect] Logout Success',
   props<{ isLoggedIn: boolean, userData: any}>()
 );
 
 export const logoutFailure = createAction(
-  '[Auth Service] Logout Failure',
+  '[Auth Effect] Logout Failure',
   props<{ error: any }>()
 );
 

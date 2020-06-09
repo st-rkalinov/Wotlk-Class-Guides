@@ -78,16 +78,10 @@ export class AuthService {
   }
 
   logout() {
-    this.store.dispatch(fromAuthActions.logout());
-    this.afAuth.signOut().then(() => {
-      this.store.dispatch(fromAuthActions.logoutSuccess({isLoggedIn: false, userData: undefined}));
-      this.userService.deleteUserAdditionalData();
-      this.guideService.cancelSubscriptions();
-      this.classService.cancelSubscriptions();
-      this.router.navigate(['/login']);
-    }).catch(error => {
-       this.store.dispatch(fromAuthActions.logoutFailure({error: error.message }));
-    });
+    this.guideService.cancelSubscriptions();
+    this.classService.cancelSubscriptions();
+
+    return from(this.afAuth.signOut());
   }
 
   checkFormFields(form: FormGroup, componentName: string) {

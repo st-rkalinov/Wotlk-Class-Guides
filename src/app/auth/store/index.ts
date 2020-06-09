@@ -6,7 +6,17 @@ import {
   MetaReducer, on
 } from '@ngrx/store';
 import { environment } from '../../../environments/environment';
-import {getUserFailure, getUserSuccess, login, loginFailure, loginSuccess, logoutFailure, logoutSuccess, resetError} from './auth.actions';
+import {
+  getUserFailure,
+  getUserSuccess,
+  login,
+  loginFailure,
+  loginSuccess,
+  logout,
+  logoutFailure,
+  logoutSuccess,
+  resetError
+} from './auth.actions';
 import {UserAdditionalDataModel} from '../../models/user-additionalData.model';
 
 
@@ -26,7 +36,6 @@ export const initialState: AuthState = {
 
 export const reducers = createReducer(
   initialState,
-  on(login, (state) => ({...state})),
   on(loginSuccess, (state, {isLoggedIn}) => ({ ...state, isLoggedIn})),
   on(loginFailure, (state, {error}) => ({...state, error})),
 
