@@ -17,16 +17,16 @@ export const loginFailure = createAction(
 );
 
 export const signUp = createAction(
-  '[Auth Service] SignUp',
+  '[SignUp Component] SignUp',
   props<{email: FormFieldModel, nickname: FormFieldModel, password: FormFieldModel, passwordConfirm: FormFieldModel, globalErrors: object}>()
 );
 
 export const signUpSuccess = createAction(
-  '[Auth Service] SignUp Success'
+  '[Auth Effect] SignUp Success'
 );
 
 export const signUpFailure = createAction(
-  '[Auth Service] SignUp Failure',
+  '[Auth Effect] SignUp Failure',
   props<{ error: any }>()
 );
 
