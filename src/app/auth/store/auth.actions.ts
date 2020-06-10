@@ -30,6 +30,11 @@ export const signUpFailure = createAction(
   props<{ error: any }>()
 );
 
+export const getUser = createAction(
+  '[Auth Service] Get User',
+  props<{ uid: string}>()
+);
+
 export const getUserSuccess = createAction(
   '[Auth Service] Get User Success',
   props<{isLoggedIn: boolean, userData: UserAdditionalDataModel}>()

@@ -9,14 +9,11 @@ import {UserService} from '../services/user.service';
 import {AuthState} from './store';
 import {Store} from '@ngrx/store';
 import * as fromAuthActions from './store/auth.actions';
-import {UserAdditionalDataModel} from '../models/user-additionalData.model';
 import {FormFieldModel} from '../models/form-field.model';
 import {FormErrorChecker} from '../shared/FormErrorChecker';
 
 @Injectable()
 export class AuthService {
-  public userAdditionalData: UserAdditionalDataModel;
-
   constructor(private router: Router, private afAuth: AngularFireAuth,
               private guideService: GuideService,
               private classService: CharactersClassService,
@@ -27,12 +24,7 @@ export class AuthService {
   initAuthListener() {
     this.afAuth.authState.subscribe(user => {
       if (user) {
-        this.userService.fetchUserAdditionalData(user.uid).subscribe(data => {
-          this.userAdditionalData = data[0];
-          this.store.dispatch(fromAuthActions.getUserSuccess({userData: {uid: user.uid, nickname: data[0].nickname}, isLoggedIn: true}));
-        });
-      } else {
-        this.store.dispatch(fromAuthActions.getUserFailure({userData: undefined}));
+        this.store.dispatch(fromAuthActions.getUser({uid: user.uid}));
       }
     });
   }
