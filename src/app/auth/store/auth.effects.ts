@@ -5,6 +5,7 @@ import {of} from 'rxjs';
 import {AuthService} from '../auth.service';
 import * as fromAuthActions from '../store/auth.actions';
 import {Router} from '@angular/router';
+import {UserService} from '../../services/user.service';
 
 
 @Injectable()
@@ -14,8 +15,8 @@ export class AuthEffects {
     this.actions$.pipe(
       ofType(fromAuthActions.login),
       exhaustMap(action =>
-        this.authService.login(action.email, action.password).pipe(
-          map(user => fromAuthActions.loginSuccess({isLoggedIn: true})),
+        this.authService.login(action.email, action.password, action.globalErrors).pipe(
+          map(user => fromAuthActions.loginSuccess()),
           tap(() => this.router.navigate(['/guides'])),
           catchError(error => of(fromAuthActions.loginFailure({error: error.message})))
         ))
@@ -25,15 +26,28 @@ export class AuthEffects {
     this.actions$.pipe(
       ofType(fromAuthActions.logout),
       exhaustMap(action => this.authService.logout().pipe(
-          map(result => fromAuthActions.logoutSuccess({isLoggedIn: false, userData: undefined})),
-          tap(() => this.router.navigate(['/login'])),
-          catchError(error => of(fromAuthActions.logoutFailure({error: error.message})))
+        map(result => fromAuthActions.logoutSuccess({isLoggedIn: false, userData: undefined})),
+        tap(() => this.router.navigate(['/login'])),
+        catchError(error => of(fromAuthActions.logoutFailure({error: error.message})))
         )
       )
     )
   );
 
-  constructor(private actions$: Actions, private authService: AuthService, private router: Router) {
+  signUp$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(fromAuthActions.signUp),
+      exhaustMap(action => this.authService.signUp(action.email, action.nickname, action.password, action.passwordConfirm, action.globalErrors).pipe(
+        map(result => this.userService.addUserAdditionalData(result.user.uid, action.nickname.value)),
+        map(() => fromAuthActions.signUpSuccess()),
+        tap(() => this.router.navigate(['/guides'])),
+        catchError(error => of(fromAuthActions.signUpFailure({error: error.message})))
+        )
+      )
+    )
+  );
+
+  constructor(private actions$: Actions, private authService: AuthService, private userService: UserService, private router: Router) {
   }
 
 }

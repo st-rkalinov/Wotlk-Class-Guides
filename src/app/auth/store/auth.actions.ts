@@ -1,19 +1,32 @@
 import { createAction, props } from '@ngrx/store';
 import {UserAdditionalDataModel} from '../../models/user-additionalData.model';
-import {LoginFormFieldModel} from '../../models/login-formField.model';
+import {FormFieldModel} from '../../models/form-field.model';
 
 export const login = createAction(
   '[Login Component] Login',
-  props<{ email: LoginFormFieldModel, password: LoginFormFieldModel }>()
+  props<{ email: FormFieldModel, password: FormFieldModel, globalErrors: object }>()
 );
 
 export const loginSuccess = createAction(
-  '[Auth Effect] Login Success',
-  props<{ isLoggedIn: boolean}>()
+  '[Auth Effect] Login Success'
 );
 
 export const loginFailure = createAction(
   '[Auth Effect] Login Failure',
+  props<{ error: any }>()
+);
+
+export const signUp = createAction(
+  '[Auth Service] SignUp',
+  props<{email: FormFieldModel, nickname: FormFieldModel, password: FormFieldModel, passwordConfirm: FormFieldModel, globalErrors: object}>()
+);
+
+export const signUpSuccess = createAction(
+  '[Auth Service] SignUp Success'
+);
+
+export const signUpFailure = createAction(
+  '[Auth Service] SignUp Failure',
   props<{ error: any }>()
 );
 
@@ -24,7 +37,7 @@ export const getUserSuccess = createAction(
 
 export const getUserFailure = createAction(
   '[Auth Service] Get User Failure',
-  props<{isLoggedIn: boolean, userData: undefined}>()
+  props<{userData: undefined}>()
 );
 
 export const logout = createAction(

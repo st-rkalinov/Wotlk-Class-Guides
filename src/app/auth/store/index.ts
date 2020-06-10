@@ -1,6 +1,4 @@
 import {
-  ActionReducer,
-  ActionReducerMap,
   createFeatureSelector, createReducer,
   createSelector,
   MetaReducer, on
@@ -9,13 +7,10 @@ import { environment } from '../../../environments/environment';
 import {
   getUserFailure,
   getUserSuccess,
-  login,
   loginFailure,
-  loginSuccess,
-  logout,
   logoutFailure,
   logoutSuccess,
-  resetError
+  resetError, signUpFailure,
 } from './auth.actions';
 import {UserAdditionalDataModel} from '../../models/user-additionalData.model';
 
@@ -36,14 +31,15 @@ export const initialState: AuthState = {
 
 export const reducers = createReducer(
   initialState,
-  on(loginSuccess, (state, {isLoggedIn}) => ({ ...state, isLoggedIn})),
   on(loginFailure, (state, {error}) => ({...state, error})),
 
-  on(getUserSuccess, (state, {isLoggedIn, userData}) => ({...state, isLoggedIn, userData})),
-  on(getUserFailure, (state, {isLoggedIn, userData}) => ({...state, isLoggedIn, userData})),
+  on(getUserSuccess, (state, {userData, isLoggedIn}) => ({...state, isLoggedIn, userData})),
+  on(getUserFailure, (state, {userData}) => ({...state, userData})),
 
   on(logoutSuccess, (state, {isLoggedIn, userData} ) => ({...state, isLoggedIn, userData})),
   on(logoutFailure, (state, {error}) => ({...state, error})),
+
+  on(signUpFailure, (state, {error}) => ({...state, error})),
 
   on(resetError, (state, {error}) => ({...state, error}))
 );

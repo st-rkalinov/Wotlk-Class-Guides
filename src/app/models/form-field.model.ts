@@ -1,4 +1,4 @@
-export interface LoginFormFieldModel {
+export interface FormFieldModel {
   value: string;
   errors: object;
   name: string;

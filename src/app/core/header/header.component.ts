@@ -1,8 +1,7 @@
-import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../auth/auth.service';
-import {Observable, Subscription} from 'rxjs';
+import {Observable} from 'rxjs';
 import {UserService} from '../../services/user.service';
-import {UserAdditionalDataModel} from '../../models/user-additionalData.model';
 import {Router} from '@angular/router';
 import {Store} from '@ngrx/store';
 import {selectIsLoggedIn} from '../../auth/store';
@@ -14,19 +13,13 @@ import * as fromAuthActions from '../../auth/store/auth.actions';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit, OnDestroy {
-  userAdditionalData: UserAdditionalDataModel;
-  userAdditionalDataSub: Subscription;
+export class HeaderComponent implements OnInit {
   isAuthenticated$: Observable<boolean>;
 
   constructor(private authService: AuthService, private userService: UserService, private route: Router, private store: Store) { }
 
   ngOnInit(): void {
     this.isAuthenticated$ = this.store.select(selectIsLoggedIn);
-
-    this.userAdditionalDataSub = this.userService.userAdditionalDataChange.subscribe(data => {
-      this.userAdditionalData = data;
-    });
   }
 
   onLogout() {
@@ -35,11 +28,5 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   goToNewGuideRoute() {
     this.route.navigate(['/guides/new']);
-  }
-
-  ngOnDestroy(): void {
-    if(this.userAdditionalDataSub) {
-      this.userAdditionalDataSub.unsubscribe();
-    }
   }
 }
