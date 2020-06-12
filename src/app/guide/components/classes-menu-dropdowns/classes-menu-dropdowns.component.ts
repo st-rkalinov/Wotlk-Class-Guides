@@ -1,18 +1,18 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {CharacterClassModel} from '../../models/character-class.model';
-import {MenuSelectedClassModel} from '../../models/menu-selected-class.model';
+import {CharacterClassModel} from '../../../models/character-class.model';
+import {MenuSelectedClassModel} from '../../../models/menu-selected-class.model';
 import {Store} from '@ngrx/store';
-import {GuideState} from '../../guide/store';
-import * as fromGuideActions from '../../guide/store/guide.actions';
-import * as fromSharedActions from '../../shared/store/shared.actions';
-import {CharactersClassService} from '../../services/characters-class.service';
+import {GuideState} from '../../store';
+import * as fromGuideActions from '../../store/guide.actions';
+import * as fromSharedActions from '../../../shared/store/shared.actions';
+import {CharactersClassService} from '../../../services/characters-class.service';
 import {from, Observable} from 'rxjs';
 import {async} from 'rxjs/internal/scheduler/async';
-import {selectClassesData} from '../store';
+import {selectClassesData} from '../../../shared/store';
 import {ActivatedRoute, Router} from '@angular/router';
 import {debounceTime, exhaustMap} from 'rxjs/operators';
-import {MenuSelectedSpecModel} from '../../models/menu-selected-spec.model';
-import {DbCharacterClassSpecModel} from '../../models/character-class-spec.model';
+import {MenuSelectedSpecModel} from '../../../models/menu-selected-spec.model';
+import {DbCharacterClassSpecModel} from '../../../models/character-class-spec.model';
 
 @Component({
   selector: 'app-classes-menu-dropdowns',
@@ -30,7 +30,7 @@ export class ClassesMenuDropdownsComponent implements OnInit {
     this.store.dispatch(fromSharedActions.loadShared());
     this.classesData$ = this.store.select(selectClassesData);
 
-    this.route.queryParams.pipe(debounceTime(500)).subscribe(params => {
+    this.route.queryParams.pipe(debounceTime(700)).subscribe(params => {
       params.hasOwnProperty('class') ? this.setSelectedClassData(params.class) : this.resetClassSpecData('class');
       params.hasOwnProperty('spec') ? this.setSelectedSpecData(params.spec) : this.resetClassSpecData('spec');
     });

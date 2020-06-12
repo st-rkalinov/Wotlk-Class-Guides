@@ -1,7 +1,6 @@
 @import "src/sass/utils/variables";
 
-.classes-menu {
-
+.classes-menu-dropdowns {
   display: flex;
   justify-content: space-around;
   padding: 5rem;
@@ -16,7 +15,7 @@
 
 
     &:hover {
-      .classes-menu__specs {
+      .classes-menu-dropdowns__specs {
         display: flex;
       }
     }

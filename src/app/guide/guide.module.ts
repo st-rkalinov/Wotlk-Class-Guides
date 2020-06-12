@@ -10,6 +10,7 @@ import { StoreModule } from '@ngrx/store';
 import * as fromGuideState from './store';
 import { EffectsModule } from '@ngrx/effects';
 import { GuideEffects } from './store/guide.effects';
+import {ClassesMenuDropdownsComponent} from './components/classes-menu-dropdowns/classes-menu-dropdowns.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { GuideEffects } from './store/guide.effects';
     GuidesListComponent,
     NewGuideComponent,
     WowItemComponent,
+    ClassesMenuDropdownsComponent,
   ],
   imports: [
     SharedModule,

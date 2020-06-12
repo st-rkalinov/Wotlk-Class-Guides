@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import {WowBtnComponent} from './wow-btn/wow-btn.component';
 import {WowModalComponent} from './wow-modal/wow-modal.component';
 import {ReactiveFormsModule} from '@angular/forms';
-import {ClassesMenuDropdownsComponent} from './classes-menu-dropdowns/classes-menu-dropdowns.component';
+import {ClassesMenuDropdownsComponent} from '../guide/components/classes-menu-dropdowns/classes-menu-dropdowns.component';
 import {CharacterIconComponent} from './character-icon/character-icon.component';
 import { StoreModule } from '@ngrx/store';
 import * as fromSharedStore from './store';
@@ -15,7 +15,6 @@ import {MaterialModule} from '../material.module';
   declarations: [
     WowBtnComponent,
     WowModalComponent,
-    ClassesMenuDropdownsComponent,
     CharacterIconComponent
   ],
   imports: [
@@ -30,7 +29,6 @@ import {MaterialModule} from '../material.module';
     ReactiveFormsModule,
     WowBtnComponent,
     WowModalComponent,
-    ClassesMenuDropdownsComponent,
     CharacterIconComponent
   ]
 })
