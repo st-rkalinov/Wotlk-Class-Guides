@@ -1,5 +1,5 @@
 <div class="classes-menu">
-  <div class="classes-menu__icon-block" *ngFor="let classData of classesData; let i = index">
+  <div class="classes-menu__icon-block" *ngFor="let classData of classesData$ | async; let i = index">
     <img [src]="'../assets/img/' + classData.name.toLowerCase() + '-logo.png'"
          alt="" class="classes-menu__icon-img"
          (click)="onClassIconClick(classData, i)"

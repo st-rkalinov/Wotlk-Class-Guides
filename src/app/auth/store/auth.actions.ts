@@ -36,12 +36,12 @@ export const getUser = createAction(
 );
 
 export const getUserSuccess = createAction(
-  '[Auth Service] Get User Success',
+  '[Auth Effect] Get User Success',
   props<{isLoggedIn: boolean, userData: UserAdditionalDataModel}>()
 );
 
 export const getUserFailure = createAction(
-  '[Auth Service] Get User Failure',
+  '[Auth Effect] Get User Failure',
   props<{userData: undefined}>()
 );
 

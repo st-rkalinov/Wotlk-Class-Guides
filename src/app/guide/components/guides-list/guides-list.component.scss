@@ -4,7 +4,7 @@
 
 .guides-list {
   padding: 10rem 0;
-
+  min-height: 400px;
   &__table-wrapper {
     background-image: url("/assets/img/welcome-page-info-bg.png");
     background-repeat: no-repeat;
@@ -58,6 +58,7 @@
     left: 50%;
     transform: translateX(-50%);
     font-size: $font-size-primary;
+    color: white;
   }
 
   &__paginator {
@@ -69,4 +70,11 @@
     border-image: url('/assets/img/border-form-controls.png') 3 stretch;
     color: $color-text-primary;
   }
+}
+
+.spinner-wrapper {
+    min-height: 1070px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 }

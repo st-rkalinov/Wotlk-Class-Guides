@@ -1,10 +1,10 @@
-<div style="color: white" class="guides-list">
-  <div  class="guides-list__table-wrapper">
+<div class="guides-list">
+  <div class="guides-list__table-wrapper">
     <mat-form-field floatLabel='never' color="primary" class="guides-list__search">
       <mat-label>Search</mat-label>
       <input matInput (keyup)="filter($event)" type="text" placeholder="Filter guides...">
     </mat-form-field>
-    <mat-table [dataSource]="dataSource" class="guides-list__table" matSort>
+    <mat-table [dataSource]="dataSource" class="guides-list__table" matSort >
       <!-- Name Column -->
       <ng-container matColumnDef="class">
         <mat-header-cell *matHeaderCellDef> Class </mat-header-cell>
@@ -20,6 +20,6 @@
       <mat-row *matRowDef="let row; columns: displayedColumns;" class="guides-list__table-row"></mat-row>
     </mat-table>
 
-    <mat-paginator [pageSizeOptions]="[15, 20, 25]" showFirstLastButtons class="guides-list__paginator"></mat-paginator>
+    <mat-paginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons class="guides-list__paginator"></mat-paginator>
   </div>
 </div>

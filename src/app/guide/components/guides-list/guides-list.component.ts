@@ -4,34 +4,44 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import {GuideModel} from '../../guide.model';
 import {MatSort} from '@angular/material/sort';
-import {Subscription} from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
+import {GuideState, selectGuides} from '../../store';
+import {Store} from '@ngrx/store';
+import {debounceTime, exhaustMap, map} from 'rxjs/operators';
+import {ActivatedRoute, Route, Router} from '@angular/router';
+import * as fromGuideActions from '../../store/guide.actions';
 
 @Component({
   selector: 'app-guides-list',
   templateUrl: './guides-list.component.html',
   styleUrls: ['./guides-list.component.scss']
 })
-export class GuidesListComponent implements OnInit, AfterViewInit, OnDestroy {
+export class GuidesListComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['class', 'spec'];
-  guidesData: GuideModel[];
   guidesDataSub: Subscription = new Subscription();
-  dataSource = new MatTableDataSource<GuideModel>();
-
+  dataSource = new MatTableDataSource<GuideModel>([]);
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatSort, {static: false}) sort: MatSort;
 
-  constructor(private guideService: GuideService) { }
-
-  ngOnInit(): void {
-    this.guidesDataSub = this.guideService.guidesChanged.subscribe(data => {
-      this.guidesData = data;
-      this.dataSource.data = this.guidesData;
-    });
+  constructor(private guideService: GuideService, private store: Store<GuideState>, private route: ActivatedRoute) {
   }
 
-  ngAfterViewInit(): void {
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
+  ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      if (params.hasOwnProperty('spec')) {
+        this.store.dispatch(fromGuideActions.loadGuides({className: params.class, spec: params.spec}));
+      } else if (params.hasOwnProperty('class') && !params.hasOwnProperty('spec')) {
+        this.store.dispatch(fromGuideActions.loadGuides({className: params.class, spec: undefined}));
+      } else {
+        this.store.dispatch(fromGuideActions.loadGuides({className: undefined, spec: undefined}));
+      }
+
+      this.guidesDataSub = this.store.select(selectGuides).subscribe(data => {
+          this.dataSource.data = data;
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+        });
+    });
   }
 
   filter($event) {
