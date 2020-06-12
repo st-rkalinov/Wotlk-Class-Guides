@@ -1,0 +1,92 @@
+@import "src/sass/utils/variables";
+
+.classes-menu {
+
+  display: flex;
+  justify-content: space-around;
+  padding: 5rem;
+  margin-bottom: 5rem;
+
+  &__icon-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+
+    &:hover {
+      .classes-menu__specs {
+        display: flex;
+      }
+    }
+  }
+
+  &__icon-img {
+    width: 8rem;
+    height: 8rem;
+    cursor: pointer;
+    border-radius: 35%;
+    filter: opacity(.5);
+
+    &--active {
+      box-shadow: 6px -1px 56px white, inset -79px -64px 40px white;
+      -moz-box-shadow: 6px -1px 56px white, inset -79px -64px 40px white;
+      -webkit-box-shadow: 6px -1px 56px white, inset -79px -64px 40px white;
+    }
+  }
+
+  &__class-name {
+    padding-top: 2rem;
+    font-size: $font-size-primary;
+    font-weight: 700;
+  }
+
+  &__material-icon-block {
+    text-align: center;
+    cursor: pointer;
+  }
+
+  &__material-icon {
+    font-size: 4rem;
+    height: 4rem;
+    width: 4rem;
+
+  }
+
+  &__specs {
+    position: absolute;
+    width: 300%;
+    bottom: 0;
+    left: 0;
+    transform: translate(-33%, 100%);
+    color: orange;
+    display: none;
+    font-size: $font-size-primary;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2rem;
+    background-color: rgba(107, 107, 107, 0.1);
+    border: 1px solid gray;
+    border-radius: 20px;
+  }
+
+  &__spec-block {
+    display: flex;
+    cursor: pointer;
+    padding: 1rem 0;
+    width: 100%;
+
+    &:hover {
+      text-shadow: 0 -1px 4px #FFF, 0 -2px 10px #ff0, 0 0px 20px #ff8000, 0 -1px 3px #F00;
+    }
+  }
+
+  &__spec-name {
+    padding-left: 20px;
+
+    &--active {
+      text-shadow: 0 -1px 4px #FFF, 0 -2px 10px #ff0, 0 0px 20px #ff8000, 0 -1px 3px #F00;
+    }
+  }
+}

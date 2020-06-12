@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ClassesMenuComponent } from './classes-menu.component';
+import { ClassesMenuDropdownsComponent } from './classes-menu-dropdowns.component';
 
 describe('ClassesMenuComponent', () => {
-  let component: ClassesMenuComponent;
-  let fixture: ComponentFixture<ClassesMenuComponent>;
+  let component: ClassesMenuDropdownsComponent;
+  let fixture: ComponentFixture<ClassesMenuDropdownsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ClassesMenuComponent ]
+      declarations: [ ClassesMenuDropdownsComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ClassesMenuComponent);
+    fixture = TestBed.createComponent(ClassesMenuDropdownsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

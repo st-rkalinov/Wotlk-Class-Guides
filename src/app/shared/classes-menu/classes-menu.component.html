@@ -1,9 +1,0 @@
-<div class="classes-menu">
-  <div class="classes-menu__icon-block" *ngFor="let classData of classesData$ | async; let i = index">
-    <img [src]="'../assets/img/' + classData.name.toLowerCase() + '-logo.png'"
-         alt="" class="classes-menu__icon-img"
-         (click)="onClassIconClick(classData, i)"
-         [ngClass]="{'classes-menu__icon-img--active': i === selectedClass.index}">
-    <p class="classes-menu__class-name" [ngStyle]="{color: classData.color}">{{ classData.name }}</p>
-  </div>
-</div>

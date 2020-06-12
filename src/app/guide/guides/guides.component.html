@@ -1,10 +1,6 @@
 <section class="guides-section">
   <div class="shell">
-    <app-classes-menu (classIconClicked)="loadSpecificClassGuides($event)" (selectedClassSet)="setSelectedClassData($event)"></app-classes-menu>
-    <div *ngIf="selectedClass.classData">
-      <app-spec-menu [specsData]="selectedClass.classData.specs" [selectedSpec]="selectedSpec" (specBlockClicked)="loadSpecificSpecGuides($event)"></app-spec-menu>
-    </div>
-
+    <app-classes-menu-dropdowns></app-classes-menu-dropdowns>
     <app-guides-list></app-guides-list>
   </div>
 </section>

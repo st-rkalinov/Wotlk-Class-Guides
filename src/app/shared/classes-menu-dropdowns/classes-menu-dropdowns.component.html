@@ -1,0 +1,22 @@
+<div class="classes-menu">
+  <div class="classes-menu__icon-block" *ngFor="let classData of classesData$ | async; let i = index">
+    <img [src]="'../assets/img/' + classData.name.toLowerCase() + '-logo.png'"
+         alt="" class="classes-menu__icon-img"
+         (click)="loadSpecificClassGuides(classData)"
+         [ngClass]="{'classes-menu__icon-img--active': i === selectedClass.index}">
+    <p class="classes-menu__class-name" [ngStyle]="{color: classData.color}">{{ classData.name }}</p>
+
+    <div class="classes-menu__material-icon-block">
+      <mat-icon color="primary" class="classes-menu__material-icon">keyboard_arrow_down</mat-icon>
+    </div>
+
+    <div class="classes-menu__specs">
+      <div *ngFor="let spec of classData.specs; let i = index" class="classes-menu__spec-block" (click)="loadSpecificSpecGuides(classData.name, spec)">
+        <div class="classes-menu__spec-icon-block">
+          <img [src]="spec.icon_link" alt="" class="classes-menu__spec-img">
+        </div>
+        <p class="classes-menu__spec-name" [ngClass]="{'classes-menu__spec-name--active': i === selectedSpec.index && spec.name === selectedSpec.specData.name}">{{ spec.name }}</p>
+      </div>
+    </div>
+  </div>
+</div>

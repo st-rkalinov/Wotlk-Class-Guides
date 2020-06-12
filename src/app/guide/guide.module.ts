@@ -5,7 +5,6 @@ import {NewGuideComponent} from './new-guide/new-guide.component';
 import {SharedModule} from '../shared/shared.module';
 import {GuideRoutingModule} from './guide-routing.module';
 import {WowItemComponent} from './components/wow-item/wow-item.component';
-import {SpecMenuComponent} from './components/spec-menu/spec-menu.component';
 import {MaterialModule} from '../material.module';
 import { StoreModule } from '@ngrx/store';
 import * as fromGuideState from './store';
@@ -18,7 +17,6 @@ import { GuideEffects } from './store/guide.effects';
     GuidesListComponent,
     NewGuideComponent,
     WowItemComponent,
-    SpecMenuComponent
   ],
   imports: [
     SharedModule,
