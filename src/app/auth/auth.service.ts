@@ -50,9 +50,6 @@ export class AuthService {
   }
 
   logout() {
-    this.guideService.cancelSubscriptions();
-    this.classService.cancelSubscriptions();
-
     return from(this.afAuth.signOut());
   }
 

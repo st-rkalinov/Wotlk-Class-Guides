@@ -14,7 +14,7 @@ export class SharedEffects {
     this.actions$.pipe(
       ofType(fromSharedActions.loadShared),
       exhaustMap(action =>
-        this.charactersClassService.fetchClassesData2().pipe(
+        this.charactersClassService.fetchClassesData().pipe(
           map((result: CharacterClassModel[]) => fromSharedActions.loadSharedSuccess({classesData: result})),
           catchError(error => of(fromSharedActions.loadSharedFailure({error: error.message})))
         ))

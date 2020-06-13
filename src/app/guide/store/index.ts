@@ -7,17 +7,14 @@ import {
 import { environment } from '../../../environments/environment';
 import {GuideModel} from '../guide.model';
 import {loadGuides, loadGuidesFailure, loadGuidesSuccess} from './guide.actions';
-import {CharacterClassModel} from '../../models/character-class.model';
 
 export const guideStateFeatureKey = 'guideState';
 
 export interface GuideState {
-  classesData: CharacterClassModel[];
   guides: GuideModel[];
 }
 
 export const initialState: GuideState = {
-  classesData: undefined,
   guides: undefined
 };
 

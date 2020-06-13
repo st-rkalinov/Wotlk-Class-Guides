@@ -10,7 +10,7 @@ import {from, Observable} from 'rxjs';
 import {async} from 'rxjs/internal/scheduler/async';
 import {selectClassesData} from '../../../shared/store';
 import {ActivatedRoute, Router} from '@angular/router';
-import {debounceTime, exhaustMap} from 'rxjs/operators';
+import {debounceTime, exhaustMap, take} from 'rxjs/operators';
 import {MenuSelectedSpecModel} from '../../../models/menu-selected-spec.model';
 import {DbCharacterClassSpecModel} from '../../../models/character-class-spec.model';
 
@@ -30,7 +30,7 @@ export class ClassesMenuDropdownsComponent implements OnInit {
     this.store.dispatch(fromSharedActions.loadShared());
     this.classesData$ = this.store.select(selectClassesData);
 
-    this.route.queryParams.pipe(debounceTime(700)).subscribe(params => {
+    this.route.queryParams.pipe(debounceTime(1000)).subscribe(params => {
       params.hasOwnProperty('class') ? this.setSelectedClassData(params.class) : this.resetClassSpecData('class');
       params.hasOwnProperty('spec') ? this.setSelectedSpecData(params.spec) : this.resetClassSpecData('spec');
     });
@@ -67,13 +67,13 @@ export class ClassesMenuDropdownsComponent implements OnInit {
   }
 
   private setSelectedClassData(classNameFromRoute: string) {
-    this.classesData$.subscribe(data => {
+    this.classesData$.pipe(take(1)).subscribe(data => {
       data.forEach(classData => {
         if (classData.name.toLowerCase() === classNameFromRoute) {
           this.selectedClass = {index: data.indexOf(classData), classData};
         }
       });
-    }).unsubscribe();
+    });
   }
 
   private resetClassSpecData(type: string) {

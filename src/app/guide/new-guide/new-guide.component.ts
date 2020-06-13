@@ -22,7 +22,7 @@ export class NewGuideComponent implements OnInit, OnDestroy {
   newGuideForm: FormGroup;
   submitButtonStyles = { width: '100%', padding: '0.5rem 0', letterSpacing: '3px'};
   showErrors = false;
-  classesData: Observable<CharacterClassModel[]>;
+  classesData$: Observable<CharacterClassModel[]>;
   gemsData: DbGemsModel[];
   gemsDataSubs = new Subscription();
 
@@ -41,7 +41,7 @@ export class NewGuideComponent implements OnInit, OnDestroy {
     this.newGuideService.fetchAvailableGems();
 
     this.store.dispatch(fromSharedActions.loadShared());
-    this.classesData = this.store.select(selectClassesData);
+    this.classesData$ = this.store.select(selectClassesData);
 
     this.gemsDataSubs = this.newGuideService.gemsChanged.subscribe(data => {
       this.gemsData = data;
@@ -64,7 +64,7 @@ export class NewGuideComponent implements OnInit, OnDestroy {
   onClassSelect() {
     this.selectedClass = this.newGuideForm.get('class').value;
 
-    this.classesData.pipe(take(1)).subscribe(data =>
+    this.classesData$.pipe(take(1)).subscribe(data =>
       data.forEach(value => {
         if (value.name === this.selectedClass) {
           this.availableSpecs = value.specs;
