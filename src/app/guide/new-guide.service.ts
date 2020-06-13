@@ -2,18 +2,14 @@ import {Injectable} from '@angular/core';
 import {DbGemModel} from '../models/gem.model';
 import {AbstractControl} from '@angular/forms';
 import {AngularFirestore} from '@angular/fire/firestore';
-import {Subject} from 'rxjs';
 import {map, take} from 'rxjs/operators';
-import {DbGuideGemsModel, DbGemsModel} from '../models/gems.model';
+import {DbGuideGemsModel} from '../models/gems.model';
 import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NewGuideService {
-  gems: Array<DbGemsModel>;
-  gemsChanged = new Subject<any>();
-
   constructor(private db: AngularFirestore, private route: Router) {
   }
 
@@ -51,7 +47,7 @@ export class NewGuideService {
   }
 
   fetchAvailableGems() {
-    this.db.collection('gems')
+    return this.db.collection('gems')
       .snapshotChanges()
         .pipe(take(1),
         map(docArray => {
@@ -61,9 +57,6 @@ export class NewGuideService {
               ...doc.payload.doc.data(),
             };
           });
-      })).subscribe((data: Array<DbGemsModel>) => {
-        this.gems = data;
-        this.gemsChanged.next(this.gems);
-    });
+      }));
   }
 }

@@ -1,6 +1,6 @@
 <div class="new-guide">
   <div class="shell">
-    <div *ngIf="gemsData && classesData$ | async">
+    <div *ngIf="(gemsData$ | async) && (classesData$ | async)">
       <form [formGroup]="newGuideForm" class="guide-form" (ngSubmit)="onSubmit()">
         <div class="guide-form__group">
           <h2 class="heading-2 guide-form__group-title">Class / Spec</h2>
@@ -32,7 +32,7 @@
             <mat-form-field appearance="outline" formGroupName="gems" class="guide-form__field">
               <mat-label class="guide-form__label">Gems</mat-label>
               <mat-select formControlName="data" panelClass="guide-form__select" multiple class="guide-form__select" [disableOptionCentering]="true">
-                <mat-optgroup *ngFor="let gemGroup of gemsData" [label]="gemGroup.category.toUpperCase()">
+                <mat-optgroup *ngFor="let gemGroup of gemsData$ | async" [label]="gemGroup.category.toUpperCase()">
                   <mat-option *ngFor="let gem of gemGroup.gems" [value]="gem" class="guide-form__select-option">
                     <app-wow-item [itemLink]="gem.link" [itemIconLink]="gem.icon_link" [itemName]="gem.name"></app-wow-item>
                   </mat-option>

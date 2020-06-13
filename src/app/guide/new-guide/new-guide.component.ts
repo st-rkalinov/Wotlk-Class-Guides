@@ -9,8 +9,11 @@ import {NewGuideService} from '../new-guide.service';
 import {DbGemsModel} from '../../models/gems.model';
 import {Store} from '@ngrx/store';
 import {selectClassesData, SharedState} from '../../shared/store';
+import * as fromGuideActions from '../store/guide.actions';
 import * as fromSharedActions from '../../shared/store/shared.actions';
 import {take} from 'rxjs/operators';
+import {GuideState, selectAvailableGems} from '../store';
+import {async} from 'rxjs/internal/scheduler/async';
 
 @Component({
   selector: 'app-new-guide',
@@ -19,12 +22,12 @@ import {take} from 'rxjs/operators';
   encapsulation: ViewEncapsulation.None,
 })
 export class NewGuideComponent implements OnInit, OnDestroy {
+  showErrors = false;
   newGuideForm: FormGroup;
   submitButtonStyles = { width: '100%', padding: '0.5rem 0', letterSpacing: '3px'};
-  showErrors = false;
+
   classesData$: Observable<CharacterClassModel[]>;
-  gemsData: DbGemsModel[];
-  gemsDataSubs = new Subscription();
+  gemsData$: Observable<DbGemsModel[]>;
 
   selectedClass = null;
   availableSpecs = null;
@@ -38,14 +41,11 @@ export class NewGuideComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.newGuideService.fetchAvailableGems();
-
     this.store.dispatch(fromSharedActions.loadShared());
-    this.classesData$ = this.store.select(selectClassesData);
+    this.store.dispatch(fromGuideActions.loadAvailableGems());
 
-    this.gemsDataSubs = this.newGuideService.gemsChanged.subscribe(data => {
-      this.gemsData = data;
-    });
+    this.classesData$ = this.store.select(selectClassesData);
+    this.gemsData$ = this.store.select(selectAvailableGems);
 
     this.newGuideForm = this.fb.group({
       class: [{value: this.defaultOptionValue, disabled: false},
@@ -55,7 +55,7 @@ export class NewGuideComponent implements OnInit, OnDestroy {
         [Validators.required, this.newGuideService.classAndSpecCustomValidator(this.defaultOptionValue)]
       ],
       gems: this.fb.group({
-        data: [this.gemsData],
+        data: [[]],
         gemsComment: ['']
       })
     });
@@ -96,8 +96,5 @@ export class NewGuideComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.gemsDataSubs) {
-      this.gemsDataSubs.unsubscribe();
-    }
   }
 }

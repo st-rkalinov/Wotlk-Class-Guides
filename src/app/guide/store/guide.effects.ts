@@ -5,6 +5,8 @@ import {catchError, exhaustMap, map, switchMap} from 'rxjs/operators';
 import {GuideService} from '../guide.service';
 import {of} from 'rxjs';
 import {GuideModel} from '../guide.model';
+import {NewGuideService} from '../new-guide.service';
+import {DbGemsModel} from '../../models/gems.model';
 
 @Injectable()
 export class GuideEffects {
@@ -19,7 +21,17 @@ export class GuideEffects {
         ))
     ));
 
-  constructor(private actions$: Actions, private guideService: GuideService) {
+  getGems$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(fromGuideActions.loadAvailableGems),
+      switchMap(action =>
+        this.newGuideService.fetchAvailableGems().pipe(
+          map((result: DbGemsModel[]) => fromGuideActions.loadAvailableGemsSuccess({gems: result})),
+          catchError(error => of(fromGuideActions.loadAvailableGemsFailure({error: error.message})))
+        ))
+    ));
+
+  constructor(private actions$: Actions, private guideService: GuideService, private newGuideService: NewGuideService) {
   }
 
 }
