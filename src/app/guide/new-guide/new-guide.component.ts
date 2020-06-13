@@ -2,11 +2,15 @@ import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CharactersClassService} from '../../services/characters-class.service';
 import {CharacterClassModel} from '../../models/character-class.model';
-import {Subscription} from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 import {GuideService} from '../guide.service';
 import {GuideModel, Guide} from '../guide.model';
 import {NewGuideService} from '../new-guide.service';
 import {DbGemsModel} from '../../models/gems.model';
+import {Store} from '@ngrx/store';
+import {selectClassesData, SharedState} from '../../shared/store';
+import * as fromSharedActions from '../../shared/store/shared.actions';
+import {take} from 'rxjs/operators';
 
 @Component({
   selector: 'app-new-guide',
@@ -18,10 +22,7 @@ export class NewGuideComponent implements OnInit, OnDestroy {
   newGuideForm: FormGroup;
   submitButtonStyles = { width: '100%', padding: '0.5rem 0', letterSpacing: '3px'};
   showErrors = false;
-
-  classesData: CharacterClassModel[];
-  classesDataSubs = new Subscription();
-
+  classesData: Observable<CharacterClassModel[]>;
   gemsData: DbGemsModel[];
   gemsDataSubs = new Subscription();
 
@@ -29,16 +30,19 @@ export class NewGuideComponent implements OnInit, OnDestroy {
   availableSpecs = null;
   defaultOptionValue = 'None';
 
-  constructor(private fb: FormBuilder, private charactersClassService: CharactersClassService, private guideService: GuideService, private newGuideService: NewGuideService) {
+  constructor(private fb: FormBuilder,
+              private charactersClassService: CharactersClassService,
+              private guideService: GuideService,
+              private newGuideService: NewGuideService,
+              private store: Store<SharedState>) {
   }
 
   ngOnInit(): void {
-    this.charactersClassService.fetchClassesData();
     this.newGuideService.fetchAvailableGems();
 
-    this.classesDataSubs = this.charactersClassService.classesDataChanged.subscribe(data => {
-      this.classesData = data;
-    });
+    this.store.dispatch(fromSharedActions.loadShared());
+    this.classesData = this.store.select(selectClassesData);
+
     this.gemsDataSubs = this.newGuideService.gemsChanged.subscribe(data => {
       this.gemsData = data;
     });
@@ -60,12 +64,14 @@ export class NewGuideComponent implements OnInit, OnDestroy {
   onClassSelect() {
     this.selectedClass = this.newGuideForm.get('class').value;
 
-    this.classesData.forEach(value => {
-      if (value.name === this.selectedClass) {
-        this.availableSpecs = value.specs;
-        return;
-      }
-    });
+    this.classesData.pipe(take(1)).subscribe(data =>
+      data.forEach(value => {
+        if (value.name === this.selectedClass) {
+          this.availableSpecs = value.specs;
+          return;
+        }
+      })
+    );
 
     this.newGuideForm.get('spec').setValue(this.defaultOptionValue);
     this.newGuideForm.get('spec').enable();
@@ -90,9 +96,6 @@ export class NewGuideComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.classesDataSubs) {
-      this.classesDataSubs.unsubscribe();
-    }
     if (this.gemsDataSubs) {
       this.gemsDataSubs.unsubscribe();
     }

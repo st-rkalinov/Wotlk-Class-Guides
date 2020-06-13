@@ -1,6 +1,6 @@
 <div class="new-guide">
   <div class="shell">
-    <div *ngIf="gemsData">
+    <div *ngIf="gemsData && classesData | async">
       <form [formGroup]="newGuideForm" class="guide-form" (ngSubmit)="onSubmit()">
         <div class="guide-form__group">
           <h2 class="heading-2 guide-form__group-title">Class / Spec</h2>
@@ -8,7 +8,7 @@
             <mat-form-field color="primary" appearance="outline" class="guide-form__field">
               <mat-label class="guide-form__label">Class</mat-label>
               <mat-select formControlName="class" panelClass="guide-form__select" class="guide-form__select" (selectionChange)="onClassSelect()" [disableOptionCentering]="true" required>
-                  <mat-option *ngFor="let characterClass of classesData" [value]="characterClass.name" class="guide-form__select-option">
+                  <mat-option *ngFor="let characterClass of classesData | async" [value]="characterClass.name" class="guide-form__select-option">
                     {{ characterClass.name}}
                   </mat-option>
               </mat-select>
@@ -48,7 +48,7 @@
 
         <div class="guide-form__submit">
           <app-wow-btn [btnStyleType]="'red'" [btnText]="'Create'" [btnType]="'submit'"
-                 [additionalStyles]="submitButtonStyles"></app-wow-btn>
+                 [additionalStyles]="submitButtonStyles" [disabled]="newGuideForm.invalid"></app-wow-btn>
         </div>
       </form>
     </div>
