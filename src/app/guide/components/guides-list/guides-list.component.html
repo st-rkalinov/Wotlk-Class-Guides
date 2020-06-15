@@ -16,6 +16,11 @@
         <mat-cell *matCellDef="let element"> {{element.spec.toUpperCase() }} </mat-cell>
       </ng-container>
 
+      <ng-container matColumnDef="author">
+        <mat-header-cell *matHeaderCellDef mat-sort-header=""> Author </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.author.nickname ? element.author.nickname.toUpperCase() : '' }} </mat-cell>
+      </ng-container>
+
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns;" class="guides-list__table-row"></mat-row>
     </mat-table>

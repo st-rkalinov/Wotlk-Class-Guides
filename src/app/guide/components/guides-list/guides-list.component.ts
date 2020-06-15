@@ -2,7 +2,7 @@ import {AfterViewInit, Component, Input, OnDestroy, OnInit, ViewChild} from '@an
 import {GuideService} from '../../guide.service';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
-import {GuideModel} from '../../guide.model';
+import {DbGuideModel, GuideModel} from '../../guide.model';
 import {MatSort} from '@angular/material/sort';
 import {Observable, Subscription} from 'rxjs';
 import {GuideState, selectGuides} from '../../store';
@@ -17,7 +17,7 @@ import * as fromGuideActions from '../../store/guide.actions';
   styleUrls: ['./guides-list.component.scss']
 })
 export class GuidesListComponent implements OnInit, OnDestroy {
-  displayedColumns: string[] = ['class', 'spec'];
+  displayedColumns: string[] = ['class', 'spec', 'author'];
   guidesDataSub: Subscription = new Subscription();
   dataSource = new MatTableDataSource<GuideModel>([]);
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;

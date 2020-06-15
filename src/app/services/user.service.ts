@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {Observable} from 'rxjs';
+import {UserAdditionalDataModel} from '../models/user-additionalData.model';
 
 @Injectable()
 export class UserService {
@@ -12,10 +13,22 @@ export class UserService {
       .valueChanges();
   }
 
+  fetchAllUsersAdditionalData(): Observable<any> {
+    return this.db.collection('users').valueChanges();
+  }
+
   addUserAdditionalData(uid: string, nickname: string) {
     return this.db.collection('users').add({
       uid,
       nickname
     });
+  }
+
+  getUserNicknameByUid(uid: string, users: UserAdditionalDataModel[]) {
+    for (const user of users) {
+      if (user.uid === uid) {
+        return user.nickname;
+      }
+    }
   }
 }

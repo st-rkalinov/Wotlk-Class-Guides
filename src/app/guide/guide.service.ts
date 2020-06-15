@@ -5,13 +5,13 @@ import {Subject, Subscription} from 'rxjs';
 import {GuideState} from './store';
 import {Store} from '@ngrx/store';
 import * as fromGuideActions from './store/guide.actions';
-import {GuideModel} from './guide.model';
+import {DbGuideModel} from './guide.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GuideService {
-  guides: GuideModel[] = [];
+  guides: DbGuideModel[] = [];
   guidesChanged = new Subject<any>();
   guidesSubs: Subscription[] = [];
 

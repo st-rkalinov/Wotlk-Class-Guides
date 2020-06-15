@@ -4,7 +4,7 @@ import {CharactersClassService} from '../../services/characters-class.service';
 import {CharacterClassModel} from '../../models/character-class.model';
 import {Observable, Subscription} from 'rxjs';
 import {GuideService} from '../guide.service';
-import {GuideModel, Guide} from '../guide.model';
+import {DbGuideModel, Guide} from '../guide.model';
 import {NewGuideService} from '../new-guide.service';
 import {DbGemsModel} from '../../models/gems.model';
 import {Store} from '@ngrx/store';
@@ -84,7 +84,7 @@ export class NewGuideComponent implements OnInit, OnDestroy {
     }
 
     this.showErrors = false;
-    const guideDataForSubmit: GuideModel = new Guide();
+    const guideDataForSubmit: DbGuideModel = new Guide();
     const gemsByCategory = this.newGuideService.splitGemsByCategory(this.newGuideForm.get('gems.data').value);
 
     guideDataForSubmit.class = this.newGuideForm.get('class').value.toLowerCase();

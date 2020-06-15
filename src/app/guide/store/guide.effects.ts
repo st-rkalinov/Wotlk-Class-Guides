@@ -4,9 +4,11 @@ import * as fromGuideActions from './guide.actions';
 import {catchError, exhaustMap, map, switchMap} from 'rxjs/operators';
 import {GuideService} from '../guide.service';
 import {of} from 'rxjs';
-import {GuideModel} from '../guide.model';
+import {DbGuideModel, GuideModel} from '../guide.model';
 import {NewGuideService} from '../new-guide.service';
 import {DbGemsModel} from '../../models/gems.model';
+import {UserService} from '../../services/user.service';
+import {UserAdditionalDataModel} from '../../models/user-additionalData.model';
 
 @Injectable()
 export class GuideEffects {
@@ -16,6 +18,18 @@ export class GuideEffects {
       ofType(fromGuideActions.loadGuides),
       switchMap(action =>
         this.guideService.fetchGuides(action.className, action.spec).pipe(
+          exhaustMap((result: DbGuideModel[]) => this.userService.fetchAllUsersAdditionalData().pipe(
+            map((users: UserAdditionalDataModel[]) => {
+              return result.map((guide: DbGuideModel) => {
+                return {
+                  class: guide.class,
+                  spec: guide.spec,
+                  gems: guide.gems,
+                  author: {uid: guide.author_id, nickname: this.userService.getUserNicknameByUid(guide.author_id, users)}
+                };
+              });
+            })
+          )),
           map((result: GuideModel[]) => fromGuideActions.loadGuidesSuccess({guides: result})),
           catchError(error => of(fromGuideActions.loadGuidesFailure({error: error.message})))
         ))
@@ -31,7 +45,7 @@ export class GuideEffects {
         ))
     ));
 
-  constructor(private actions$: Actions, private guideService: GuideService, private newGuideService: NewGuideService) {
+  constructor(private actions$: Actions, private guideService: GuideService, private newGuideService: NewGuideService, private userService: UserService) {
   }
 
 }
