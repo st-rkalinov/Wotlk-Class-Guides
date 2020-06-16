@@ -5,7 +5,7 @@ import {
 } from '@ngrx/store';
 
 import { environment } from '../../../environments/environment';
-import {DbGuideModel, GuideModel} from '../guide.model';
+import {GuideModel} from '../guide.model';
 import {loadAvailableGemsSuccess, loadGuidesFailure, loadGuidesSuccess} from './guide.actions';
 import {DbGemsModel} from '../../models/gems.model';
 

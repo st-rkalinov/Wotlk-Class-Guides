@@ -1,6 +1,4 @@
 import {
-  ActionReducer,
-  ActionReducerMap,
   createFeatureSelector, createReducer,
   createSelector,
   MetaReducer, on
@@ -8,19 +6,16 @@ import {
 import { environment } from '../../../environments/environment';
 import {CharacterClassModel} from '../../models/character-class.model';
 import {loadSharedSuccess} from './shared.actions';
-import {MenuSelectedClassModel} from '../../models/menu-selected-class.model';
 
 
 export const sharedStateFeatureKey = 'sharedState';
 
 export interface SharedState {
   classesData: CharacterClassModel[];
-  selectedClassFromMenu: MenuSelectedClassModel;
 }
 
 export const initialState: SharedState = {
   classesData: undefined,
-  selectedClassFromMenu: {index: -1, classData: null}
 };
 
 export const reducers = createReducer(

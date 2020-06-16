@@ -11,6 +11,8 @@ import * as fromGuideState from './store';
 import { EffectsModule } from '@ngrx/effects';
 import { GuideEffects } from './store/guide.effects';
 import {ClassesMenuDropdownsComponent} from './components/classes-menu-dropdowns/classes-menu-dropdowns.component';
+import { GuideComponent } from './guide/guide.component';
+import {WelcomeModule} from '../welcome/welcome.module';
 
 @NgModule({
   declarations: [
@@ -19,13 +21,15 @@ import {ClassesMenuDropdownsComponent} from './components/classes-menu-dropdowns
     NewGuideComponent,
     WowItemComponent,
     ClassesMenuDropdownsComponent,
+    GuideComponent,
   ],
-  imports: [
-    SharedModule,
-    GuideRoutingModule,
-    MaterialModule,
-    StoreModule.forFeature(fromGuideState.guideStateFeatureKey, fromGuideState.reducers, { metaReducers: fromGuideState.metaReducers }),
-    EffectsModule.forFeature([GuideEffects])
-  ]
+    imports: [
+        SharedModule,
+        GuideRoutingModule,
+        MaterialModule,
+        StoreModule.forFeature(fromGuideState.guideStateFeatureKey, fromGuideState.reducers, {metaReducers: fromGuideState.metaReducers}),
+        EffectsModule.forFeature([GuideEffects]),
+        WelcomeModule
+    ]
 })
 export class GuideModule { }

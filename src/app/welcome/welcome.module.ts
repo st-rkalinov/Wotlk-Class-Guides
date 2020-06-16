@@ -6,14 +6,18 @@ import {SpecCardComponent} from './components/spec-card/spec-card.component';
 import {ClassesMenuComponent} from './components/classes-menu/classes-menu.component';
 
 @NgModule({
-  declarations: [
-    WelcomeComponent,
-    ClassesSpecsComponent,
+    declarations: [
+        WelcomeComponent,
+        ClassesSpecsComponent,
+        SpecCardComponent,
+        ClassesMenuComponent
+    ],
+  exports: [
     SpecCardComponent,
-    ClassesMenuComponent
+    ClassesSpecsComponent
   ],
-  imports: [
-    SharedModule,
-  ]
+    imports: [
+        SharedModule,
+    ]
 })
 export class WelcomeModule { }

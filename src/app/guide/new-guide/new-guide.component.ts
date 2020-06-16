@@ -14,6 +14,7 @@ import * as fromSharedActions from '../../shared/store/shared.actions';
 import {take} from 'rxjs/operators';
 import {GuideState, selectAvailableGems} from '../store';
 import {async} from 'rxjs/internal/scheduler/async';
+import {selectUserDataNickname, selectUserDataUid} from '../../auth/store';
 
 @Component({
   selector: 'app-new-guide',
@@ -91,6 +92,9 @@ export class NewGuideComponent implements OnInit, OnDestroy {
     guideDataForSubmit.spec = this.newGuideForm.get('spec').value.toLowerCase();
     guideDataForSubmit.gems = gemsByCategory;
     guideDataForSubmit.gems.comment = this.newGuideForm.get('gems.gemsComment').value;
+    this.store.select(selectUserDataUid).pipe(take(1)).subscribe(data => {
+      guideDataForSubmit.author_id = data;
+    });
 
     this.newGuideService.addNewGuideToDatabase(Guide.parseForDB(guideDataForSubmit));
   }

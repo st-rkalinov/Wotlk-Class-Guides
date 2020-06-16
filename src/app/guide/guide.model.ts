@@ -9,6 +9,7 @@ export interface DbGuideModel {
 }
 
 export interface GuideModel {
+  id: any;
   class: string;
   spec: string;
   gems: DbGuideGemsModel;

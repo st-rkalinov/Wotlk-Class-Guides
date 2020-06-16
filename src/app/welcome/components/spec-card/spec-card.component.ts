@@ -8,8 +8,7 @@ import {DbCharacterClassSpecModel} from '../../../models/character-class-spec.mo
 })
 export class SpecCardComponent implements OnInit {
   @Input() spec: DbCharacterClassSpecModel;
-  specButtonStyles = { width: '100%', padding: '0.5rem 0', letterSpacing: '3px'};
-
+  @Input() specButtonStyles = { width: '100%', padding: '0.5rem 0', letterSpacing: '3px'};
   constructor() { }
 
   ngOnInit(): void {

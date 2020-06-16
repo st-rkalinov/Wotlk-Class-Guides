@@ -1,0 +1,103 @@
+@import "utils/variables";
+
+.guide {
+  padding: 5rem 0;
+
+  &__author-block {
+    padding: 4rem 0;
+  }
+
+  &__author-text {
+    font-style: italic;
+    font-size: 1.6rem;
+    color: white;
+  }
+
+  &__author-nickname {
+    font-size: $font-size-primary;
+    font-weight: 700;
+    font-family: $font-primary;
+    webkit-text-stroke: 1px #e48203;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: #e48203;
+    -webkit-filter: none;
+    filter: none;
+    text-shadow: 0 -1px 21px #FFF;
+  }
+
+  &__heading {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__heading-image {
+    width: 6rem;
+    height: 6rem;
+  }
+
+  &__main {
+    padding: 5rem 0;
+  }
+
+  &__tab-group {
+    background: black;
+  }
+
+  &__tab {
+    color: white;
+  }
+
+  &__card {
+    background: rgba(0, 0, 0, 0.91);
+    padding: 0;
+    overflow: hidden;
+  }
+
+  &__card-header {
+    padding: 3rem;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__card-header-image {
+    background-position: center;
+    width: 6rem;
+    height: 6rem;
+  }
+
+  &__card-subtitle {
+    margin-bottom: 0;
+  }
+
+  &__card-content {
+    padding: 3rem;
+
+  }
+  &__card-content-info-wrapper {
+    padding: 2rem 0;
+  }
+
+  &__card-content-info-title {
+    font-size: $font-size-primary;
+    font-weight: 700;
+    font-family: $font-primary;
+    webkit-text-stroke: 1px #e48203;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: #e48203;
+    -webkit-filter: none;
+    filter: none;
+    text-shadow: 0 -1px 21px #FFF;
+
+    padding-bottom: 1rem;
+  }
+
+  &__card-content-info-list-item {
+    min-height: 48px !important;
+    height: auto !important;
+    font-family: $font-primary;
+    font-size: $font-size-secondary;
+  }
+}

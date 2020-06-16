@@ -55,6 +55,11 @@ export const selectIsLoggedIn = createSelector(
 
 export const selectUserDataNickname = createSelector(
   selectAuthFeature,
+  (state: AuthState) => state.userData.nickname
+);
+
+export const selectUserDataUid = createSelector(
+  selectAuthFeature,
   (state: AuthState) => state.userData.uid
 );
 

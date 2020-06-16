@@ -1,11 +1,10 @@
-import { createAction, props } from '@ngrx/store';
-import {DbGuideModel, GuideModel} from '../guide.model';
-import {CharacterClassModel} from '../../models/character-class.model';
+import {createAction, props} from '@ngrx/store';
+import {GuideModel} from '../guide.model';
 import {DbGemsModel} from '../../models/gems.model';
 
 export const loadGuides = createAction(
   '[Guides List Component] Load Guides',
-  props<{ className: string, spec: string }>()
+  props<{ className: string | undefined, spec: string | undefined }>()
 );
 
 export const loadGuidesSuccess = createAction(

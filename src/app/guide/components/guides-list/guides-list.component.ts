@@ -23,7 +23,7 @@ export class GuidesListComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: false}) sort: MatSort;
 
-  constructor(private guideService: GuideService, private store: Store<GuideState>, private route: ActivatedRoute) {
+  constructor(private guideService: GuideService, private store: Store<GuideState>, private route: ActivatedRoute, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -42,6 +42,10 @@ export class GuidesListComponent implements OnInit, OnDestroy {
           this.dataSource.sort = this.sort;
         });
     });
+  }
+
+  goToGuidePage($event) {
+    this.router.navigate(['/guides/' + $event.id]);
   }
 
   filter($event) {

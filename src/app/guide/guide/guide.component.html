@@ -1,0 +1,114 @@
+<div class="guide" *ngIf="guideData && guideClassData">
+  <div class="shell">
+    <header class="guide__heading">
+      <img [src]="guideClassData.iconLink" alt="class image" class="guide__heading-image">
+      <h2 class="heading-3">{{ guideData.spec + " " + guideData.class}}<br>Guide</h2>
+      <div class="guide__author-block" *ngIf="guideData.author.nickname">
+        <p class="guide__author-text">Made by: <span class="guide__author-nickname">{{ guideData.author.nickname }}</span></p>
+      </div>
+    </header>
+    <main class="guide__main">
+      <mat-tab-group mat-align-tabs="center" class="guide__tab-group" animationDuration="200ms">
+        <mat-tab label="Class Info" class="guide__tab">
+          <mat-card class="guide__card">
+            <mat-card-header class="guide__card-header">
+              <div mat-card-avatar class="guide__card-header-image"
+                   [style]="{'background-image': 'url(' + guideClassData.iconLink +')'}"></div>
+              <mat-card-title class="guide__card-title"
+                              [style]="{'color': guideClassData.color}">{{ guideClassData.name }}</mat-card-title>
+              <mat-card-subtitle class="guide__card-subtitle">{{ guideData.spec }}</mat-card-subtitle>
+            </mat-card-header>
+
+            <mat-divider></mat-divider>
+
+            <mat-card-content class="guide__card-content">
+              <div class="guide__card-content-info-wrapper">
+                <p class="guide__card-content-info-title">Roles:</p>
+                <mat-list class="guide__card-content-info-list">
+                  <mat-list-item *ngFor="let role of guideClassData.info['role']"
+                                 class="guide__card-content-info-list-item">{{ role }}</mat-list-item>
+                </mat-list>
+              </div>
+              <div class="guide__card-content-info-wrapper">
+                <p class="guide__card-content-info-title">Armor:</p>
+                <mat-list class="guide__card-content-info-list">
+                  <mat-list-item *ngFor="let armor of guideClassData.info['armor']"
+                                 class="guide__card-content-info-list-item">{{ armor }}</mat-list-item>
+                </mat-list>
+              </div>
+              <div class="guide__card-content-info-wrapper">
+                <p class="guide__card-content-info-title">Info:</p>
+                <mat-list class="guide__card-content-info-list">
+                  <mat-list-item class="guide__card-content-info-list-item">{{ guideClassData.info['text'] }}</mat-list-item>
+                </mat-list>
+              </div>
+              <div class="guide__card-content-info-wrapper">
+                <p class="guide__card-content-info-title">Specs:</p>
+                <mat-list class="guide__card-content-info-list">
+                  <mat-list-item class="guide__card-content-info-list-item" *ngFor="let spec of guideClassData.specs">
+                    {{ spec.name }}
+                  </mat-list-item>
+                </mat-list>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </mat-tab>
+
+        <mat-tab label="Gems">
+          <mat-card class="guide__card">
+            <mat-card-header class="guide__card-header">
+              <div mat-card-avatar class="guide__card-header-image"
+                   [style]="{'background-image': 'url(' + guideClassData.iconLink +')'}"></div>
+              <mat-card-title class="guide__card-title"
+                              [style]="{'color': guideClassData.color}">{{ guideClassData.name }}</mat-card-title>
+              <mat-card-subtitle class="guide__card-subtitle">{{ guideData.spec }}</mat-card-subtitle>
+            </mat-card-header>
+
+            <mat-divider></mat-divider>
+
+            <mat-card-content class="guide__card-content">
+              <div class="guide__card-content-info-wrapper" *ngIf="guideData.gems.red.length > 0">
+                <p class="guide__card-content-info-title">Red:</p>
+                <mat-list class="guide__card-content-info-list">
+                  <mat-list-item *ngFor="let gem of guideData.gems.red"
+                                 class="guide__card-content-info-list-item">
+                    <app-wow-item [itemName]="gem.name" [itemLink]="gem.link" [itemIconLink]="gem.icon_link"></app-wow-item>
+                  </mat-list-item>
+                </mat-list>
+              </div>
+              <div class="guide__card-content-info-wrapper" *ngIf="guideData.gems.yellow.length > 0">
+                <p class="guide__card-content-info-title">Yellow:</p>
+                <mat-list class="guide__card-content-info-list">
+                  <mat-list-item *ngFor="let gem of guideData.gems.yellow"
+                                 class="guide__card-content-info-list-item">
+                    <app-wow-item [itemName]="gem.name" [itemLink]="gem.link" [itemIconLink]="gem.icon_link"></app-wow-item>
+                  </mat-list-item>
+                </mat-list>
+              </div>
+              <div class="guide__card-content-info-wrapper" *ngIf="guideData.gems.blue.length > 0">
+                <p class="guide__card-content-info-title">Blue:</p>
+                <mat-list class="guide__card-content-info-list">
+                  <mat-list-item *ngFor="let gem of guideData.gems.blue"
+                                 class="guide__card-content-info-list-item">
+                    <app-wow-item [itemName]="gem.name" [itemLink]="gem.link" [itemIconLink]="gem.icon_link"></app-wow-item>
+                  </mat-list-item>
+                </mat-list>
+              </div>
+              <div class="guide__card-content-info-wrapper">
+                <p class="guide__card-content-info-title">Comment:</p>
+                <mat-list class="guide__card-content-info-list">
+                  <mat-list-item class="guide__card-content-info-list-item">
+                    {{ guideData.gems.comment }}
+                  </mat-list-item>
+                </mat-list>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </mat-tab>
+        <mat-tab label="Macros">
+
+        </mat-tab>
+      </mat-tab-group>
+    </main>
+  </div>
+</div>

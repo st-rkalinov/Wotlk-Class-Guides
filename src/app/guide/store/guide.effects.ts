@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import * as fromGuideActions from './guide.actions';
-import {catchError, exhaustMap, map, switchMap} from 'rxjs/operators';
+import {catchError, exhaustMap, map, switchMap, tap} from 'rxjs/operators';
 import {GuideService} from '../guide.service';
 import {of} from 'rxjs';
 import {DbGuideModel, GuideModel} from '../guide.model';
@@ -18,17 +18,22 @@ export class GuideEffects {
       ofType(fromGuideActions.loadGuides),
       switchMap(action =>
         this.guideService.fetchGuides(action.className, action.spec).pipe(
-          exhaustMap((result: DbGuideModel[]) => this.userService.fetchAllUsersAdditionalData().pipe(
+          switchMap((docArray) => this.userService.fetchAllUsersAdditionalData().pipe(
             map((users: UserAdditionalDataModel[]) => {
-              return result.map((guide: DbGuideModel) => {
+              return docArray.map((doc: any) => {
+                const payloadData = {
+                  ...doc.payload.doc.data()
+                };
+
                 return {
-                  class: guide.class,
-                  spec: guide.spec,
-                  gems: guide.gems,
-                  author: {uid: guide.author_id, nickname: this.userService.getUserNicknameByUid(guide.author_id, users)}
+                  id: doc.payload.doc.id,
+                  class: payloadData.class,
+                  spec: payloadData.spec,
+                  gems: payloadData.gems,
+                  author: { uid: payloadData.author_id, nickname: this.userService.getUserNicknameByUid(payloadData.author_id, users)}
                 };
               });
-            })
+            }),
           )),
           map((result: GuideModel[]) => fromGuideActions.loadGuidesSuccess({guides: result})),
           catchError(error => of(fromGuideActions.loadGuidesFailure({error: error.message})))
