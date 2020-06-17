@@ -1,11 +1,13 @@
 import {DbGuideGemsModel} from '../models/gems.model';
 import {UserAdditionalDataModel} from '../models/user-additionalData.model';
+import {MacroModel} from '../models/macro.model';
 
 export interface DbGuideModel {
   class: string;
   spec: string;
   gems: DbGuideGemsModel;
   author_id: string;
+  macros: MacroModel[];
 }
 
 export interface GuideModel {
@@ -14,6 +16,7 @@ export interface GuideModel {
   spec: string;
   gems: DbGuideGemsModel;
   author: UserAdditionalDataModel;
+  macros: MacroModel[];
 }
 
 export class Guide implements DbGuideModel {
@@ -21,6 +24,16 @@ export class Guide implements DbGuideModel {
   private _gems: DbGuideGemsModel;
   private _spec: string;
   private _author_id: string;
+  private _macros: MacroModel[];
+
+
+  get macros(): MacroModel[] {
+    return this._macros;
+  }
+
+  set macros(value: MacroModel[]) {
+    this._macros = value;
+  }
 
   get author_id(): string {
     return this._author_id;
@@ -59,7 +72,8 @@ export class Guide implements DbGuideModel {
       class: guideData.class,
       spec: guideData.spec,
       gems: guideData.gems,
-      author_id: guideData.author_id
+      author_id: guideData.author_id,
+      macros: guideData.macros
     };
   }
 }

@@ -100,4 +100,25 @@
     font-family: $font-primary;
     font-size: $font-size-secondary;
   }
+
+  &__card-content-info-macro {
+    display: flex;
+    justify-content: space-between;
+
+    & > * {
+      background: rgba(255, 255, 255, 0.07);;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 20px;
+      padding: 2rem;
+      white-space: pre-wrap;
+    }
+  }
+
+  &__card-content-info-macro-text {
+    width: 45%;
+  }
+
+  &__card-content-info-macro-description {
+    width: 40%;
+  }
 }

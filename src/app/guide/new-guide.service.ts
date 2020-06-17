@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {DbGemModel} from '../models/gem.model';
-import {AbstractControl} from '@angular/forms';
+import {AbstractControl, FormArray, FormGroup} from '@angular/forms';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {map, take} from 'rxjs/operators';
 import {DbGuideGemsModel} from '../models/gems.model';

@@ -33,7 +33,8 @@ export class GuideComponent implements OnInit {
                   class: result.class,
                   spec: result.spec,
                   gems: result.gems,
-                  author: { uid: result.author_id, nickname: user[0].nickname }
+                  author: { uid: result.author_id, nickname: user[0].nickname },
+                  macros: result.macros
                 };
               })
             );

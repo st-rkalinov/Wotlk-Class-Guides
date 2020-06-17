@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import * as fromGuideActions from './guide.actions';
-import {catchError, exhaustMap, map, switchMap, tap} from 'rxjs/operators';
+import {catchError, delay, exhaustMap, map, mergeMap, switchMap, tap} from 'rxjs/operators';
 import {GuideService} from '../guide.service';
 import {of} from 'rxjs';
 import {DbGuideModel, GuideModel} from '../guide.model';
@@ -30,6 +30,7 @@ export class GuideEffects {
                   class: payloadData.class,
                   spec: payloadData.spec,
                   gems: payloadData.gems,
+                  macros: payloadData.macros,
                   author: { uid: payloadData.author_id, nickname: this.userService.getUserNicknameByUid(payloadData.author_id, users)}
                 };
               });

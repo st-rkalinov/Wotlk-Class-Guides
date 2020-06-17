@@ -7,19 +7,23 @@
           <div class="guide-form__group-content">
             <mat-form-field color="primary" appearance="outline" class="guide-form__field">
               <mat-label class="guide-form__label">Class</mat-label>
-              <mat-select formControlName="class" panelClass="guide-form__select" class="guide-form__select" (selectionChange)="onClassSelect()" [disableOptionCentering]="true" required>
-                  <mat-option *ngFor="let characterClass of classesData$ | async" [value]="characterClass.name" class="guide-form__select-option">
-                    {{ characterClass.name}}
-                  </mat-option>
+              <mat-select formControlName="class" panelClass="guide-form__select" class="guide-form__select"
+                          (selectionChange)="onClassSelect()" [disableOptionCentering]="true" required>
+                <mat-option *ngFor="let characterClass of classesData$ | async" [value]="characterClass.name"
+                            class="guide-form__select-option">
+                  {{ characterClass.name}}
+                </mat-option>
               </mat-select>
               <mat-error *ngIf="this.newGuideForm.get('class').invalid || showErrors">Field is required</mat-error>
             </mat-form-field>
-            <mat-form-field  appearance="outline" color="primary" class="guide-form__field">
+            <mat-form-field appearance="outline" color="primary" class="guide-form__field">
               <mat-label class="guide-form__label">Spec</mat-label>
-              <mat-select formControlName="spec" panelClass="guide-form__select" class="guide-form__select" [disableOptionCentering]="true" required>
-                  <mat-option *ngFor="let characterSpec of availableSpecs" [value]="characterSpec.name" class="guide-form__select-option">
-                    {{ characterSpec.name}}
-                  </mat-option>
+              <mat-select formControlName="spec" panelClass="guide-form__select" class="guide-form__select"
+                          [disableOptionCentering]="true" required>
+                <mat-option *ngFor="let characterSpec of availableSpecs" [value]="characterSpec.name"
+                            class="guide-form__select-option">
+                  {{ characterSpec.name}}
+                </mat-option>
               </mat-select>
               <mat-error *ngIf="this.newGuideForm.get('spec').invalid || showErrors">Field is required</mat-error>
             </mat-form-field>
@@ -31,10 +35,12 @@
           <div class="guide-form__group-content guide-form__group-content--column">
             <mat-form-field appearance="outline" formGroupName="gems" class="guide-form__field">
               <mat-label class="guide-form__label">Gems</mat-label>
-              <mat-select formControlName="data" panelClass="guide-form__select" multiple class="guide-form__select" [disableOptionCentering]="true">
+              <mat-select formControlName="data" panelClass="guide-form__select" multiple class="guide-form__select"
+                          [disableOptionCentering]="true">
                 <mat-optgroup *ngFor="let gemGroup of gemsData$ | async" [label]="gemGroup.category.toUpperCase()">
                   <mat-option *ngFor="let gem of gemGroup.gems" [value]="gem" class="guide-form__select-option">
-                    <app-wow-item [itemLink]="gem.link" [itemIconLink]="gem.icon_link" [itemName]="gem.name"></app-wow-item>
+                    <app-wow-item [itemLink]="gem.link" [itemIconLink]="gem.icon_link"
+                                  [itemName]="gem.name"></app-wow-item>
                   </mat-option>
                 </mat-optgroup>
               </mat-select>
@@ -46,9 +52,43 @@
           </div>
         </div>
 
+        <div class="guide-form__group">
+          <h2 class="heading-2 guide-form__group-title">Macros</h2>
+          <div class="guide-form__group-content guide-form__group-content--column">
+            <div *ngFor="let macro of formMacrosSelector.controls; let index = i"
+                 class="guide-form__group-content-inner-wrapper">
+              <div [formGroup]="macro" class="guide-form__group-content-inner">
+                <mat-form-field class="guide-form__field guide-form__field--macro" color="primary">
+                  <mat-label class="guide-form__label">Macro Name</mat-label>
+                  <input matInput type="text" formControlName="name" class="guide-form__input"
+                         [value]="'Macro #' + index+1">
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="guide-form__field guide-form__field--macro" color="primary">
+                  <mat-label class="guide-form__label">Macro Text *</mat-label>
+                  <textarea matInput formControlName="text" class="guide-form__textarea" rows="5"></textarea>
+                  <mat-error *ngIf="this.newGuideForm.get('macros').invalid || showErrors">Field is required</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="guide-form__field guide-form__field--macro" color="primary">
+                  <mat-label class="guide-form__label">Macro Description</mat-label>
+                  <input matInput type="text" formControlName="description" class="guide-form__input" autocomplete="off">
+                </mat-form-field>
+              </div>
+            </div>
+            <button mat-stroked-button color="primary" aria-label="Example icon button with a home icon"
+                    (click)="addMacro($event)">
+              Add Macro
+            </button>
+          </div>
+        </div>
+
         <div class="guide-form__submit">
           <app-wow-btn [btnStyleType]="'red'" [btnText]="'Create'" [btnType]="'submit'"
-                 [additionalStyles]="submitButtonStyles" [disabled]="newGuideForm.invalid"></app-wow-btn>
+                       [additionalStyles]="submitButtonStyles" [disabled]="newGuideForm.invalid || submitButtonDisabled"
+                       #tooltip="matTooltip"
+                       [matTooltipDisabled]="newGuideForm.valid"
+                       matTooltip="Fill up all required fields (*)"
+                       matTooltipPosition="above">
+          </app-wow-btn>
         </div>
       </form>
     </div>

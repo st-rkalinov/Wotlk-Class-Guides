@@ -1,4 +1,7 @@
-<button [type]="btnType" class="wow-btn" [ngClass]="btnStyleType ? 'wow-btn--' + btnStyleType : ''" [ngStyle]="additionalStyles" [disabled]="disabled">
+<button [type]="btnType" class="wow-btn"
+        [ngClass]="btnStyleType ? 'wow-btn--' + btnStyleType : ''"
+        [ngStyle]="additionalStyles"
+        [disabled]="disabled">
   <span class="wow-btn__border"></span>
   {{ btnText }}
 </button>

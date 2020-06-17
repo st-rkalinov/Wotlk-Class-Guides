@@ -13,6 +13,10 @@
   &__field {
     font-size: $font-size-primary;
     width: 25%;
+
+    &--macro {
+      width: 50%;
+    }
   }
 
   &__select-option {
@@ -20,7 +24,7 @@
     height: 2em !important;
   }
 
-  &__textarea {
+  &__textarea, &__input {
     color: white !important;
   }
 
@@ -54,5 +58,17 @@
     &--column {
       flex-direction: column;
     }
+  }
+
+  &__group-content-inner-wrapper {
+    width: 100%;
+    display: flex;
+
+  }
+
+  &__group-content-inner {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
   }
 }

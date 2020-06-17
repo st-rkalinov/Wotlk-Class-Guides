@@ -4,7 +4,6 @@
 .wow-btn {
   @include lk-login-screen-font-style;
 
-
   padding: 0.4rem 0;
   position: relative;
   background: linear-gradient(to bottom, #296a9f, #216ea2, #296a9f);
@@ -44,10 +43,27 @@
   &--red {
     background: linear-gradient(to bottom, #540606, #6e0200, #4a0301);
 
+
     &:hover {
       background: linear-gradient(to bottom, #540606, #a60200, #4a0301);
       color: white;
     }
+  }
+
+  &:disabled {
+    background: gray;
+
+    &:hover {
+      background: gray;
+      color: #F2CE38;
+    }
+
+    &:active {
+      outline: none;
+      box-shadow: inset 0 0 10px 1px black;
+    }
+
+    cursor: not-allowed;
   }
 }
 
