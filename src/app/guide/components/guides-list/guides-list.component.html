@@ -4,21 +4,21 @@
       <mat-label>Search</mat-label>
       <input matInput (keyup)="filter($event)" type="text" placeholder="Filter guides...">
     </mat-form-field>
-    <mat-table [dataSource]="dataSource" class="guides-list__table" matSort >
+    <mat-table [dataSource]="dataSource" class="guides-list__table" matSort>
       <!-- Name Column -->
       <ng-container matColumnDef="class">
         <mat-header-cell *matHeaderCellDef> Class </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.class.toUpperCase() }} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element['class'].toUpperCase() }} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="spec">
         <mat-header-cell *matHeaderCellDef mat-sort-header=""> Spec </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.spec.toUpperCase() }} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element['spec'].toUpperCase() }} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="author">
         <mat-header-cell *matHeaderCellDef mat-sort-header=""> Author </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element.author.nickname ? element.author.nickname.toUpperCase() : '' }} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{ element['author']['nickname']?.toUpperCase() }} </mat-cell>
       </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

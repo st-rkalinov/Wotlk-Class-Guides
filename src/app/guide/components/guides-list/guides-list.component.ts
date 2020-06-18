@@ -7,7 +7,7 @@ import {MatSort} from '@angular/material/sort';
 import {Observable, Subscription} from 'rxjs';
 import {GuideState, selectGuides} from '../../store';
 import {Store} from '@ngrx/store';
-import {debounceTime, exhaustMap, map} from 'rxjs/operators';
+import {debounceTime, delay, exhaustMap, map, take, takeLast, takeUntil, takeWhile} from 'rxjs/operators';
 import {ActivatedRoute, Route, Router} from '@angular/router';
 import * as fromGuideActions from '../../store/guide.actions';
 
@@ -36,11 +36,12 @@ export class GuidesListComponent implements OnInit, OnDestroy {
         this.store.dispatch(fromGuideActions.loadGuides({className: undefined, spec: undefined}));
       }
 
-      this.guidesDataSub = this.store.select(selectGuides).subscribe(data => {
-          this.dataSource.data = data;
-          this.dataSource.paginator = this.paginator;
-          this.dataSource.sort = this.sort;
-        });
+      this.store.select(selectGuides).pipe(take(3)).subscribe(data => {
+        this.dataSource.data = data;
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      });
+
     });
   }
 

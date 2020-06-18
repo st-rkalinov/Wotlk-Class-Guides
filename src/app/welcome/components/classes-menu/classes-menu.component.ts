@@ -22,7 +22,6 @@ export class ClassesMenuComponent implements OnInit {
   constructor(private charactersClassService: CharactersClassService, private store: Store<GuideState>) { }
 
   ngOnInit(): void {
-    this.store.dispatch(fromSharedActions.loadShared());
     this.classesData$ = this.store.select(selectClassesData);
   }
 

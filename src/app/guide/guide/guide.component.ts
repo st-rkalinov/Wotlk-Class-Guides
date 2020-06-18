@@ -25,8 +25,10 @@ export class GuideComponent implements OnInit {
     this.route.paramMap.pipe(
       switchMap((params: ParamMap) => {
         return this.guideService.fetchGuide(params.get('id')).pipe(
+          take(1),
           switchMap((result: DbGuideModel) => {
             return this.userService.fetchUserAdditionalData(result.author_id).pipe(
+              take(1),
               map((user: UserAdditionalDataModel) => {
                 this.guideData = {
                   id: params.get('id'),

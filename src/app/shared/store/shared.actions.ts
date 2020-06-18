@@ -3,7 +3,7 @@ import {CharacterClassModel} from '../../models/character-class.model';
 import {MenuSelectedClassModel} from '../../models/menu-selected-class.model';
 
 export const loadShared = createAction(
-  '[Class Menu Component] Load Shared Data'
+  '[App Component] Load Shared Data'
 );
 
 export const loadSharedSuccess = createAction(
