@@ -5,7 +5,7 @@ import {of} from 'rxjs';
 import {AuthService} from '../auth.service';
 import * as fromAuthActions from '../store/auth.actions';
 import {Router} from '@angular/router';
-import {UserService} from '../../services/user.service';
+import {UserService} from '../../user/user.service';
 
 
 @Injectable()

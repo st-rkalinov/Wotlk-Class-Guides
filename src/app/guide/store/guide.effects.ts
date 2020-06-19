@@ -7,7 +7,7 @@ import {combineLatest, forkJoin, Observable, of} from 'rxjs';
 import {DbGuideModel, GuideModel} from '../guide.model';
 import {NewGuideService} from '../new-guide.service';
 import {DbGemsModel} from '../../models/gems.model';
-import {UserService} from '../../services/user.service';
+import {UserService} from '../../user/user.service';
 import {UserAdditionalDataModel} from '../../models/user-additionalData.model';
 
 @Injectable()

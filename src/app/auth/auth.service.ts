@@ -5,7 +5,7 @@ import {Router} from '@angular/router';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {GuideService} from '../guide/guide.service';
 import {CharactersClassService} from '../services/characters-class.service';
-import {UserService} from '../services/user.service';
+import {UserService} from '../user/user.service';
 import {AuthState} from './store';
 import {Store} from '@ngrx/store';
 import * as fromAuthActions from './store/auth.actions';

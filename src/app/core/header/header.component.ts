@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../auth/auth.service';
 import {Observable} from 'rxjs';
-import {UserService} from '../../services/user.service';
+import {UserService} from '../../user/user.service';
 import {Router} from '@angular/router';
 import {Store} from '@ngrx/store';
 import {selectIsLoggedIn} from '../../auth/store';

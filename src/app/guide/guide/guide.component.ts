@@ -7,7 +7,7 @@ import {CharacterClassModel} from '../../models/character-class.model';
 import {Store} from '@ngrx/store';
 import {selectClassesData} from '../../shared/store';
 import {Observable, ObservableInput} from 'rxjs';
-import {UserService} from '../../services/user.service';
+import {UserService} from '../../user/user.service';
 import {UserAdditionalDataModel} from '../../models/user-additionalData.model';
 
 @Component({

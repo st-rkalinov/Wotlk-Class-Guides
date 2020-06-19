@@ -41,7 +41,7 @@ export class SignupComponent implements OnInit {
       name: 'email'
     };
     const nickname: FormFieldModel = {
-      value: this.signUpForm.get('nickname').value,
+      value: this.signUpForm.get('nickname').value.toLowerCase(),
       errors: this.signUpForm.get('nickname').errors,
       name: 'nickname'
     };
