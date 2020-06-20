@@ -1,11 +1,12 @@
 import {Injectable} from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
-import {catchError, exhaustMap, map, switchMap, take, tap} from 'rxjs/operators';
-import {of} from 'rxjs';
+import {catchError, exhaustMap, map, switchMap, tap} from 'rxjs/operators';
+import {from, of} from 'rxjs';
 import {AuthService} from '../auth.service';
 import * as fromAuthActions from '../store/auth.actions';
 import {Router} from '@angular/router';
 import {UserService} from '../../user/user.service';
+import * as firebase from 'firebase';
 
 
 @Injectable()
@@ -37,15 +38,28 @@ export class AuthEffects {
   signUp$ = createEffect(() =>
     this.actions$.pipe(
       ofType(fromAuthActions.signUp),
-      exhaustMap(action => this.authService.signUp(action.email, action.nickname, action.password, action.passwordConfirm, action.globalErrors).pipe(
-        map(result => this.userService.addUserAdditionalData(result.user.uid, action.nickname.value)),
-        map(() => fromAuthActions.signUpSuccess()),
-        tap(() => this.router.navigate(['/guides'])),
-        catchError(error => of(fromAuthActions.signUpFailure({error: error.message})))
-        )
+      exhaustMap(action => {
+        const checkUserNicknameExistence = firebase.functions().httpsCallable('checkUserNicknameExistence');
+
+        return from(checkUserNicknameExistence({nickname: action.nickname.value})).pipe(
+          switchMap(() => this.authService.signUp(action.email, action.nickname, action.password, action.passwordConfirm, action.globalErrors).pipe(
+            map(result => {
+              from(this.userService.addUserAdditionalData(result.user.uid, action.nickname.value));
+            }),
+            map(() => {
+              const addUserNickname = firebase.functions().httpsCallable('addUserNickname');
+
+              from(addUserNickname({nickname: action.nickname.value}));
+            }),
+            map(() => fromAuthActions.signUpSuccess()),
+            tap(() => this.router.navigate(['/guides'])),
+            catchError(error => of(fromAuthActions.signUpFailure({error: error.message})))
+          )),
+          catchError(error => of(fromAuthActions.signUpFailure({error: error.message})))
+        );
+      })
       )
-    )
-  );
+    );
 
   getUser$ = createEffect(() =>
     this.actions$.pipe(

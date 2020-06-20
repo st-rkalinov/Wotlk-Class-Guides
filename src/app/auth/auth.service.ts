@@ -25,6 +25,8 @@ export class AuthService {
     this.afAuth.authState.subscribe(user => {
       if (user) {
         this.store.dispatch(fromAuthActions.getUser({uid: user.uid}));
+      } else {
+        this.store.dispatch(fromAuthActions.logout());
       }
     });
   }

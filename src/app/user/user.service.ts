@@ -1,8 +1,7 @@
 import {Injectable} from '@angular/core';
 import {AngularFirestore} from '@angular/fire/firestore';
-import {from, Observable, of} from 'rxjs';
+import {Observable} from 'rxjs';
 import {UserAdditionalDataModel} from '../models/user-additionalData.model';
-import {map} from 'rxjs/operators';
 
 @Injectable()
 export class UserService {

@@ -82,6 +82,8 @@ typings/
 .nuxt
 dist
 
+functions/credentials
+
 # Gatsby files
 .cache/
 # Comment in the public line in if your project uses Gatsby and *not* Next.js
@@ -105,3 +107,8 @@ dist
 
 #IDE
 .idea
+
+firestore.rules
+firestore.indexes.json
+storage.rules
+public
