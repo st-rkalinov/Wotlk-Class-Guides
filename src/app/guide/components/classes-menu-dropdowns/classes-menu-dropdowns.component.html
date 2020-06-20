@@ -1,5 +1,5 @@
 <div class="classes-menu-dropdowns">
-  <div class="classes-menu-dropdowns__icon-block" *ngFor="let classData of classesData$ | async; let i = index">
+  <div class="classes-menu-dropdowns__icon-block" *ngFor="let classData of classesData; let i = index">
     <img [src]="'../assets/img/' + classData.name.toLowerCase() + '-logo.png'"
          alt="" class="classes-menu-dropdowns__icon-img"
          (click)="loadSpecificClassGuides(classData)"
