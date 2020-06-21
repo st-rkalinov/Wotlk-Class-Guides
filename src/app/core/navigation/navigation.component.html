@@ -6,13 +6,11 @@
       <section class="navigation__content">
         <ul class="navigation__list">
           <li class="navigation__list-item">
-            <a class="navigation__link navigation__link--active" [routerLink]="'/'">Home</a>
+            <a class="navigation__link" [routerLink]="'/'" routerLinkActive="navigation__link--active"
+              [routerLinkActiveOptions]="{exact: true}">Home</a>
           </li>
           <li class="navigation__list-item">
-            <a class="navigation__link" [routerLink]="'/guides'">Guides</a>
-          </li>
-          <li class="navigation__list-item">
-            <a class="navigation__link" [routerLink]="'/'">Forum</a>
+            <a class="navigation__link" [routerLink]="'/guides'" routerLinkActive="navigation__link--active">Guides</a>
           </li>
         </ul>
       </section>
