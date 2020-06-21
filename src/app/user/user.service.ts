@@ -17,6 +17,11 @@ export class UserService {
     return this.db.collection('users').valueChanges();
   }
 
+  fetchUserAdditionalDataByNickname(nickname: string): Observable<any> {
+    return this.db.collection('users', ref => ref.where('nickname', '==', nickname))
+      .valueChanges();
+  }
+
   addUserAdditionalData(uid: string, nickname: string) {
     return this.db.collection('users').add({
       uid,

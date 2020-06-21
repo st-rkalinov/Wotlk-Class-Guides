@@ -10,7 +10,7 @@ const routes: Routes = [
     path: 'edit-profile', component: UserComponent, ...canActivate(redirectUnauthorizedToLogin)
   },
   {
-    path: ':nickname', component: UserComponent,
+    path: ':nickname', component: UserComponent
   },
 ];
 

@@ -1,8 +1,6 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {Observable} from 'rxjs';
-import {DbGuideModel} from './guide.model';
-import {tap} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +20,11 @@ export class GuideService {
 
   fetchGuide(uid: string): Observable<any> {
     return this.db.collection('guides').doc(uid).valueChanges();
+  }
+
+  fetchUserGuides(uid: string) {
+    return this.db.collection('guides', ref => ref.where('author_id', '==', uid))
+      .snapshotChanges();
   }
 
   private formatSpecName(specName) {

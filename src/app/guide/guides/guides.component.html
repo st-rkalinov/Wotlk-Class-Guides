@@ -1,6 +1,6 @@
 <section class="guides-section">
   <div class="shell">
     <app-classes-menu-dropdowns></app-classes-menu-dropdowns>
-    <app-guides-list></app-guides-list>
+    <app-guides-list *ngIf="guides" [guides]="guides"></app-guides-list>
   </div>
 </section>

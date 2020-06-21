@@ -1,12 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {GuideService} from '../guide.service';
-import {ActivatedRoute, ParamMap} from '@angular/router';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {DbGuideModel, GuideModel} from '../guide.model';
 import {map, switchMap, take} from 'rxjs/operators';
 import {CharacterClassModel} from '../../models/character-class.model';
 import {Store} from '@ngrx/store';
 import {selectClassesData} from '../../shared/store';
-import {Observable, ObservableInput} from 'rxjs';
 import {UserService} from '../../user/user.service';
 import {UserAdditionalDataModel} from '../../models/user-additionalData.model';
 
@@ -18,7 +17,7 @@ import {UserAdditionalDataModel} from '../../models/user-additionalData.model';
 export class GuideComponent implements OnInit {
   guideData: GuideModel;
   guideClassData: CharacterClassModel;
-  constructor(private guideService: GuideService, private route: ActivatedRoute, private store: Store, private userService: UserService) {
+  constructor(private guideService: GuideService, private route: ActivatedRoute, private store: Store, private userService: UserService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -51,4 +50,7 @@ export class GuideComponent implements OnInit {
     });
   }
 
+  goToUserProfile(nickname: string) {
+    this.router.navigate(['/users/' + nickname.toLowerCase()]);
+  }
 }

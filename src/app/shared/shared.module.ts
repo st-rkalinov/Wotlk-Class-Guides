@@ -1,21 +1,22 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {WowBtnComponent} from './wow-btn/wow-btn.component';
 import {WowModalComponent} from './wow-modal/wow-modal.component';
 import {ReactiveFormsModule} from '@angular/forms';
-import {ClassesMenuDropdownsComponent} from '../guide/components/classes-menu-dropdowns/classes-menu-dropdowns.component';
 import {CharacterIconComponent} from './character-icon/character-icon.component';
-import { StoreModule } from '@ngrx/store';
+import {StoreModule} from '@ngrx/store';
 import * as fromSharedStore from './store';
-import { EffectsModule } from '@ngrx/effects';
-import { SharedEffects } from './store/shared.effects';
+import {EffectsModule} from '@ngrx/effects';
+import {SharedEffects} from './store/shared.effects';
 import {MaterialModule} from '../material.module';
+import {GuidesListComponent} from './guides-list/guides-list.component';
 
 @NgModule({
   declarations: [
     WowBtnComponent,
     WowModalComponent,
-    CharacterIconComponent
+    CharacterIconComponent,
+    GuidesListComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +30,8 @@ import {MaterialModule} from '../material.module';
     ReactiveFormsModule,
     WowBtnComponent,
     WowModalComponent,
-    CharacterIconComponent
+    CharacterIconComponent,
+    GuidesListComponent
   ]
 })
 export class SharedModule { }

@@ -6,19 +6,19 @@
     </mat-form-field>
     <mat-table [dataSource]="dataSource" class="guides-list__table" matSort>
       <!-- Name Column -->
-      <ng-container matColumnDef="class">
-        <mat-header-cell *matHeaderCellDef> Class </mat-header-cell>
+      <ng-container *ngIf="displayedColumns.includes('class')" matColumnDef="class">
+        <mat-header-cell *matHeaderCellDef mat-sort-header=""> Class </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element['class'].toUpperCase() }} </mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="spec">
+      <ng-container *ngIf="displayedColumns.includes('spec')" matColumnDef="spec">
         <mat-header-cell *matHeaderCellDef mat-sort-header=""> Spec </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element['spec'].toUpperCase() }} </mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="author">
+      <ng-container *ngIf="displayedColumns.includes('author')" matColumnDef="author">
         <mat-header-cell *matHeaderCellDef mat-sort-header=""> Author </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element['author']['nickname']?.toUpperCase() }} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{ element['author']['nickname']?.toUpperCase()}} </mat-cell>
       </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

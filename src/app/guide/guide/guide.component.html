@@ -4,7 +4,7 @@
       <img [src]="guideClassData.iconLink" alt="class image" class="guide__heading-image">
       <h2 class="heading-3">{{ guideData.spec + " " + guideData.class}}<br>Guide</h2>
       <div class="guide__author-block" *ngIf="guideData.author.nickname">
-        <p class="guide__author-text">Made by: <span class="guide__author-nickname">{{ guideData.author.nickname }}</span></p>
+        <p class="guide__author-text">Made by: <a [routerLink]="['/user/' + guideData.author.nickname]" class="guide__author-nickname" >{{ guideData.author.nickname }}</a></p>
       </div>
     </header>
     <main class="guide__main">
