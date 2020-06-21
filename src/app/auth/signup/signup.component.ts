@@ -6,6 +6,7 @@ import {AuthState} from '../store';
 import * as fromAuthActions from '../store/auth.actions';
 import {FormFieldModel} from '../../models/form-field.model';
 import {selectIsLoading} from '../../shared/store';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-signup',
@@ -14,15 +15,13 @@ import {selectIsLoading} from '../../shared/store';
 })
 export class SignupComponent implements OnInit {
   signUpForm: FormGroup;
-  isLoading: boolean;
+  isLoading$: Observable<boolean>;
 
   constructor(private authService: AuthService, private store: Store<AuthState>) {
   }
 
   ngOnInit(): void {
-    this.store.select(selectIsLoading).subscribe(isLoading => {
-      this.isLoading = isLoading;
-    });
+    this.isLoading$ = this.store.select(selectIsLoading);
 
     this.signUpForm = new FormGroup({
       email: new FormControl('', {

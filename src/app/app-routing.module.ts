@@ -1,10 +1,16 @@
 import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
+import {RouterModule, Routes} from '@angular/router';
 import {WelcomeComponent} from './welcome/welcome.component';
+import {NotFoundComponent} from './not-found/not-found.component';
 
 
 const routes: Routes = [
-  {path: '', component: WelcomeComponent},
+  {path: '', pathMatch: 'full', redirectTo: 'home' },
+  {path: 'home', component: WelcomeComponent},
+  {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+  },
   {
     path: 'guides',
     loadChildren: () => import('./guide/guide.module').then(m => m.GuideModule)
@@ -12,7 +18,8 @@ const routes: Routes = [
   {
     path: 'user',
     loadChildren: () => import('./user/user.module').then(m => m.UserModule)
-  }
+  },
+  {path: '**', component: NotFoundComponent}
 ];
 
 @NgModule({

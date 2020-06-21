@@ -1,5 +1,5 @@
-<app-spinner *ngIf="isLoading"></app-spinner>
-<div class="wow-form-wrapper" *ngIf="!isLoading">
+<app-spinner *ngIf="isLoading$ | async"></app-spinner>
+<div class="wow-form-wrapper" *ngIf="!(isLoading$ | async)">
   <form class="wow-form"
   [formGroup]="signUpForm"
   (ngSubmit)="onSubmit()">

@@ -7,6 +7,7 @@ import {selectGuides} from '../store';
 import {take} from 'rxjs/operators';
 import {selectIsLoading} from '../../shared/store';
 import {setLoading} from '../../shared/store/shared.actions';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-all-guides',
@@ -15,17 +16,14 @@ import {setLoading} from '../../shared/store/shared.actions';
 })
 export class GuidesComponent implements OnInit, OnDestroy {
   guides: GuideModel[];
-  isLoading: boolean;
+  isLoading$: Observable<boolean>;
 
   constructor(private route: ActivatedRoute, private store: Store) {}
 
   ngOnInit(): void {
-     this.store.select(selectIsLoading).subscribe(isLoading => {
-       this.isLoading = isLoading;
-     });
+     this.isLoading$ = this.store.select(selectIsLoading);
 
      this.route.queryParams.subscribe(params => {
-
        this.store.dispatch(setLoading());
        if (params.hasOwnProperty('spec')) {
          this.store.dispatch(fromGuideActions.loadGuides({className: params.class, spec: params.spec}));

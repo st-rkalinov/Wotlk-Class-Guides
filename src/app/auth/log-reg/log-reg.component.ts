@@ -13,7 +13,7 @@ export class LogRegComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.router.url === '/signup') {
+    if (this.router.url === '/auth/signup') {
       this.isLoginRoute = false;
     }
   }

@@ -2,8 +2,8 @@
   <div class="header__bg"></div>
   <div class="header__content">
     <div *ngIf="!(isAuthenticated$ | async)" class="header__content-wrapper">
-        <a [routerLink]="'/login'" class="heading-2 header__link">Login</a>
-        <a [routerLink]="'/signup'" class="heading-2 header__link">Sign Up</a>
+        <a [routerLink]="'/auth/login'" class="heading-2 header__link">Login</a>
+        <a [routerLink]="'/auth/signup'" class="heading-2 header__link">Sign Up</a>
     </div>
     <div *ngIf="(isAuthenticated$ | async)" class="header__content-wrapper">
       <h2 class="heading-2 header__text-item" [matMenuTriggerFor]="menu">Profile <mat-icon>keyboard_arrow_down</mat-icon></h2>

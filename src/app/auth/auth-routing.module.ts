@@ -3,7 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {LogRegComponent} from './log-reg/log-reg.component';
 import {canActivate, redirectLoggedInTo} from '@angular/fire/auth-guard';
 
-const redirectAuthorizedToHome = () => redirectLoggedInTo(['']);
+const redirectAuthorizedToHome = () => redirectLoggedInTo(['home']);
 
 const routes: Routes = [
   {path: 'login', component: LogRegComponent, ...canActivate(redirectAuthorizedToHome)},
