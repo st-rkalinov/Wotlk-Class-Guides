@@ -1,6 +1,5 @@
-import { createAction, props } from '@ngrx/store';
+import {createAction, props} from '@ngrx/store';
 import {CharacterClassModel} from '../../models/character-class.model';
-import {MenuSelectedClassModel} from '../../models/menu-selected-class.model';
 
 export const loadShared = createAction(
   '[App Component] Load Shared Data'
@@ -14,4 +13,12 @@ export const loadSharedSuccess = createAction(
 export const loadSharedFailure = createAction(
   '[Shared Effect] Load Shared Failure',
   props<{ error: any }>()
+);
+
+export const setLoading = createAction(
+  '[Components, Effects] Set Loading'
+);
+
+export const resetLoading = createAction(
+  '[Components, Effects] Reset Loading'
 );

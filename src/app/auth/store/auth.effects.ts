@@ -7,6 +7,8 @@ import * as fromAuthActions from '../store/auth.actions';
 import {Router} from '@angular/router';
 import {UserService} from '../../user/user.service';
 import * as firebase from 'firebase';
+import {Store} from '@ngrx/store';
+import {resetLoading, setLoading} from '../../shared/store/shared.actions';
 
 
 @Injectable()
@@ -15,12 +17,21 @@ export class AuthEffects {
   login$ = createEffect(() =>
     this.actions$.pipe(
       ofType(fromAuthActions.login),
-      exhaustMap(action =>
-        this.authService.login(action.email, action.password, action.globalErrors).pipe(
-          map(user => fromAuthActions.loginSuccess()),
+      exhaustMap(action => {
+        this.store.dispatch(setLoading());
+
+        return this.authService.login(action.email, action.password, action.globalErrors).pipe(
+          map(user => {
+            this.store.dispatch(resetLoading());
+            return fromAuthActions.loginSuccess();
+          }),
           tap(() => this.router.navigate(['/guides'])),
-          catchError(error => of(fromAuthActions.loginFailure({error: error.message})))
-        ))
+          catchError(error => {
+            this.store.dispatch(resetLoading());
+            return of(fromAuthActions.loginFailure({error: error.message}));
+          })
+        );
+      })
     ));
 
   logout$ = createEffect(() =>
@@ -39,6 +50,7 @@ export class AuthEffects {
     this.actions$.pipe(
       ofType(fromAuthActions.signUp),
       exhaustMap(action => {
+        this.store.dispatch(setLoading());
         const checkUserNicknameExistence = firebase.functions().httpsCallable('checkUserNicknameExistence');
 
         return from(checkUserNicknameExistence({nickname: action.nickname.value})).pipe(
@@ -51,11 +63,20 @@ export class AuthEffects {
 
               from(addUserNickname({nickname: action.nickname.value}));
             }),
-            map(() => fromAuthActions.signUpSuccess()),
+            map(() => {
+              this.store.dispatch(resetLoading());
+              return fromAuthActions.signUpSuccess();
+            }),
             tap(() => this.router.navigate(['/guides'])),
-            catchError(error => of(fromAuthActions.signUpFailure({error: error.message})))
+            catchError(error => {
+              this.store.dispatch(resetLoading());
+              return of(fromAuthActions.signUpFailure({error: error.message}));
+            })
           )),
-          catchError(error => of(fromAuthActions.signUpFailure({error: error.message})))
+          catchError(error => {
+            this.store.dispatch(resetLoading());
+            return of(fromAuthActions.signUpFailure({error: error.message}));
+          })
         );
       })
       )
@@ -72,7 +93,7 @@ export class AuthEffects {
     )
   );
 
-  constructor(private actions$: Actions, private authService: AuthService, private userService: UserService, private router: Router) {
+  constructor(private actions$: Actions, private authService: AuthService, private userService: UserService, private router: Router, private store: Store) {
   }
 
 }

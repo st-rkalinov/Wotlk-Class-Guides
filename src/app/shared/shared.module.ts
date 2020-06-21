@@ -10,13 +10,15 @@ import {EffectsModule} from '@ngrx/effects';
 import {SharedEffects} from './store/shared.effects';
 import {MaterialModule} from '../material.module';
 import {GuidesListComponent} from './guides-list/guides-list.component';
+import {SpinnerComponent} from './spinner/spinner.component';
 
 @NgModule({
   declarations: [
     WowBtnComponent,
     WowModalComponent,
     CharacterIconComponent,
-    GuidesListComponent
+    GuidesListComponent,
+    SpinnerComponent
   ],
   imports: [
     CommonModule,
@@ -31,7 +33,8 @@ import {GuidesListComponent} from './guides-list/guides-list.component';
     WowBtnComponent,
     WowModalComponent,
     CharacterIconComponent,
-    GuidesListComponent
+    GuidesListComponent,
+    SpinnerComponent
   ]
 })
 export class SharedModule { }

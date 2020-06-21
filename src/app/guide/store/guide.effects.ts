@@ -1,14 +1,16 @@
 import {Injectable} from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import * as fromGuideActions from './guide.actions';
-import {catchError, combineAll, concatMap, delay, exhaustMap, first, map, mergeMap, switchMap, take, takeLast, tap} from 'rxjs/operators';
+import {catchError, map, switchMap, tap} from 'rxjs/operators';
 import {GuideService} from '../guide.service';
-import {combineLatest, forkJoin, Observable, of} from 'rxjs';
-import {DbGuideModel, GuideModel} from '../guide.model';
+import {of} from 'rxjs';
+import {GuideModel} from '../guide.model';
 import {NewGuideService} from '../new-guide.service';
 import {DbGemsModel} from '../../models/gems.model';
 import {UserService} from '../../user/user.service';
 import {UserAdditionalDataModel} from '../../models/user-additionalData.model';
+import {Store} from '@ngrx/store';
+import {resetLoading} from '../../shared/store/shared.actions';
 
 @Injectable()
 export class GuideEffects {
@@ -67,6 +69,7 @@ export class GuideEffects {
               }),
             )),
             map((result: GuideModel[]) => fromGuideActions.loadGuidesSuccess({guides: result})),
+            tap(() => this.store.dispatch(resetLoading())),
             catchError(error => of(fromGuideActions.loadGuidesFailure({error: error.message})))
           ))
       ));
@@ -81,7 +84,7 @@ export class GuideEffects {
         ))
     ));
 
-  constructor(private actions$: Actions, private guideService: GuideService, private newGuideService: NewGuideService, private userService: UserService) {
+  constructor(private actions$: Actions, private guideService: GuideService, private newGuideService: NewGuideService, private userService: UserService, private store: Store) {
   }
 
 }

@@ -1,4 +1,5 @@
-<div class="wow-form-wrapper">
+<app-spinner *ngIf="isLoading"></app-spinner>
+<div class="wow-form-wrapper" *ngIf="!isLoading">
   <form
     class="wow-form"
     [formGroup]="loginForm"

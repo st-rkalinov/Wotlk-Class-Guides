@@ -5,6 +5,7 @@ import {AuthState} from '../store';
 import {Store} from '@ngrx/store';
 import * as fromAuthActions from '../store/auth.actions';
 import {FormFieldModel} from '../../models/form-field.model';
+import {selectIsLoading} from '../../shared/store';
 
 @Component({
   selector: 'app-login',
@@ -13,11 +14,16 @@ import {FormFieldModel} from '../../models/form-field.model';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
+  isLoading: boolean;
 
   constructor(private authService: AuthService, private store: Store<AuthState>) {
   }
 
   ngOnInit(): void {
+    this.store.select(selectIsLoading).subscribe(isLoading => {
+      this.isLoading = isLoading;
+    });
+
     this.loginForm = new FormGroup({
       email: new FormControl('', {
         validators: [Validators.required, Validators.email]

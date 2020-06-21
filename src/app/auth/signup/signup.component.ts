@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../auth.service';
 import {Store} from '@ngrx/store';
 import {AuthState} from '../store';
 import * as fromAuthActions from '../store/auth.actions';
 import {FormFieldModel} from '../../models/form-field.model';
+import {selectIsLoading} from '../../shared/store';
 
 @Component({
   selector: 'app-signup',
@@ -13,11 +14,16 @@ import {FormFieldModel} from '../../models/form-field.model';
 })
 export class SignupComponent implements OnInit {
   signUpForm: FormGroup;
+  isLoading: boolean;
 
   constructor(private authService: AuthService, private store: Store<AuthState>) {
   }
 
   ngOnInit(): void {
+    this.store.select(selectIsLoading).subscribe(isLoading => {
+      this.isLoading = isLoading;
+    });
+
     this.signUpForm = new FormGroup({
       email: new FormControl('', {
         validators: [Validators.required, Validators.email]

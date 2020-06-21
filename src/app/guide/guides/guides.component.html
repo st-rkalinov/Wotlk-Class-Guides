@@ -1,5 +1,8 @@
 <section class="guides-section">
-  <div class="shell">
+  <div class="shell" *ngIf="isLoading">
+    <app-spinner></app-spinner>
+  </div>
+  <div class="shell" *ngIf="!isLoading">
     <app-classes-menu-dropdowns></app-classes-menu-dropdowns>
     <app-guides-list *ngIf="guides" [guides]="guides"></app-guides-list>
   </div>
