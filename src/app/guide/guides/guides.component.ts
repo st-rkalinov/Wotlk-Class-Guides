@@ -4,7 +4,7 @@ import {Store} from '@ngrx/store';
 import * as fromGuideActions from '../store/guide.actions';
 import {GuideModel} from '../guide.model';
 import {selectGuides} from '../store';
-import {take} from 'rxjs/operators';
+import {skip, take} from 'rxjs/operators';
 import {selectIsLoading} from '../../shared/store';
 import {setLoading} from '../../shared/store/shared.actions';
 import {Observable} from 'rxjs';
@@ -33,7 +33,9 @@ export class GuidesComponent implements OnInit, OnDestroy {
          this.store.dispatch(fromGuideActions.loadGuides({className: undefined, spec: undefined}));
        }
 
-       this.store.select(selectGuides).pipe(take(4)).subscribe(
+       this.store.select(selectGuides).pipe(
+         skip(1),
+         take(1)).subscribe(
            data => {
               this.guides = data;
             }

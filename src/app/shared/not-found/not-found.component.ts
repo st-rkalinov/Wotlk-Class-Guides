@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 
 @Component({
@@ -7,7 +7,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./not-found.component.scss']
 })
 export class NotFoundComponent implements OnInit {
-  homePageBtnStyles = {width: '100%'};
+  @Input() text = 'Page Not Found !';
 
   constructor(private router: Router) { }
 

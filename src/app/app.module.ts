@@ -23,13 +23,11 @@ import {metaReducers, reducers} from './reducers';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {EffectsModule} from '@ngrx/effects';
 import {AppEffects} from './app.effects';
-import {NotFoundComponent} from './not-found/not-found.component';
 import {SharedModule} from './shared/shared.module';
 
 @NgModule({
     declarations: [
         AppComponent,
-        NotFoundComponent,
     ],
     imports: [
       BrowserModule,

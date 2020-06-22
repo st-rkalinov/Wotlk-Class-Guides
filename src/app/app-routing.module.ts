@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {WelcomeComponent} from './welcome/welcome.component';
-import {NotFoundComponent} from './not-found/not-found.component';
+import {NotFoundComponent} from './shared/not-found/not-found.component';
 
 
 const routes: Routes = [

@@ -39,7 +39,7 @@ export class AuthEffects {
       ofType(fromAuthActions.logout),
       exhaustMap(action => this.authService.logout().pipe(
         map(result => fromAuthActions.logoutSuccess({isLoggedIn: false, userData: undefined})),
-        tap(() => this.router.navigate(['/login'])),
+        tap(() => this.router.navigate(['/auth/login'])),
         catchError(error => of(fromAuthActions.logoutFailure({error: error.message})))
         )
       )
@@ -67,11 +67,7 @@ export class AuthEffects {
               this.store.dispatch(resetLoading());
               return fromAuthActions.signUpSuccess();
             }),
-            tap(() => this.router.navigate(['/guides'])),
-            catchError(error => {
-              this.store.dispatch(resetLoading());
-              return of(fromAuthActions.signUpFailure({error: error.message}));
-            })
+            tap(() => this.router.navigate(['/guides']))
           )),
           catchError(error => {
             this.store.dispatch(resetLoading());

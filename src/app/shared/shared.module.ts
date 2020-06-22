@@ -11,6 +11,7 @@ import {SharedEffects} from './store/shared.effects';
 import {MaterialModule} from '../material.module';
 import {GuidesListComponent} from './guides-list/guides-list.component';
 import {SpinnerComponent} from './spinner/spinner.component';
+import {NotFoundComponent} from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {SpinnerComponent} from './spinner/spinner.component';
     WowModalComponent,
     CharacterIconComponent,
     GuidesListComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    NotFoundComponent
   ],
   imports: [
     CommonModule,
@@ -34,7 +36,8 @@ import {SpinnerComponent} from './spinner/spinner.component';
     WowModalComponent,
     CharacterIconComponent,
     GuidesListComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    NotFoundComponent
   ]
 })
 export class SharedModule { }

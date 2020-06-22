@@ -30,3 +30,23 @@ export const loadAvailableGemsFailure = createAction(
   '[Guide Effect] Load Available Gems Failure',
   props<{ error: any}>()
 );
+
+export const loadSelectedGuide = createAction(
+  '[Guide Component] Load Selected Guide',
+  props<{guideId: string}>()
+);
+
+export const loadSelectedGuideSuccess = createAction(
+  '[Guide Effect] Load Selected Guide Success',
+  props<{selectedGuide: GuideModel}>()
+);
+
+export const loadSelectedGuideFailure = createAction(
+  '[Guide Effect] Load Selected Guide Failure',
+  props<{error: any}>()
+);
+
+export const resetSelectedGuide = createAction(
+  '[Guide Effect] Reset Selected Guide',
+  props<{selectedGuide: any}>()
+);

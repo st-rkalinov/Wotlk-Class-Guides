@@ -1,4 +1,4 @@
-@import "utils/variables";
+@import "src/sass/utils/variables";
 
 .not-found {
   display: flex;
@@ -6,6 +6,7 @@
   align-items: center;
   flex-direction: column;
   min-height: 50rem;
+  text-align: center;
 
   &__text {
     padding: 0 10rem;

@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import * as fromUserActions from '../store/user.actions';
-import {catchError, map, switchMap} from 'rxjs/operators';
+import {catchError, map, switchMap, take} from 'rxjs/operators';
 import {UserService} from '../user.service';
 import {GuideService} from '../../guide/guide.service';
 import {Store} from '@ngrx/store';
@@ -18,12 +18,14 @@ export class UserEffects {
       ofType(fromUserActions.loadUserGuides),
       switchMap(action =>
         this.userService.fetchUserAdditionalDataByNickname(action.nickname).pipe(
+          take(1),
           switchMap((userData: UserAdditionalDataModel[]) => {
             if (userData.length === 0) {
               throw {message: `User '${action.nickname}' not found`};
             }
 
-            return this.guideService.fetchUserGuides(userData[0]['uid']).pipe(
+            return this.guideService.fetchUserGuides(userData[0].uid).pipe(
+              take(1),
               map(docArray => {
                 return docArray.map((doc: any) => {
                   return {

@@ -1,5 +1,5 @@
-<div class="guide" *ngIf="guideData && guideClassData">
-  <div class="shell">
+<div class="guide" *ngIf="!(error | async)">
+  <div class="shell" *ngIf="guideData && guideClassData">
     <header class="guide__heading">
       <img [src]="guideClassData.iconLink" alt="class image" class="guide__heading-image">
       <h2 class="heading-3">{{ guideData.spec + " " + guideData.class}}<br>Guide</h2>
@@ -134,4 +134,7 @@
       </mat-tab-group>
     </main>
   </div>
+</div>
+<div *ngIf="(error | async)">
+  <app-not-found text="{{ error | async }}"></app-not-found>
 </div>
