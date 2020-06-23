@@ -3,6 +3,7 @@
   justify-content: flex-start;
   align-items: center;
   cursor: pointer;
+  outline : none;
 
   &__img {
     width: 7rem;
@@ -18,4 +19,5 @@
     -webkit-text-fill-color: transparent;
     letter-spacing: 1px;
   }
+
 }

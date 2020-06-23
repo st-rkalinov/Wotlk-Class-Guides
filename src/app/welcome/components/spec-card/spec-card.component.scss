@@ -12,7 +12,8 @@
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-
+  animation: rollIn;
+  animation-duration: 1s;
   &__header {
     text-align: center;
   }

@@ -11,6 +11,7 @@ import {Store} from '@ngrx/store';
 import * as fromAuthActions from './store/auth.actions';
 import {FormFieldModel} from '../models/form-field.model';
 import {FormErrorChecker} from '../shared/FormErrorChecker';
+import {resetLoading, setLoading} from '../shared/store/shared.actions';
 
 @Injectable()
 export class AuthService {
@@ -22,11 +23,17 @@ export class AuthService {
   }
 
   initAuthListener() {
-    this.afAuth.authState.subscribe(user => {
+    this.store.dispatch(setLoading());
+    this.afAuth.authState.pipe().subscribe(user => {
       if (user) {
         this.store.dispatch(fromAuthActions.getUser({uid: user.uid}));
+        this.store.dispatch(resetLoading());
+      } else {
+        this.store.dispatch(resetLoading());
       }
-    });
+    },
+      () => this.store.dispatch(resetLoading()),
+      );
   }
 
   login(email: FormFieldModel, password: FormFieldModel, globalErrors: object) {

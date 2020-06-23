@@ -10,7 +10,7 @@
   }
 
   &__bg {
-    filter: brightness(0.4);
+    filter: brightness(0.5);
     content: '';
     display: block;
     width: 100%;
@@ -22,7 +22,8 @@
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-
+    animation: fadeIn;
+    animation-duration: 2s;
   }
 
   &__content {
@@ -42,6 +43,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    animation: fadeIn;
+    animation-duration: 8s;
   }
 
   &__text-item, &__link {

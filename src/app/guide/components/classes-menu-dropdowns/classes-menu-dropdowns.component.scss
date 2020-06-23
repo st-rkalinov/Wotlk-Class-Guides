@@ -13,10 +13,11 @@
     align-items: center;
     position: relative;
 
-
     &:hover {
       .classes-menu-dropdowns__specs {
         display: flex;
+        animation: fadeIn;
+        animation-duration: 2s;
       }
     }
   }

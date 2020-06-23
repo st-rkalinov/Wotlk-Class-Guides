@@ -14,6 +14,8 @@
     align-self: stretch;
     flex: 1;
     position: relative;
+    animation: fadeInLeft;
+    animation-duration: 1s;
 
     &:before {
       content: '';
@@ -26,6 +28,8 @@
       background-size: contain;
       background-repeat: no-repeat;
       background-position: center;
+      animation: zoomIn;
+      animation-duration: 1s;
     }
 
     display: flex;
@@ -60,6 +64,8 @@
     width: 50%;
     position: relative;
     filter: brightness(.6);
+    animation: fadeInRight;
+    animation-duration: 1s;
 
     &:before {
       content: "";

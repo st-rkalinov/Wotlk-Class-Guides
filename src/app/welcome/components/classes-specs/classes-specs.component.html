@@ -6,10 +6,10 @@
 
   <div class="specs__header">
     <app-wow-btn [btnStyleType]="'red'" [btnText]="classData.name + ' Guides'" [btnType]="'text'"
-                 [additionalStyles]="classButtonStyles"></app-wow-btn>
+                 [additionalStyles]="classButtonStyles" (click)="goToGuidesRoute(classData.name)"></app-wow-btn>
   </div>
 
   <div class="specs__cards">
-    <app-spec-card *ngFor="let spec of classData.specs" [spec]="spec"></app-spec-card>
+    <app-spec-card *ngFor="let spec of classData.specs" [spec]="spec" [className]="classData.name.toLowerCase()"></app-spec-card>
   </div>
 </div>

@@ -10,6 +10,6 @@
 
   <div class="spec-card__footer">
     <app-wow-btn [btnStyleType]="'red'" [btnText]="spec.name + ' Guides'" [btnType]="'text'"
-                 [additionalStyles]="specButtonStyles"></app-wow-btn>
+                 [additionalStyles]="specButtonStyles" (click)="goToGuidesRoute(className, spec.name)"></app-wow-btn>
   </div>
 </div>
