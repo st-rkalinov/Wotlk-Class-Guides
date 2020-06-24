@@ -34,6 +34,7 @@
   &__heading-image {
     width: 6rem;
     height: 6rem;
+
   }
 
   &__main {
@@ -64,6 +65,11 @@
     background-position: center;
     width: 6rem;
     height: 6rem;
+
+    @media only screen and (max-width: $bp-large) {
+      width: 5rem;
+      height: 5rem;
+    }
   }
 
   &__card-subtitle {
@@ -89,7 +95,7 @@
   }
 
   &__card-content-info-list-item {
-    min-height: 48px !important;
+    min-height: 30px !important;
     height: auto !important;
     font-family: $font-primary;
     font-size: $font-size-secondary;
@@ -110,9 +116,24 @@
 
   &__card-content-info-macro-text {
     width: 45%;
+    font-size: $font-size-primary;
+
+    @media only screen and (max-width: $bp-small) {
+      width: 55%;
+    }
   }
 
   &__card-content-info-macro-description {
     width: 40%;
+    font-size: $font-size-primary;
+
+    @media only screen and (max-width: $bp-small) {
+      width: 45%;
+    }
   }
+
+  ::ng-deep .mat-tab-label, .mat-tab-link, .mat-card-title {
+    font-size: $font-size-primary;
+  }
+
 }

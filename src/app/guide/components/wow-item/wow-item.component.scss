@@ -29,6 +29,10 @@
 
   &__link {
     text-decoration: none;
-    vertical-align: middle;
+    vertical-align: sub;
+
+    @media only screen and (max-width: $bp-large) {
+      letter-spacing: 1px;
+    }
   }
 }

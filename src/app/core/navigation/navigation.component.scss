@@ -6,6 +6,10 @@
   width: 100%;
   bottom: -35px;
 
+  @media only screen and (max-width: $bp-large) {
+    bottom: -10px;
+  }
+
   &__inner {
     display: flex;
     justify-content: space-between;
@@ -41,6 +45,12 @@
     &--active {
       @include orange-font-styling-hovered;
       font-weight: 700;
+    }
+  }
+
+  &__logo-wrapper {
+    @media only screen and (max-width: $bp-small) {
+     display: none;
     }
   }
 }

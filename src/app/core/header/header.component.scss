@@ -48,14 +48,17 @@
   }
 
   &__text-item, &__link {
-      padding: 0 10rem;
-      @include orange-font-styling--heading(700);
-      cursor: pointer;
-      text-decoration: none;
+    padding: 0 10rem;
+    @include orange-font-styling--heading(700);
+    cursor: pointer;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-      &:hover {
-        @include orange-font-styling-hovered;
-      }
+    &:hover {
+      @include orange-font-styling-hovered;
+    }
   }
 
   &__usernav {
@@ -71,5 +74,26 @@
 
 ::ng-deep .mat-menu-panel {
   max-width: none!important;
-  min-width: 400px!important;
+  width: 400px!important;
+
+  @media only screen and (max-width: $bp-large) {
+    width: 200px !important;
+  }
+
+  @media only screen and (max-width: $bp-large) {
+    width: 200px !important;
+  }
+}
+
+::ng-deep .mat-menu-item {
+  font-size: $font-size-primary;
+
+  @media only screen and (max-width: $bp-large) {
+    height: 33px !important;
+    vertical-align: -webkit-baseline-middle;
+
+    .material-icons {
+      font-size: 18px;
+    }
+  }
 }

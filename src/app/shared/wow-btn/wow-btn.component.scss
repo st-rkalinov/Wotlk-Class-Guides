@@ -14,6 +14,16 @@
   cursor: pointer;
   border-radius: 7px;
 
+  @media only screen and (max-width: $bp-large) {
+    border: 3px solid;
+    border-image: url('/assets/img/border-form-controls.png') 3 stretch;
+    letter-spacing: 2px;
+  }
+
+  @media only screen and (max-width: $bp-small) {
+    padding: 0.9rem 0;
+  }
+
   &__border {
     position: absolute;
     width: 100%;
@@ -23,6 +33,10 @@
     border: 1px solid black;
     box-shadow: 0 0 1px 1px black;
     border-radius: 4px;
+
+    @media only screen and (max-width: $bp-large) {
+      border: none;
+    }
   }
 
   &:hover {
@@ -65,6 +79,7 @@
 
     cursor: not-allowed;
   }
+
 }
 
 

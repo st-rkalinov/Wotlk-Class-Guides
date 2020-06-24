@@ -1,3 +1,5 @@
+@import "utils/variables";
+
 @font-face {
   font-family: 'Friz Quadrata Std Bold';
   font-style: normal;
@@ -27,6 +29,18 @@ textarea:focus {
 
 html {
   font-size: 62.5%;
+
+  @media only screen and (max-width: $bp-largest) {
+    font-size: 50%;
+  }
+
+  @media only screen and (max-width: $bp-large) {
+    font-size: 45%;
+  }
+
+  @media only screen and (max-width: $bp-small) {
+    font-size: 35%;
+  }
 }
 
 body {

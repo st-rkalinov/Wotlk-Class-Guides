@@ -26,6 +26,12 @@
     border-radius: 7px;
     width: 40%;
     background-color: rgba(8, 38, 49, 0.6);
+
+    @media only screen and (max-width: $bp-small) {
+      width: 90%;
+      border: 3px solid;
+      border-image: url('/assets/img/border-form-controls.png') 3 stretch;
+    }
   }
 
   &__body {

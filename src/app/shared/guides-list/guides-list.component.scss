@@ -16,6 +16,14 @@
     width: 70%;
     margin: 0 auto;
 
+    @media only screen and (max-width: $bp-large) {
+      width: 90%;
+    }
+
+    @media only screen and (max-width: $bp-small) {
+      width: 100%;
+    }
+
     &:before {
       content: '';
       position: absolute;
@@ -40,6 +48,10 @@
     .mat-cell {
       color: $color-text-primary;
       font-size: $font-size-secondary;
+
+      @media only screen and (max-width: $bp-small) {
+        font-weight: 700;
+      }
     }
   }
 
@@ -68,5 +80,25 @@
     border: 5px solid;
     border-image: url('/assets/img/border-form-controls.png') 3 stretch;
     color: $color-text-primary;
+
+    @media only screen and (max-width: $bp-large) {
+      border: 3px solid;
+      border-image: url('/assets/img/border-form-controls.png') 3 stretch;
+    }
+
+    ::ng-deep  .mat-paginator-range-label {
+      margin-left: 0 !important;
+    }
+  }
+
+  ::ng-deep .mat-paginator-icon {
+    @media only screen and (max-width: $bp-large) {
+      width: 18px;
+    }
+  }
+
+  ::ng-deep .mat-select-trigger {
+    font-size: $font-size-primary;
   }
 }
+

@@ -6,6 +6,10 @@
   -webkit-text-fill-color: black;
   filter: drop-shadow(3px 4px 1px #000000);
   font-weight: $fontweight;
+
+  @media only screen and (max-width: $bp-large) {
+    -webkit-text-stroke: 1px rgba(228,130,3,1);
+  }
 }
 
 @mixin orange-font-styling--text($fontweight: 400) {
@@ -24,6 +28,11 @@
   font-family: $font-secondary;
   text-shadow: -2px 0px 0 #000300, 2px 0px 0 #000300, 0px 2px 0 #000300, 0px -2px 0 #000300;
   color: $color-text-tertiary;
+
+  @media only screen and (max-width: $bp-large) {
+    text-shadow: none;
+    letter-spacing: 2px;
+  }
 }
 
 @mixin lk-login-screen-input-style {
@@ -37,4 +46,9 @@
   font-weight: 700;
   caret-color: white;
   box-shadow: 0 0 10px 0 black;
+
+  @media only screen and (max-width: $bp-large) {
+    border: 3px solid;
+    border-image: url('/assets/img/border-form-controls.png') 3 stretch;
+  }
 }

@@ -6,6 +6,13 @@
   justify-content: space-around;
   padding: 5rem;
   margin-bottom: 5rem;
+  align-items: flex-start;
+
+  @media only screen and (max-width: $bp-small) {
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
   &__icon-block {
     display: flex;
@@ -13,6 +20,16 @@
     justify-content: center;
     align-items: center;
     position: relative;
+
+    &:not(:last-child) {
+      margin-bottom: 5rem;
+    }
+
+    @media only screen and (max-width: $bp-small) {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    }
 
     &:hover {
       .classes-menu-dropdowns__specs {
@@ -30,6 +47,11 @@
     border-radius: 35%;
     filter: opacity(.5);
 
+    @media only screen and (max-width: $bp-small) {
+      order: 1;
+    }
+
+
     &--active {
       box-shadow: 0 0 56px white, 0 0 56px white;
       -moz-box-shadow: 0 0 56px white, 0 0 56px white;
@@ -41,17 +63,36 @@
     padding-top: 2rem;
     font-size: $font-size-primary;
     font-weight: 700;
+    @media only screen and (max-width: $bp-small) {
+      order: 2;
+      width: 100%;
+    }
+
   }
 
   &__material-icon-block {
     text-align: center;
     cursor: pointer;
+
+    @media only screen and (max-width: $bp-small) {
+      order: 1;
+    }
   }
 
   &__material-icon {
     font-size: 4rem;
     height: 4rem;
     width: 4rem;
+
+    @media only screen and (max-width: $bp-small) {
+      span {
+        display: none;
+      }
+
+      &:after {
+        content: 'keyboard_arrow_right';
+      }
+    }
   }
 
   &__specs {
@@ -69,6 +110,21 @@
     background-color: rgba(107, 107, 107, 0.1);
     border: 1px solid gray;
     border-radius: 20px;
+
+    @media only screen and (max-width: $bp-large) {
+      width: 500%;
+    }
+
+    @media only screen and (max-width: $bp-small) {
+      width: 400%;
+      padding: 1rem;
+    }
+
+    @media only screen and (max-width: $bp-small) {
+      width: 200%;
+      left: 140%;
+      bottom: 100%;
+    }
   }
 
   &__spec-block {
@@ -76,6 +132,7 @@
     cursor: pointer;
     padding: 1rem 0;
     width: 100%;
+    align-items: center;
 
     &:hover {
       @include orange-font-styling-hovered;
