@@ -17,6 +17,10 @@ export class WelcomeComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
   }
 
+  navigateToGithubProject() {
+    (window as any).open('https://github.com/st-rkalinov/Wotlk-Class-Guides', "_blank");
+  }
+
   ngOnDestroy(): void {
   }
 }

@@ -11,7 +11,11 @@
           excepturi expedita fugiat fugit labore nam nisi nulla qui ratione rerum sed soluta ullam.
         </p>
 
-        <app-wow-btn [btnText]="'GITHUB'" [btnType]="'text'" [btnStyleType]="'red'" [additionalStyles]="aboutSectionButtonStyles"></app-wow-btn>
+        <app-wow-btn [btnText]="'GITHUB'"
+                     [btnType]="'text'"
+                     [btnStyleType]="'red'"
+                     [additionalStyles]="aboutSectionButtonStyles"
+                     (click)="navigateToGithubProject()"></app-wow-btn>
       </div>
 
       <div class="about-project__image-wrapper">
