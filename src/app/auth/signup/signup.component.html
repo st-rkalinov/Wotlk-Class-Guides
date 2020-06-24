@@ -1,27 +1,39 @@
-<app-spinner *ngIf="isLoading$ | async"></app-spinner>
-<div class="wow-form-wrapper" *ngIf="!(isLoading$ | async)">
-  <form class="wow-form"
-  [formGroup]="signUpForm"
-  (ngSubmit)="onSubmit()">
-    <div class="wow-form__form-group">
-      <label for="email" class="wow-form__control-label">Account Email *</label>
-      <input type="email" class="wow-form__form-control" id="email" autocomplete="off" formControlName="email">
+<div class="login-signup">
+  <div class="login-signup__bg-video">
+    <app-bg-video [videoSrc]="'https://giant.gfycat.com/ExemplaryJealousGyrfalcon.webm'"></app-bg-video>
+  </div>
+
+  <div class="login-signup__content">
+    <app-spinner *ngIf="isLoading$ | async"></app-spinner>
+
+    <div class="wow-form-wrapper" *ngIf="!(isLoading$ | async)">
+      <form class="wow-form"
+      [formGroup]="signUpForm"
+      (ngSubmit)="onSubmit()">
+        <div class="wow-form__form-group">
+          <label for="email" class="wow-form__control-label">Account Email *</label>
+          <input type="email" class="wow-form__form-control" id="email" autocomplete="off" formControlName="email">
+        </div>
+        <div class="wow-form__form-group">
+          <label for="nickname" class="wow-form__control-label">Nickname *</label>
+          <input type="text" class="wow-form__form-control" id="nickname" autocomplete="off" formControlName="nickname">
+        </div>
+        <div class="wow-form__form-group">
+          <label for="password" class="wow-form__control-label">Password *</label>
+          <input type="password" class="wow-form__form-control" id="password" formControlName="password">
+        </div>
+        <div class="wow-form__form-group">
+          <label for="confirm-password" class="wow-form__control-label">Confirm Password *</label>
+          <input type="password" class="wow-form__form-control" id="confirm-password" formControlName="passwordConfirm">
+        </div>
+        <div class="wow-form__form-group">
+          <app-wow-btn [btnText]="'Create'"></app-wow-btn>
+        </div>
+      </form>
     </div>
-    <div class="wow-form__form-group">
-      <label for="nickname" class="wow-form__control-label">Nickname *</label>
-      <input type="text" class="wow-form__form-control" id="nickname" autocomplete="off" formControlName="nickname">
+
+    <div class="login-signup__modal-wrapper">
+      <app-wow-modal></app-wow-modal>
     </div>
-    <div class="wow-form__form-group">
-      <label for="password" class="wow-form__control-label">Password *</label>
-      <input type="password" class="wow-form__form-control" id="password" formControlName="password">
-    </div>
-    <div class="wow-form__form-group">
-      <label for="confirm-password" class="wow-form__control-label">Confirm Password *</label>
-      <input type="password" class="wow-form__form-control" id="confirm-password" formControlName="passwordConfirm">
-    </div>
-    <div class="wow-form__form-group">
-      <app-wow-btn [btnText]="'Create'"></app-wow-btn>
-    </div>
-  </form>
+  </div>
 </div>
-<app-wow-modal></app-wow-modal>

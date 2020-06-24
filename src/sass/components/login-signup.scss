@@ -1,6 +1,6 @@
 @import "utils/variables";
 
-.log-reg {
+.login-signup {
   height: 100vh;
   position: relative;
   box-shadow: inset 0 40px 97px 111px black;
@@ -33,5 +33,9 @@
     align-items: center;
     position: relative;
     z-index: 3;
+  }
+
+  &__modal-wrapper {
+    width: 100%;
   }
 }

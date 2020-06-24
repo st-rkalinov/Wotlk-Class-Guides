@@ -1,13 +1,14 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {LogRegComponent} from './log-reg/log-reg.component';
 import {canActivate, redirectLoggedInTo} from '@angular/fire/auth-guard';
+import {LoginComponent} from './login/login.component';
+import {SignupComponent} from './signup/signup.component';
 
 const redirectAuthorizedToHome = () => redirectLoggedInTo(['home']);
 
 const routes: Routes = [
-  {path: 'login', component: LogRegComponent, ...canActivate(redirectAuthorizedToHome)},
-  {path: 'signup', component: LogRegComponent, ...canActivate(redirectAuthorizedToHome)},
+  {path: 'login', component: LoginComponent, ...canActivate(redirectAuthorizedToHome)},
+  {path: 'signup', component: SignupComponent, ...canActivate(redirectAuthorizedToHome)},
 ];
 
 @NgModule({
