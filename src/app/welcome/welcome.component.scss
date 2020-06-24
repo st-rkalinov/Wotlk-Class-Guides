@@ -12,6 +12,9 @@
     letter-spacing: 3px;
     padding-right: 30rem;
     align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     flex: 1;
     position: relative;
     animation: fadeInLeft;
@@ -23,7 +26,7 @@
       height: 100%;
       width: 100%;
       bottom: -4rem;
-      filter: brightness(.1);
+      filter: brightness(.4);
       background-image: url('/assets/img/welcome-page-info-bg.png');
       background-size: contain;
       background-repeat: no-repeat;
@@ -31,14 +34,10 @@
       animation: zoomIn;
       animation-duration: 1s;
     }
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
   }
 
   &__heading {
-    @include orange-font-styling;
+    @include orange-font-styling--heading(700);
     position: relative;
 
     &::after {
@@ -50,11 +49,10 @@
       left: 0;
       border-bottom: 2px solid #c26103;
     }
-
   }
 
   &__text {
-    @include orange-font-styling;
+    @include orange-font-styling--text();
     font-size: $font-size-primary;
     padding: 5rem 0 3rem 0;
     text-align: justify;
@@ -63,7 +61,7 @@
   &__image-wrapper {
     width: 50%;
     position: relative;
-    filter: brightness(.6);
+    filter: brightness(.8);
     animation: fadeInRight;
     animation-duration: 1s;
 
@@ -97,23 +95,26 @@
     width: 100%;
     top: 0;
     bottom: 0;
+    left: 0;
     background-image: url("/assets/img/mage-bg.png");
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
-    background-position: center;
     background-attachment: fixed;
-    filter: brightness(.05);
-    box-shadow: inset 79px 64px 67px black;
-    -moz-box-shadow: inset 79px 64px 67px black;
-    -webkit-box-shadow: inset 79px 64px 56px black, inset -79px -64px 40px black;
+    background-position: center;
+    filter: brightness(.2);
+    box-shadow: inset 79px 64px 67px black, inset -79px -64px 67px black;
+    -moz-box-shadow: inset 79px 64px 67px black, inset -79px -64px 67px black;
+    -webkit-box-shadow: inset 79px 64px 67px black, inset -79px -64px 67px black;
     z-index: 0;
   }
 
   &__text {
-    @include orange-font-styling;
     text-align: center;
   }
 
+  &__heading {
+    @include orange-font-styling--heading(700);
+  }
   &__content {
     position: relative;
     padding-top: 5rem;

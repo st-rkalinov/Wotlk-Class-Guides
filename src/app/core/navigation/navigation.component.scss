@@ -4,7 +4,7 @@
 .navigation {
   position: absolute;
   width: 100%;
-  bottom: -49px;
+  bottom: -35px;
 
   &__inner {
     display: flex;
@@ -17,7 +17,6 @@
 
   &__content {
     font-size: $font-size-primary;
-    color: $color-text-primary;
     justify-self: flex-end;
   }
 
@@ -32,21 +31,16 @@
   }
 
   &__link {
-    font-weight: 400;
     text-decoration: none;
-    @include orange-font-styling;
+    @include orange-font-styling--text();
 
     &:hover {
-      text-shadow: 0 -1px 21px #FFF;
+      @include orange-font-styling-hovered;
     }
 
     &--active {
-      -webkit-text-stroke: 1px rgba(228,130,3,1);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: rgba(228,130,3,1);
+      @include orange-font-styling-hovered;
       font-weight: 700;
-      filter: none;
-      text-shadow: 0 -1px 21px #FFF;
     }
   }
 }

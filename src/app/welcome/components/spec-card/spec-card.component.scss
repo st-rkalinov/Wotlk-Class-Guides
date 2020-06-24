@@ -14,18 +14,19 @@
   flex-direction: column;
   animation: rollIn;
   animation-duration: 1s;
+
   &__header {
     text-align: center;
   }
 
   &__image {
-    width: 5rem;
-    height: 5rem;
-    opacity: 0.5;
+    width: 3rem;
+    height: 3rem;
+    opacity: 0.8;
   }
 
   &__heading {
-    @include orange-font-styling;
+    @include orange-font-styling--heading;
   }
 
   &__content {

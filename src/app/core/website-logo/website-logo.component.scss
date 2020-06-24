@@ -1,3 +1,5 @@
+@import "utils/variables";
+
 .website-logo {
   display: flex;
   justify-content: flex-start;
@@ -6,13 +8,13 @@
   outline : none;
 
   &__img {
-    width: 7rem;
-    height: 9rem;
+    width: 5rem;
+    height: 6rem;
     margin-right: 2rem;
   }
 
   &__text {
-    font-size: 2rem;
+    font-size: $font-size-primary;
     font-weight: 700;
     background:  linear-gradient(90deg, rgba(252,22,3,1) 0%, rgba(204,23,16,1) 53%, rgba(83,166,228,1) 55%, rgba(26,142,255,1) 100%);
     -webkit-background-clip: text;

@@ -1,5 +1,5 @@
 @import "utils/variables";
-
+@import "utils/mixins";
 .header {
   height: 40vh;
   position: relative;
@@ -49,16 +49,12 @@
 
   &__text-item, &__link {
       padding: 0 10rem;
-      letter-spacing: 3px;
-      -webkit-text-stroke: 1px rgba(228,130,3,1);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      filter: drop-shadow(3px 4px 1px #000000);
+      @include orange-font-styling--heading(700);
       cursor: pointer;
       text-decoration: none;
 
       &:hover {
-        text-shadow: 0 -1px 4px #FFF, 0 -2px 10px #ff0, 0 -10px 20px #ff8000, 0 -18px 40px #F00;
+        @include orange-font-styling-hovered;
       }
   }
 

@@ -3,8 +3,9 @@
 
 
 .guides-list {
-  padding: 10rem 0;
+  padding: 15rem 0;
   min-height: 400px;
+
   &__table-wrapper {
     background-image: url("/assets/img/welcome-page-info-bg.png");
     background-repeat: no-repeat;
@@ -20,7 +21,7 @@
       position: absolute;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, .9)
+      background: rgba(0, 0, 0, .7)
     }
   }
 
@@ -32,15 +33,13 @@
     min-height: 47.5vh;
 
     .mat-header-cell {
-      @include orange-font-styling;
+      @include orange-font-styling--heading(400);
       font-size: $font-size-primary;
-      font-weight: 700;
     }
 
     .mat-cell {
-      color: $color-text-secondary;
+      color: $color-text-primary;
       font-size: $font-size-secondary;
-      font-weight: 700;
     }
   }
 
@@ -58,7 +57,7 @@
     left: 50%;
     transform: translateX(-50%);
     font-size: $font-size-primary;
-    color: white;
+    color: $color-text-primary;
   }
 
   &__paginator {
@@ -70,11 +69,4 @@
     border-image: url('/assets/img/border-form-controls.png') 3 stretch;
     color: $color-text-primary;
   }
-}
-
-.spinner-wrapper {
-    min-height: 1070px;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
 }

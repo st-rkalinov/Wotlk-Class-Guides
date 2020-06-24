@@ -3,7 +3,6 @@ import {CommonModule} from '@angular/common';
 import {WowBtnComponent} from './wow-btn/wow-btn.component';
 import {WowModalComponent} from './wow-modal/wow-modal.component';
 import {ReactiveFormsModule} from '@angular/forms';
-import {CharacterIconComponent} from './character-icon/character-icon.component';
 import {StoreModule} from '@ngrx/store';
 import * as fromSharedStore from './store';
 import {EffectsModule} from '@ngrx/effects';
@@ -17,7 +16,6 @@ import {NotFoundComponent} from './not-found/not-found.component';
   declarations: [
     WowBtnComponent,
     WowModalComponent,
-    CharacterIconComponent,
     GuidesListComponent,
     SpinnerComponent,
     NotFoundComponent
@@ -34,7 +32,6 @@ import {NotFoundComponent} from './not-found/not-found.component';
     ReactiveFormsModule,
     WowBtnComponent,
     WowModalComponent,
-    CharacterIconComponent,
     GuidesListComponent,
     SpinnerComponent,
     NotFoundComponent

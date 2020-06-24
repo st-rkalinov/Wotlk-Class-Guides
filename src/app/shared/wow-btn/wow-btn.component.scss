@@ -46,7 +46,7 @@
 
     &:hover {
       background: linear-gradient(to bottom, #540606, #a60200, #4a0301);
-      color: white;
+      color: $color-text-primary;
     }
   }
 
@@ -55,7 +55,7 @@
 
     &:hover {
       background: gray;
-      color: #F2CE38;
+      color: $color-text-tertiary;
     }
 
     &:active {

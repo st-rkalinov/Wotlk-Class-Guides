@@ -6,7 +6,7 @@
   background-color: rgba(0,0,0,.7);
   position: relative;
   width: 80%;
-  min-height: 70rem;
+  min-height: 60rem;
   margin: 0 auto;
   padding: 3rem;
   display: flex;
@@ -19,34 +19,35 @@
 
   &__classicon-block {
     position: absolute;
-    width: 8rem;
-    height: 8rem;
+    width: 6rem;
+    height: 6rem;
     left: -4rem;
     top: -4rem;
 
     &::before {
-      content: '';
+      content: "";
       position: absolute;
-      width: 8rem;
-      height: 8rem;
-      border: 22px solid;
-      border-image: url('/assets/img/border-test.png') 26 stretch;
+      width: 6rem;
+      height: 6rem;
+      border: 12px solid;
+      border-image: url('/assets/img/border-test.png') 27 stretch;
     }
   }
 
   &__classicon {
-    width: 88%;
-    height: 88%;
-    border-radius: 43%;
+    width: 93%;
+    height: 91%;
+    border-radius: 31%;
     position: absolute;
-    left: 7px;
-    top: 3px;
+    left: 2px;
+    top: 2px;
   }
 
   &__cards {
     display: flex;
     justify-content: space-between;
     flex: 1;
+    flex-wrap: wrap;
 
     & > * {
       flex: 1;
