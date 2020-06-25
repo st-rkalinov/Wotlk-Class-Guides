@@ -3,8 +3,7 @@ import {CharacterClassModel} from '../../../models/character-class.model';
 import {MenuSelectedClassModel} from '../../../models/menu-selected-class.model';
 import {Store} from '@ngrx/store';
 import {GuideState} from '../../store';
-import {CharactersClassService} from '../../../services/characters-class.service';
-import {Observable, Subscription} from 'rxjs';
+import {SharedDataService} from '../../../shared/shared-data.service';
 
 import {selectClassesData} from '../../../shared/store';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -21,7 +20,7 @@ export class ClassesMenuDropdownsComponent implements OnInit {
   classesData: CharacterClassModel[];
   selectedClass: MenuSelectedClassModel = {index: -1, classData: null};
   selectedSpec: MenuSelectedSpecModel = {index: -1, specData: null};
-  constructor(private charactersClassService: CharactersClassService, private store: Store<GuideState>, private route: ActivatedRoute, private router: Router) {
+  constructor(private charactersClassService: SharedDataService, private store: Store<GuideState>, private route: ActivatedRoute, private router: Router) {
   }
 
   ngOnInit(): void {

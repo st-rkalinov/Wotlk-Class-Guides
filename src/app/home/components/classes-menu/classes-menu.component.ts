@@ -1,12 +1,11 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
-import {CharactersClassService} from '../../../services/characters-class.service';
+import {SharedDataService} from '../../../shared/shared-data.service';
 import {CharacterClassModel} from '../../../models/character-class.model';
 import {MenuSelectedClassModel} from '../../../models/menu-selected-class.model';
 import {GuideState} from '../../../guide/store';
 import {selectClassesData} from '../../../shared/store';
-import * as fromSharedActions from '../../../shared/store/shared.actions';
 
 @Component({
   selector: 'app-classes-menu',
@@ -19,7 +18,7 @@ export class ClassesMenuComponent implements OnInit {
 
   @Output() classIconClicked = new EventEmitter();
 
-  constructor(private charactersClassService: CharactersClassService, private store: Store<GuideState>) { }
+  constructor(private charactersClassService: SharedDataService, private store: Store<GuideState>) { }
 
   ngOnInit(): void {
     this.classesData$ = this.store.select(selectClassesData);

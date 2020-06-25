@@ -11,7 +11,7 @@ import {EffectsModule} from '@ngrx/effects';
 import {GuideEffects} from './store/guide.effects';
 import {ClassesMenuDropdownsComponent} from './components/classes-menu-dropdowns/classes-menu-dropdowns.component';
 import {GuideComponent} from './guide/guide.component';
-import {WelcomeModule} from '../welcome/welcome.module';
+import {HomeModule} from '../home/home.module';
 
 @NgModule({
   declarations: [
@@ -27,7 +27,7 @@ import {WelcomeModule} from '../welcome/welcome.module';
     MaterialModule,
     StoreModule.forFeature(fromGuideState.guideStateFeatureKey, fromGuideState.reducers, {metaReducers: fromGuideState.metaReducers}),
     EffectsModule.forFeature([GuideEffects]),
-    WelcomeModule
+    HomeModule
   ]
 })
 export class GuideModule {

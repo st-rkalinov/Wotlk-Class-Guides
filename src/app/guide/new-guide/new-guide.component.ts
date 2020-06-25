@@ -1,8 +1,8 @@
 import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {CharactersClassService} from '../../services/characters-class.service';
+import {SharedDataService} from '../../shared/shared-data.service';
 import {CharacterClassModel} from '../../models/character-class.model';
-import {Observable, Subscription} from 'rxjs';
+import {Observable} from 'rxjs';
 import {GuideService} from '../guide.service';
 import {DbGuideModel, Guide} from '../guide.model';
 import {NewGuideService} from '../new-guide.service';
@@ -11,10 +11,9 @@ import {Store} from '@ngrx/store';
 import {selectClassesData, SharedState} from '../../shared/store';
 import * as fromGuideActions from '../store/guide.actions';
 import * as fromSharedActions from '../../shared/store/shared.actions';
-import {take, timeout} from 'rxjs/operators';
-import {GuideState, selectAvailableGems} from '../store';
-import {async} from 'rxjs/internal/scheduler/async';
-import {selectUserDataNickname, selectUserDataUid} from '../../auth/store';
+import {take} from 'rxjs/operators';
+import {selectAvailableGems} from '../store';
+import {selectUserDataUid} from '../../auth/store';
 
 @Component({
   selector: 'app-new-guide',
@@ -38,7 +37,7 @@ export class NewGuideComponent implements OnInit, OnDestroy {
   formMacrosSelector = new FormArray([]);
 
   constructor(private fb: FormBuilder,
-              private charactersClassService: CharactersClassService,
+              private charactersClassService: SharedDataService,
               private guideService: GuideService,
               private newGuideService: NewGuideService,
               private store: Store<SharedState>) {

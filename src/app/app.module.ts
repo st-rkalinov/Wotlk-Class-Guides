@@ -3,7 +3,7 @@ import {NgModule} from '@angular/core';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {CharactersClassService} from './services/characters-class.service';
+import {SharedDataService} from './shared/shared-data.service';
 import {FormsModule} from '@angular/forms';
 import {AuthService} from './auth/auth.service';
 import {AngularFireModule} from '@angular/fire';
@@ -11,7 +11,7 @@ import {environment} from '../environments/environment';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AuthModule} from './auth/auth.module';
-import {WelcomeModule} from './welcome/welcome.module';
+import {HomeModule} from './home/home.module';
 import {CoreModule} from './core/core.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from './material.module';
@@ -38,7 +38,7 @@ import {SharedModule} from './shared/shared.module';
       AngularFirestoreModule,
       AngularFireAuthModule,
       AuthModule,
-      WelcomeModule,
+      HomeModule,
       CoreModule,
       BrowserAnimationsModule,
       MaterialModule,
@@ -50,7 +50,7 @@ import {SharedModule} from './shared/shared.module';
       StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
       EffectsModule.forRoot([AppEffects])
     ],
-  providers: [CharactersClassService, AuthService, AngularFireAuthGuard, UserService],
+  providers: [SharedDataService, AuthService, AngularFireAuthGuard, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

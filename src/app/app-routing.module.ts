@@ -1,12 +1,12 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {WelcomeComponent} from './welcome/welcome.component';
+import {HomeComponent} from './home/home/home.component';
 import {NotFoundComponent} from './shared/not-found/not-found.component';
 
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'home' },
-  {path: 'home', component: WelcomeComponent},
+  {path: 'home', component: HomeComponent},
   {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)

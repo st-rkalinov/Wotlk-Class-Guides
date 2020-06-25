@@ -4,7 +4,7 @@ import {from, throwError} from 'rxjs';
 import {Router} from '@angular/router';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {GuideService} from '../guide/guide.service';
-import {CharactersClassService} from '../services/characters-class.service';
+import {SharedDataService} from '../shared/shared-data.service';
 import {UserService} from '../user/user.service';
 import {AuthState} from './store';
 import {Store} from '@ngrx/store';
@@ -17,7 +17,7 @@ import {resetLoading, setLoading} from '../shared/store/shared.actions';
 export class AuthService {
   constructor(private router: Router, private afAuth: AngularFireAuth,
               private guideService: GuideService,
-              private classService: CharactersClassService,
+              private classService: SharedDataService,
               private userService: UserService,
               private store: Store<AuthState>) {
   }

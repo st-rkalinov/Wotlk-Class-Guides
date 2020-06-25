@@ -41,5 +41,10 @@
     padding-top: 2rem;
     font-size: $font-size-primary;
     font-weight: 700;
+    cursor: pointer;
+  }
+
+  &__material-icon {
+    cursor: pointer;
   }
 }
