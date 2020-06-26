@@ -15,7 +15,12 @@
         <div class="classes-menu-dropdowns__spec-icon-block">
           <img [src]="spec.icon_link" alt="" class="classes-menu-dropdowns__spec-img">
         </div>
-        <p class="classes-menu-dropdowns__spec-name" [ngClass]="{'classes-menu-dropdowns__spec-name--active': i === selectedSpec.index && spec.name === selectedSpec.specData.name}">{{ spec.name }}</p>
+        <p class="classes-menu-dropdowns__spec-name"
+           [ngClass]="{'classes-menu-dropdowns__spec-name--active': i === selectedSpec.index &&
+           spec.name === selectedSpec.specData.name &&
+           selectedClass.classData.name === classData.name }">
+          {{ spec.name }}
+        </p>
       </div>
     </div>
   </div>

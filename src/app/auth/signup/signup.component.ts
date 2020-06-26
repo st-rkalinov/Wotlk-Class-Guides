@@ -7,6 +7,8 @@ import * as fromAuthActions from '../store/auth.actions';
 import {FormFieldModel} from '../../models/form-field.model';
 import {selectIsLoading} from '../../shared/store';
 import {Observable} from 'rxjs';
+import {Title} from '@angular/platform-browser';
+import {setPageTitle} from '../../shared/store/shared.actions';
 
 @Component({
   selector: 'app-signup',
@@ -22,6 +24,7 @@ export class SignupComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoading$ = this.store.select(selectIsLoading);
+    this.store.dispatch(setPageTitle({pageTitle: 'Ultimate Guides - Sign Up'}));
 
     this.signUpForm = new FormGroup({
       email: new FormControl('', {

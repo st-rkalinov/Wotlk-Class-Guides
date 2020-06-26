@@ -39,7 +39,7 @@
               <div class="guide__card-content-info-wrapper">
                 <p class="guide__card-content-info-title">Info:</p>
                 <mat-list class="guide__card-content-info-list">
-                  <mat-list-item class="guide__card-content-info-list-item">{{ guideClassData.info['text'] }}</mat-list-item>
+                  <mat-list-item class="guide__card-content-info-list-item">{{guideClassData.info['text'].split("\\n").join('\n')}}</mat-list-item>
                 </mat-list>
               </div>
               <div class="guide__card-content-info-wrapper">

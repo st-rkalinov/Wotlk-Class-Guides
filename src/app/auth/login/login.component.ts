@@ -7,6 +7,8 @@ import * as fromAuthActions from '../store/auth.actions';
 import {FormFieldModel} from '../../models/form-field.model';
 import {selectIsLoading} from '../../shared/store';
 import {Observable} from 'rxjs';
+import {Title} from '@angular/platform-browser';
+import {setPageTitle} from '../../shared/store/shared.actions';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +19,8 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   isLoading$: Observable<boolean>;
 
-  constructor(private authService: AuthService, private store: Store<AuthState>) {
+  constructor(private authService: AuthService, private store: Store<AuthState>, private titleService: Title) {
+    this.store.dispatch(setPageTitle({pageTitle: 'Ultimate Guides - Login'}));
   }
 
   ngOnInit(): void {

@@ -14,6 +14,7 @@ import * as fromSharedActions from '../../shared/store/shared.actions';
 import {take} from 'rxjs/operators';
 import {selectAvailableGems} from '../store';
 import {selectUserDataUid} from '../../auth/store';
+import {setPageTitle} from '../../shared/store/shared.actions';
 
 @Component({
   selector: 'app-new-guide',
@@ -46,6 +47,7 @@ export class NewGuideComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.store.dispatch(fromSharedActions.loadShared());
     this.store.dispatch(fromGuideActions.loadAvailableGems());
+    this.store.dispatch(setPageTitle({pageTitle: 'Ultimate Guides - New Guide'}));
 
     this.classesData$ = this.store.select(selectClassesData);
     this.gemsData$ = this.store.select(selectAvailableGems);

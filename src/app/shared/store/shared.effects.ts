@@ -20,6 +20,7 @@ export class SharedEffects {
         ))
     ));
 
-  constructor(private actions$: Actions, private sharedDataService: SharedDataService) {}
+  constructor(private actions$: Actions, private sharedDataService: SharedDataService) {
+  }
 
 }

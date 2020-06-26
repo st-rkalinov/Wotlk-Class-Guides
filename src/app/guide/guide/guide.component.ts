@@ -10,6 +10,7 @@ import {UserService} from '../../user/user.service';
 import {loadSelectedGuide, resetSelectedGuide} from '../store/guide.actions';
 import {selectGuideStateError, selectSelectedGuide} from '../store';
 import {Observable} from 'rxjs';
+import {setPageTitle} from '../../shared/store/shared.actions';
 
 @Component({
   selector: 'app-guide',
@@ -27,6 +28,7 @@ export class GuideComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(resetSelectedGuide({selectedGuide: undefined}));
     this.error = this.store.select(selectGuideStateError);
+    this.store.dispatch(setPageTitle({pageTitle: 'Ultimate Guides - Guide'}));
 
     this.route.paramMap.pipe(
       switchMap((params: ParamMap) => {

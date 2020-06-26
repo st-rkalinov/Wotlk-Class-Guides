@@ -22,3 +22,8 @@ export const setLoading = createAction(
 export const resetLoading = createAction(
   '[Components, Effects] Reset Loading'
 );
+
+export const setPageTitle = createAction(
+  '[Components] Set Page Title',
+  props<{pageTitle: string}>()
+);

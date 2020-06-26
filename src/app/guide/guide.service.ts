@@ -27,6 +27,10 @@ export class GuideService {
       .snapshotChanges();
   }
 
+  findAndReplaceOccurencesInString(from: string, to: string) {
+    return from.split("\\n").join('\n');
+  }
+
   private formatSpecName(specName) {
     return specName.replace(/-/g, ' ').toLowerCase();
   }

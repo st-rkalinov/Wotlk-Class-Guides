@@ -97,8 +97,9 @@
   &__card-content-info-list-item {
     min-height: 30px !important;
     height: auto !important;
-    font-family: $font-primary;
+    font-family: $font-secondary;
     font-size: $font-size-secondary;
+    white-space: pre-wrap;
   }
 
   &__card-content-info-macro {
@@ -111,6 +112,7 @@
       border-radius: 20px;
       padding: 2rem;
       white-space: pre-wrap;
+      font-family: $font-secondary;
     }
   }
 

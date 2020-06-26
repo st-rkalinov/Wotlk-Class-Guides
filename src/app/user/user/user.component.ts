@@ -6,6 +6,7 @@ import * as fromUserActions from '../store/user.actions';
 import {take} from 'rxjs/operators';
 import {GuideModel} from '../../guide/guide.model';
 import {selectUserGuides} from '../store';
+import {setPageTitle} from '../../shared/store/shared.actions';
 
 @Component({
   selector: 'app-user',
@@ -18,6 +19,7 @@ export class UserComponent implements OnInit {
   constructor(private router: ActivatedRoute, private userService: UserService, private store: Store) { }
 
   ngOnInit(): void {
+    this.store.dispatch(setPageTitle({pageTitle: 'Ultimate Guides - Your Guides'}));
     this.router.paramMap.pipe(take(1)).subscribe(params => {
       this.store.dispatch(fromUserActions.loadUserGuides({nickname: params.get('nickname')}));
 
