@@ -45,6 +45,8 @@ export class ClassesMenuDropdownsComponent implements OnInit {
         class: classData.name.toLowerCase()
       }
     });
+
+    window.scrollTo(0, document.body.scrollHeight);
   }
 
   loadSpecificSpecGuides(className: string, spec: DbCharacterClassSpecModel) {
@@ -54,6 +56,8 @@ export class ClassesMenuDropdownsComponent implements OnInit {
         spec: spec.name.toLowerCase()
       }
     });
+
+    window.scrollTo(0, document.body.scrollHeight);
   }
 
   private setSelectedSpecData(specNameFromRoute: string) {

@@ -1,3 +1,11 @@
 <div class="shell">
-  <app-guides-list *ngIf="guides" [guides]="guides" [displayedColumns]="['class', 'spec']"></app-guides-list>
+  <div class="user-guides">
+    <div *ngIf="guides; else error" class="user-guides__guides-wrapper">
+      <h3 class="heading-3 user-guides__heading">{{ userNickname }}<br> Guides</h3>
+      <app-guides-list [guides]="guides" [displayedColumns]="['class', 'spec']"></app-guides-list>
+    </div>
+    <ng-template #error class="user-guides__error-wrapper">
+      <h3 class="heading-3 user-guides__error-message">{{ userGuidesError$ | async }}</h3>
+    </ng-template>
+  </div>
 </div>

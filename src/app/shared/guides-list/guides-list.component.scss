@@ -6,6 +6,14 @@
   padding: 15rem 0;
   min-height: 400px;
 
+  &__no-guides-wrapper {
+    text-align: center;
+  }
+
+  &__no-guides-message {
+    @include orange-font-styling--heading();
+  }
+
   &__table-wrapper {
     background-image: url("/assets/img/welcome-page-info-bg.png");
     background-repeat: no-repeat;

@@ -8,7 +8,7 @@ export const loadUserGuides = createAction(
 
 export const loadUserGuidesSuccess = createAction(
   '[User Effect] Load User Guides Success',
-  props<{ userGuides: GuideModel[] }>()
+  props<{ userGuides: GuideModel[]}>()
 );
 
 export const loadUserGuidesFailure = createAction(

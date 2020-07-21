@@ -4,10 +4,10 @@ import {AuthService} from '../auth.service';
 import {Store} from '@ngrx/store';
 import {AuthState} from '../store';
 import * as fromAuthActions from '../store/auth.actions';
+import {resetError} from '../store/auth.actions';
 import {FormFieldModel} from '../../models/form-field.model';
 import {selectIsLoading} from '../../shared/store';
 import {Observable} from 'rxjs';
-import {Title} from '@angular/platform-browser';
 import {setPageTitle} from '../../shared/store/shared.actions';
 
 @Component({
@@ -23,6 +23,7 @@ export class SignupComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.store.dispatch(resetError({error: undefined}));
     this.isLoading$ = this.store.select(selectIsLoading);
     this.store.dispatch(setPageTitle({pageTitle: 'Ultimate Guides - Sign Up'}));
 

@@ -1,0 +1,8 @@
+@import "utils/mixins";
+
+.user-guides {
+  &__error-message, &__heading {
+    text-align: center;
+    @include orange-font-styling--heading();
+  }
+}

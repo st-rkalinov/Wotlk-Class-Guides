@@ -8,12 +8,12 @@ export const userStateFeatureKey = 'userState';
 
 export interface UserState {
   userGuides: GuideModel[];
-  userData: any;
+  error: any;
 }
 
 export const initialState: UserState = {
   userGuides: undefined,
-  userData: undefined
+  error: undefined,
 };
 
 export const reducers = createReducer(
@@ -30,5 +30,11 @@ export const selectUserGuides = createSelector(
   selectGuideFeature,
   (state: UserState) => state.userGuides
 );
+
+export const selectUserGuidesError = createSelector(
+  selectGuideFeature,
+  (state: UserState) => state.error
+);
+
 
 export const metaReducers: MetaReducer<UserState>[] = !environment.production ? [] : [];

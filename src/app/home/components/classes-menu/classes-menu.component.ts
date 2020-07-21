@@ -28,5 +28,7 @@ export class ClassesMenuComponent implements OnInit {
     this.selectedClass = {index, classData};
 
     this.classIconClicked.emit(classData);
+
+    window.scrollTo(0, document.body.scrollHeight);
   }
 }

@@ -4,6 +4,7 @@ import {AuthService} from '../auth.service';
 import {AuthState} from '../store';
 import {Store} from '@ngrx/store';
 import * as fromAuthActions from '../store/auth.actions';
+import {resetError} from '../store/auth.actions';
 import {FormFieldModel} from '../../models/form-field.model';
 import {selectIsLoading} from '../../shared/store';
 import {Observable} from 'rxjs';
@@ -20,6 +21,7 @@ export class LoginComponent implements OnInit {
   isLoading$: Observable<boolean>;
 
   constructor(private authService: AuthService, private store: Store<AuthState>, private titleService: Title) {
+    this.store.dispatch(resetError({error: undefined}));
     this.store.dispatch(setPageTitle({pageTitle: 'Ultimate Guides - Login'}));
   }
 
